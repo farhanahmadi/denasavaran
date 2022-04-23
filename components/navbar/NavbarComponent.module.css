@@ -1,0 +1,288 @@
+@font-face {
+    font-family: "Sansiran";
+    src: url(../../public/assets/fonts/Sansiran.ttf);
+}
+@font-face {
+    font-family: "iranyekan";
+    src: url(../../public/assets/fonts/BYekan.ttf);
+}
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.fadeIn {
+    -webkit-animation: fadeIn 1.5s;
+    animation: fadeIn 1.5s;
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+}
+
+
+.mainNav{
+    padding: 30px 10px 0px 10px;
+    width: 100%;
+    direction: rtl;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+.topNav{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: calc(200% / 3);
+}
+
+.rightTopNav{
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    width: calc(200% / 3);
+}
+.leftTopNav{
+    width: calc(100% / 3);
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content:end;
+}
+.searchBar{
+    width: 100%;
+    position: relative;
+
+}
+.searchBar input{
+    background-color: #E5E6EA;
+    border: none;
+    border-radius: 10px;
+    width: 100%;
+    padding: 10px;
+}
+.searchBar input:focus{
+    outline: none;
+}
+.searchBtn{
+    position: absolute;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    padding: 9px 15px;
+    left: 0;
+    top: 0;
+}
+.loginBtn{
+    border: 1px solid #DDDDDD!important;
+    margin: 0px 15px;
+    font-family: sansiran;
+}
+.loginBtn:hover{
+    background-color: white!important;
+    color: #DC3545!important;
+}
+.shppingBtn{
+    border: none;
+    background-color: white!important;
+}
+.logo img{
+    width: 300px;
+}
+.line{
+    height: 5vh;
+    width: 1px;
+    background-color: black;
+}
+.bottomNav{
+    width: 100%;
+    height: calc(100% / 3);
+}
+.navbarUl{
+    list-style-type: none;
+    padding-bottom: 10px;
+    padding-left: 0;
+}
+.navbarUl li{
+    display: inline-block;
+    margin-top: 30px;
+    padding: 0px 10px;
+}
+
+.navbarUl a{
+    text-decoration: none;
+    color: black;
+    font-size: 14px;
+    font-family: Sansiran;
+    position: relative;
+    padding: 10px 0px;
+}
+
+.navbarUl a:hover::before{
+    content: '';
+    width: 100%;
+    height: 2px;
+    background-color: #DD0508;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+.navbarUl a:hover{
+    color: #DD0508;
+}
+.mobile{
+    display: none;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+
+}
+.dropdownNone{
+    width: 100%;
+    position: absolute;
+    z-index: 10;
+    top: 140px;
+    margin: 0 auto;
+    display: none;
+}
+.dropdownBlock{
+    width: 100%;
+    position: absolute;
+    z-index: 10;
+    top: 140px;
+    margin: 0 auto;
+    display: block;
+    animation-name: fadeIn;
+    animation-duration: 0.5s;
+
+}
+
+
+@media (min-width: 1300px){
+    .navbarContainer{
+        max-width: 1300px!important;
+    }
+}
+
+
+@media only screen and (max-width: 999.98px) {
+    .logo img{
+        width: 200px;
+    }
+  }
+
+@media only screen and (max-width: 767.98px) {
+    .mobile {
+      display: block;
+    }
+    .computer{
+        display: none;
+    }
+  }
+  
+
+.mobileNavbarItems{
+    direction: rtl;
+    color: black!important;
+    margin: 10px 5px;
+
+}
+.mobileNavbarItems:hover{
+    color: rgb(63, 63, 63)!important;
+    font-size: 20px;
+    transition: font-size 0.5s;
+}
+.textLogo{
+    text-align: left;
+}
+.textLogo img{
+    width: 200px;
+}
+.containerFluid{
+    padding: 5px 2px 5px 2px;
+    border-bottom: 1px solid #E0E0E0;
+}
+
+.responsiveLogo{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.navHr{
+    border: 1px solid black!important;
+    opacity: 1!important;
+    margin: 0;
+}
+.logoText{
+    margin-top: 15px;
+    text-align: center;
+    font-weight: bold;
+    /* font-family: Permanent; */
+    color: white;
+    letter-spacing: 2px;
+    text-shadow: 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black;
+}
+.navbarTop{
+    display: block;
+    text-align: left;
+    flex-direction: column-reverse;
+    background-image: url(../../public/assets/images/NavbarLogo.jpg);
+    background-position: 100% 50%; 
+    background-position: 100% 50%; 
+    background-size: cover;
+    height: 40vh;
+}
+.navbarBtnToggle{
+    margin-right: 5px;
+}
+.navbarTop button{
+   background-color: white;
+   color: black;
+   opacity: 1;
+}
+.mobileNavbarBottom{
+    direction: rtl;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 15px;
+}
+.mobileSearchBar{
+    width: calc(200% / 3);
+    padding: 5px;
+    position: relative;
+
+
+}
+.mobileUserBtn{
+    width: calc(100% / 3);
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+.mobileUserBtn a{
+    padding: 10px;
+}
+.mobileloginBtn{
+    width: 100px;
+}
+.mobileSearchBar input{
+    border-radius: 5px;
+    background-color: #ebebeb;
+    border: none;
+    padding: 7px;
+    position: relative;
+    width: 100%;
+}
+.mobileSearchBtn{
+    position: absolute;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius:5px;
+    left: 0;
+    top: 5px;
+}
+
+.powerby{
+    text-align: center;
+    font-weight: bold;
+}

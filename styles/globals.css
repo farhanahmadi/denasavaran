@@ -1,16 +1,33 @@
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+body::-webkit-scrollbar {
+  width: 2px;
+}
+
+body::-webkit-scrollbar-track {
+  background: #f3ba2f;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: rgb(15, 221, 194);
 }
 
 a {
-  color: inherit;
   text-decoration: none;
 }
 
 * {
   box-sizing: border-box;
+}
+
+
+@media only screen and (min-width: 767.98px) {
+  .sidebar {
+    display: none;
+  }
 }

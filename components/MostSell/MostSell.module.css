@@ -1,0 +1,150 @@
+/* #app { height: 100% }
+html,
+body {
+  position: relative;
+  height: 100%;
+}
+
+body {
+  background: #eee;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: #000;
+  margin: 0;
+  padding: 0;
+} */
+@font-face {
+  font-family: "sansiran";
+  src: url(../../public/assets/fonts/Sansiran.ttf);
+}
+.container{
+  background-color: #ffffff;
+  padding: 20px;
+  margin: 30px 20px;
+  border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  width: 100%;
+}
+.slider{
+  width: 100%;
+}
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiperSlider{
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  width: auto;
+
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.swiperSlider img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sliderHeader{
+  text-align: right;
+  padding-bottom: 5px;
+  margin-bottom: 20px;
+  position: relative;
+}
+.sliderHeader h3{
+  font-size: 15px;
+  font-family: sansiran;
+  font-weight: bold;
+}
+.sliderHeader::before{
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 1px;
+  width: 100%;
+  background-color: rgb(139, 139, 139);
+}
+
+.sliderHeader::after{
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 1px;
+  width: 10%;
+  background-color: rgb(255, 0, 0);
+  z-index: 9;
+}
+
+
+@media (min-width: 767.98px){
+  .lg{
+    display: block;
+    }
+  .md{
+      display: none;
+    }
+  .sm{
+      display: none;
+    }
+  
+}
+
+
+@media (min-width: 767.98px){
+  .lg{
+    display: block;
+    }
+  .md{
+      display: none;
+    }
+  .sm{
+      display: none;
+    }
+  
+}
+
+
+@media (max-width: 767.98px){
+  .lg{
+     display: none;
+  }
+  .md{
+    display: block;
+  }
+  .sm{
+    display: none;
+  }
+  
+}
+
+
+@media (max-width: 575.98px){
+  .lg{
+     display: none;
+  }
+  .md{
+    display: none;
+  }
+  .sm{
+    display: block;
+  }
+  
+}

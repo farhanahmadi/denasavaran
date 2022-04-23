@@ -1,0 +1,29 @@
+@font-face {
+    font-family: "iranyekan";
+    src: url(../../public/assets/fonts/BYekan.ttf);
+  }
+.container{
+    margin: 0 auto;
+    width: 90%;
+    padding: 20px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.dropdownUl{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 400px;
+    align-items: start;
+    list-style-type: none;
+}
+.dropdownUl h5{
+    font-family: iranyekan!important;
+
+}
+.dropdownUl li{
+    list-style-type: none;
+    font-family: iranyekan!important;
+
+}
