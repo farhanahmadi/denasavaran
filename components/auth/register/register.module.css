@@ -1,0 +1,66 @@
+@font-face {
+    font-family: "iranyekan";
+    src: url(../../../public/assets/fonts/BYekan.ttf);
+}
+.container{
+    margin: 50px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+
+}
+.formContainer{
+    min-width: 50%;
+    background-color: #ffffff;
+    padding: 20px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-radius: 15px;
+}
+.fromData{
+    width: 100%;
+}
+.formDataInput::-webkit-input-placeholder { 
+    font-size: 14px;
+    font-family: iranyekan;
+    font-weight: bold;
+  }
+.formDataInput::-moz-placeholder { 
+    font-size: 14px;
+    font-family: iranyekan;
+    font-weight: bold;
+  }
+.formDataInput:-ms-input-placeholder { 
+    font-size: 14px;
+    font-family: iranyekan;
+    font-weight: bold;
+  }
+.formDataInput:-moz-placeholder { 
+    font-size: 14px;
+    font-family: iranyekan;
+    font-weight: bold;
+  }
+.formDataLabel{
+    font-size: 16px;
+    font-family: iranyekan;
+    font-weight: bold;
+}
+.formDataLabelError{
+    font-size: 16px;
+    font-family: iranyekan;
+    font-weight: bold;
+    color: red;
+    margin-top: 10px;
+}
+.formLogo{
+    text-align: center;
+}
+
+@media only screen and (max-width: 768px){
+    .container{
+        margin: 50px 10px;
+    
+    }
+    .logo{
+        width: 100%;
+    }
+}

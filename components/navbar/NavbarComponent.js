@@ -27,6 +27,7 @@ const NavbarComponent = () => {
         <>
         <Head>
             <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossOrigin="anonymous"/>
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
         </Head>
         <div className={styles.mobile}>
            <Navbar id="mNavbar" bg="light" expand={false} className={styles.Navbar}>
@@ -53,7 +54,6 @@ const NavbarComponent = () => {
                         <Nav.Link className={styles.mobileNavbarItems} href="#link"><i class="fas fa-phone"></i> تماس با ما</Nav.Link>
                         </Nav>
                     </Offcanvas.Body>
-                    <h4 className={styles.powerby}> Powerd By Farhan Ahmadi </h4>
                     </Navbar.Offcanvas>
                 </Container>
                 <section className={styles.mobileNavbarBottom}>
@@ -82,7 +82,7 @@ const NavbarComponent = () => {
                             </section>
                         </section>
                         <section className={styles.leftTopNav}>
-                             <Button className={styles.loginBtn} variant="outline-danger"><i class="fas fa-users"></i> ورود / ثبت نام</Button>{' '}
+                             <Link href={'/auth/login/'}><a><Button className={styles.loginBtn} variant="outline-danger"><i class="fas fa-users"></i> ورود / ثبت نام</Button>{' '}</a></Link>
                              <section className={styles.line}></section>
                              <Button className={styles.shppingBtn} variant="warning"><i class="fas fa-shopping-bag"></i></Button>{' '}
                         </section>
@@ -90,11 +90,11 @@ const NavbarComponent = () => {
                     <section className={styles.bottomNav}>
                         <ul className={styles.navbarUl}>
                         <li><Link href="/" ><a><i class="fas fa-home"></i> خانه </a></Link></li>
-                        <li><Link href="/Articles"><a><i class="fas fa-archive"></i> آرشیو مطالب </a></Link></li> 
+                        <li><Link href="/blogs"><a><i class="fas fa-archive"></i> آرشیو مطالب </a></Link></li> 
                         <li id="shoppingBtn" onMouseEnter={dropdownHandler} onMouseLeave={dropdownHandlerRemove} ><Link href="/Articles"><a><i class="fas fa-shopping-cart"></i> محصولات</a></Link></li>
                         <li><a href="#"><i class="fas fa-stopwatch"></i> رزرو وقت</a></li> 
                         <li><a href="#"><i class="fas fa-hands-helping"></i> مشاوره </a></li> 
-                        <li><Link href="/JoinUs"><a><i class="fas fa-plus-circle"></i> ثبت نام در باشگاه </a></Link> </li>
+                        <li><Link href="/Join_Us"><a><i class="fas fa-plus-circle"></i> ثبت نام در باشگاه </a></Link> </li>
                         </ul>
                     </section>
                     <section onMouseEnter={dropdownHandler} onMouseLeave={dropdownHandlerRemove} className={dropDownclass ? styles.dropdownBlock : styles.dropdownNone }>

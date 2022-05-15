@@ -1,45 +1,113 @@
-/* #app { height: 100% }
-html,
-body {
-  position: relative;
-  height: 100%;
-}
-
-body {
-  background: #eee;
-  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  color: #000;
-  margin: 0;
-  padding: 0;
-} */
-@font-face {
-  font-family: "sansiran";
-  src: url(../../public/assets/fonts/Sansiran.ttf);
-}
-.container{
-  background-color: #ffffff;
+.container {
+  background-color: #EF3B50;
   padding: 20px;
   margin: 30px 20px;
-  border-radius: 15px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 8px;
+  /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+  width: 90%;
+}
+
+.offerSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 246px;
+  width: 182px;
+}
+
+.offerImage {
+  width: 70%;
+  height: auto;
+}
+
+.offerImageSvg {
+  width: 50% !important;
+  height: auto;
+}
+
+.slider {
   width: 100%;
 }
-.slider{
-  width: 100%;
-}
+
 .swiper {
   width: 100%;
   height: 100%;
 }
 
-.swiperSlider{
-  text-align: center;
-  font-size: 18px;
-  background: #fff;
-  width: auto;
+.card {
+  height: 246px;
+  direction: ltr;
+  cursor: pointer;
+  background-color: white;
+  padding: 5px;
+  border-radius: 10px;
+}
 
-  /* Center slide text vertically */
+.card:hover {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+}
+
+.cardText {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cardTitle {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.discountPrice {
+  font-size: 18px;
+  margin: 0 0 0 5%;
+}
+
+.discountPercent {
+  width: 34px;
+  height: 20px;
+  border-radius: 15px;
+  font-size: 12px;
+  margin: 0 5% 0 0;
+  background-color: #EF394E;
+  color: #fff;
+}
+
+.mainPrice {
+  text-align: left;
+  margin: 0 0 0 5%;
+  color: #9FA1A2;
+  font-size: 14px;
+  position:relative;
+  top:-3px;
+  width: fit-content;
+}
+
+.mainPrice::before {
+  content: ' ';
+  position: absolute;
+  margin: 0 0 0 5%;
+  height: 1px;
+  width: 100%;
+  background-color: #9FA1A2;
+  font-size: 14px;
+  top: 55%;
+}
+
+.card img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.swiperSlider {
+  text-align: center;
+  height: 246px;
+  width: 182px;
+  font-size: 18px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: -webkit-flex;
@@ -54,83 +122,65 @@ body {
   align-items: center;
 }
 
-.swiperSlider img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
 
-.sliderHeader{
+.sliderHeader {
   text-align: right;
   padding-bottom: 5px;
   margin-bottom: 20px;
   position: relative;
 }
-.sliderHeader h3{
+
+.sliderHeader h3 {
   font-size: 15px;
-  font-family: sansiran;
-  font-weight: bold;
+  color: #fff;
 }
-.sliderHeader::before{
+
+.sliderHeader::before {
   content: '';
   position: absolute;
   bottom: 0;
   right: 0;
   height: 1px;
   width: 100%;
-  background-color: rgb(139, 139, 139);
+  background-color: rgb(255, 255, 255);
 }
 
-.sliderHeader::after{
+.sliderHeader::after {
   content: '';
   position: absolute;
   bottom: 0;
   right: 0;
   height: 1px;
   width: 10%;
-  background-color: rgb(255, 0, 0);
+  background-color: rgb(255, 255, 255);
   z-index: 9;
 }
 
-
-@media (min-width: 767.98px){
-  .lg{
-    display: block;
-    }
-  .md{
-      display: none;
-    }
-  .sm{
-      display: none;
-    }
-  
+.more{
+  background: inherit;
+  color: #fff;
+  border: none;
+  text-align: center;
 }
 
 
-@media (max-width: 767.98px){
-  .lg{
-     display: none;
+@media (max-width: 767.98px) {
+  .container {
+    width: 100%;
   }
-  .md{
-    display: block;
-  }
-  .sm{
-    display: none;
-  }
-  
-}
 
+  .offerImage {
+    width: 70% !important;
+    height: auto;
+  }
 
-@media (max-width: 575.98px){
-  .lg{
-     display: none;
+  .offerImageSvg {
+    width: 50% !important;
+    height: auto;
   }
-  .md{
-    display: none;
+
+  .swiperSlider {
+    width: 160px !important;
   }
-  .sm{
-    display: block;
-  }
-  
+
 }

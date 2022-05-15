@@ -2,7 +2,6 @@ import React from 'react'
 import styles from "./Footer.module.css"
 import 'bootstrap/dist/css/bootstrap.css';
 import {Button} from "react-bootstrap"
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 
 const Footer = () => {
     return (

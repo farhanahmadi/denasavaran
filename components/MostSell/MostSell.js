@@ -23,7 +23,7 @@ import SwiperCore from 'swiper';
         </section>
         <div className={styles.sliderContainer}>
         <section className={styles.slider}>
-          <Swiper slidesPerView={4} spaceBetween={10} slidesPerGroup={1} loop={false} loopFillGroupWithBlank={true} pagination={{
+          <Swiper slidesPerView={5} spaceBetween={10} slidesPerGroup={1} loop={false} loopFillGroupWithBlank={true} pagination={{
               "clickable": true
             }} navigation={true} className={styles.mySwiper}>
               <SwiperSlide className={styles.swiperSlider}>

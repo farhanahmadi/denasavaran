@@ -1,3 +1,6 @@
+.container{
+    width: 90%;
+}
 .Images{
     width: 100%;
     display: flex;
@@ -9,7 +12,6 @@
 .Images img{
     border-radius: 15px;
     width: 95%;
-
 }
 
 
@@ -22,5 +24,4 @@
         margin: 10px 5px;
     
     }
-    
 }

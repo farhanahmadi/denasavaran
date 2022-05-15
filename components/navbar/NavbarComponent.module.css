@@ -1,11 +1,4 @@
-@font-face {
-    font-family: "Sansiran";
-    src: url(../../public/assets/fonts/Sansiran.ttf);
-}
-@font-face {
-    font-family: "iranyekan";
-    src: url(../../public/assets/fonts/BYekan.ttf);
-}
+
 @keyframes fadeIn {
     0% {
         opacity: 0;
@@ -77,7 +70,8 @@
 .loginBtn{
     border: 1px solid #DDDDDD!important;
     margin: 0px 15px;
-    font-family: sansiran;
+    font-size: 18px;
+    font-weight: 600;
 }
 .loginBtn:hover{
     background-color: white!important;
@@ -113,8 +107,7 @@
 .navbarUl a{
     text-decoration: none;
     color: black;
-    font-size: 14px;
-    font-family: Sansiran;
+    font-size: 16px;
     position: relative;
     padding: 10px 0px;
 }
@@ -216,7 +209,6 @@
     margin-top: 15px;
     text-align: center;
     font-weight: bold;
-    /* font-family: Permanent; */
     color: white;
     letter-spacing: 2px;
     text-shadow: 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black;

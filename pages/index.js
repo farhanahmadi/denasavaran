@@ -24,7 +24,8 @@ export default function Home() {
           <Poster />
           <AboutUs />
           <LastContents />
-          <MostSell />
+          <LastContents />
+          {/* <MostSell /> */}
         </main>
 
         <footer className={styles.footer}>

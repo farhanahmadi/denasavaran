@@ -4,7 +4,6 @@ import React from 'react'
 //import components
 import NavbarComponent from '../navbar/NavbarComponent'
 import Footer from '../footer/Footer'
-import Drawer from '../drawer/Drawer'
 
 
 
@@ -13,9 +12,7 @@ const Layout = ({children}) => {
     <>
     <NavbarComponent />
 
-    <Drawer />
     {children}
-
     <Footer />
     </>
   )

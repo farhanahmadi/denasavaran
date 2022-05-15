@@ -1,0 +1,47 @@
+.container {
+    max-width: 1200px;
+    margin: 3% auto;
+    direction: rtl;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    padding: 3% 0px;
+}
+
+.porster {
+    text-align: center;
+    width: 100%;
+}
+
+.title {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.title h1 {
+    font-size: 20px;
+}
+
+.title p {
+    font-size: 12px;
+    color: #7a7a7a;
+
+}
+
+.porster img {
+    border-radius: 10px;
+}
+
+.main {
+    margin-top: 3%;
+    padding: 0 20px;
+}
+
+.main h1 {
+    color: red;
+    font-size: 20px;
+}
+
+.main p {
+    margin-top: 15px;
+    color: #7a7a7a;
+    font-size: 14px;
+}

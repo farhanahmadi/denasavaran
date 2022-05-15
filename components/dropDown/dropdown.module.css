@@ -1,7 +1,4 @@
-@font-face {
-    font-family: "iranyekan";
-    src: url(../../public/assets/fonts/BYekan.ttf);
-  }
+
 .container{
     margin: 0 auto;
     width: 90%;
@@ -18,12 +15,6 @@
     align-items: start;
     list-style-type: none;
 }
-.dropdownUl h5{
-    font-family: iranyekan!important;
-
-}
 .dropdownUl li{
     list-style-type: none;
-    font-family: iranyekan!important;
-
 }

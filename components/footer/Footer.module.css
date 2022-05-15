@@ -1,7 +1,4 @@
-@font-face {
-    font-family: "iranyekan";
-    src: url(../../public/assets/fonts/BYekan.ttf);
-}
+
 .container{
     width: 100%;
     height: 100%;
@@ -20,7 +17,6 @@
 .topSectionP{
     padding-top: 10px;
     font-size: 16px;
-    font-family: iranyekan;
     font-weight: bold;
 
 }
@@ -47,11 +43,9 @@
 .articleLinks li{
     cursor: pointer;
     font-size: 16px!important;
-    font-family: iranyekan;
 }
 .articleLinks h3{
     font-size: 28px;
-    font-family: iranyekan;
     font-weight: bold;
 
 }
@@ -68,6 +62,9 @@
     border: 1px solid #c8c8c8;
     width: 100%;
 }
+.searchInput:focus{
+    outline: none;
+}
 .searchBarBtn{
     position: absolute;
     border-top-left-radius: 8px;
@@ -79,7 +76,6 @@
 .searchInputP{
     color: #919191;
     font-size: 16px;
-    font-family: iranyekan;
     text-align: center;
     margin-top: 10px;
 }
