@@ -91,7 +91,7 @@ const NavbarComponent = () => {
                         <ul className={styles.navbarUl}>
                         <li><Link href="/" ><a><i class="fas fa-home"></i> خانه </a></Link></li>
                         <li><Link href="/blogs"><a><i class="fas fa-archive"></i> آرشیو مطالب </a></Link></li> 
-                        <li id="shoppingBtn" onMouseEnter={dropdownHandler} onMouseLeave={dropdownHandlerRemove} ><Link href="/Articles"><a><i class="fas fa-shopping-cart"></i> محصولات</a></Link></li>
+                        <li id="shoppingBtn" onMouseEnter={dropdownHandler} onMouseLeave={dropdownHandlerRemove} ><Link href="/products/"><a><i class="fas fa-shopping-cart"></i> محصولات</a></Link></li>
                         <li><a href="#"><i class="fas fa-stopwatch"></i> رزرو وقت</a></li> 
                         <li><a href="#"><i class="fas fa-hands-helping"></i> مشاوره </a></li> 
                         <li><Link href="/Join_Us"><a><i class="fas fa-plus-circle"></i> ثبت نام در باشگاه </a></Link> </li>

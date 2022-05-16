@@ -1,0 +1,212 @@
+.imageContainer{
+    width: 100%;
+}
+.imageContainer{
+    width: 100%;
+    height: 450px;
+    border-radius: 10px;
+    object-fit: contain;
+    background-image: url('../../public/assets/images/card1.jpg');
+    background-size: cover;
+    
+}
+.swiperContainer{
+    width: 100%;
+    margin-top: 20px;
+}
+
+.swiperImage{
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.title{
+    font-size: 1.5em;
+}
+.titleLine{
+    width: 65%;
+}
+.description{
+    font-size: 14px;
+    color: #747474;
+}
+.colorContainer{
+    width: 100;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.colorTitle{
+    font-size: 1.5em;
+    margin-top: 50px;
+}
+.colorParent{
+    border: 1px solid #747474;
+    border-radius: 50%;
+    background: none;
+    position: relative;
+    width: 40px;
+    height: 40px;
+    margin-left: 5px;
+}
+.color{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: skyblue;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.properties{
+    margin-top: 50px;
+
+}
+.propertiesList{
+    margin-right: 15px;
+    font-size: 16px;
+}
+.propertiesListTitle{
+    color: #747474;
+}
+.returnText{
+    color: #747474;
+    font-size: 16px;
+}
+.sendNotice{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #c9c9c9;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 40px;
+}
+.sendNoticeTitle{
+    font-size: 1.5em;
+}
+.sendNoticeDescription{
+    font-size: 1em;
+    color: #747474;
+}
+.priceBox{
+    background-color: #F7F7F8;
+    padding: 30px 10px;
+    border-radius: 10px;
+    border: 1px solid #c9c9c9;
+    width: 80%;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    direction: rtl;
+}
+.sellerTitle{
+    text-align: right;
+    font-size: 1.5em;
+}
+.sellerDescription{
+    font-size: 16px;
+    margin-top: 15px;
+}
+.sellerDescription i {
+    color: #DC3545;
+}
+.garantyText{
+    font-size: 16px;
+}
+.garantyText i {
+    color: #00A049;
+}
+.checkingText{
+    font-size: 16px;
+}
+.checkingText i {
+    color: #00A049;
+}
+.price{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+}
+.priceText{
+    font-size: 1.5em;
+    margin: 0;
+}
+.discountPercent{
+    width: 34px;
+    height: 20px;
+    border-radius: 15px;
+    font-size: 12px;
+    margin: 0 5% 0 0;
+    background-color: #EF394E;
+    color: #fff;
+    text-align: center;
+}
+.sellerPrice{
+    font-size: 14px;
+    color: #747474;
+    margin: 0;
+}
+.priceBeforeDiscountContainer{
+    width: 100%;
+    direction: ltr;
+}
+.priceBeforeDiscount {
+    text-align: left;
+    color: #9FA1A2;
+    font-size: 14px;
+    position: relative;
+    width: fit-content;
+    margin: 0;
+}
+
+.priceBeforeDiscount::before {
+    content: ' ';
+    position: absolute;
+    margin: 0 0 0 5%;
+    height: 1px;
+    width: 100%;
+    background-color: #9FA1A2;
+    font-size: 14px;
+    top: 55%;
+}
+.buyBtn{
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: -10px;
+}
+.Btn{
+    background-color: #DC3545;
+    color: #fff;
+    border: none;
+    width: 90%;
+    border-radius: 10px;
+    height: 40px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+
+@media only screen and (max-width: 1200px) {
+    .priceBox{
+        margin: 20px auto;
+        width: 100%;
+    }
+
+}
+
+@media only screen and (max-width: 768px) {
+    .title{
+        margin-top: 20px;
+    }
+    .titleLine{
+        width: 100%;
+    }
+    .priceBox{
+        margin: 20px auto;
+    }
+
+}
