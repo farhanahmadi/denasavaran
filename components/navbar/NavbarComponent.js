@@ -59,7 +59,7 @@ const NavbarComponent = () => {
                 <section className={styles.mobileNavbarBottom}>
                             <section className={styles.mobileSearchBar}>
                                 <input type="text" placeholder="جستجو" />
-                                <Button className={styles.mobileSearchBtn} variant="danger"><i class="fas fa-search"></i></Button> 
+                                <Button name='searchBtn' className={styles.mobileSearchBtn} variant="danger"><i class="fas fa-search"></i></Button> 
                             </section>
                             <section className={styles.mobileUserBtn}>
                              <a><i class="fas fa-users"></i></a>
@@ -82,7 +82,7 @@ const NavbarComponent = () => {
                             </section>
                         </section>
                         <section className={styles.leftTopNav}>
-                             <Link href={'/auth/login/'}><a><Button className={styles.loginBtn} variant="outline-danger"><i class="fas fa-users"></i> ورود / ثبت نام</Button>{' '}</a></Link>
+                             <Link href={'/auth/login/'}><a><Button name='login_register' className={styles.loginBtn} variant="outline-danger"><i class="fas fa-users"></i> ورود / ثبت نام</Button>{' '}</a></Link>
                              <section className={styles.line}></section>
                              <Button className={styles.shppingBtn} variant="warning"><i class="fas fa-shopping-bag"></i></Button>{' '}
                         </section>
@@ -92,8 +92,6 @@ const NavbarComponent = () => {
                         <li><Link href="/" ><a><i class="fas fa-home"></i> خانه </a></Link></li>
                         <li><Link href="/blogs"><a><i class="fas fa-archive"></i> آرشیو مطالب </a></Link></li> 
                         <li id="shoppingBtn" onMouseEnter={dropdownHandler} onMouseLeave={dropdownHandlerRemove} ><Link href="/products/"><a><i class="fas fa-shopping-cart"></i> محصولات</a></Link></li>
-                        <li><a href="#"><i class="fas fa-stopwatch"></i> رزرو وقت</a></li> 
-                        <li><a href="#"><i class="fas fa-hands-helping"></i> مشاوره </a></li> 
                         <li><Link href="/Join_Us"><a><i class="fas fa-plus-circle"></i> ثبت نام در باشگاه </a></Link> </li>
                         </ul>
                     </section>

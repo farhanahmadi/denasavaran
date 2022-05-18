@@ -138,14 +138,15 @@
     display: none;
 }
 .dropdownBlock{
-    width: 100%;
+    width: 90%;
     position: absolute;
-    z-index: 10;
+    z-index: 100;
     top: 140px;
     margin: 0 auto;
     display: block;
     animation-name: fadeIn;
     animation-duration: 0.5s;
+    transform: translateX(-5%);
 
 }
 

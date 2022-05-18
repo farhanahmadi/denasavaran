@@ -5,6 +5,9 @@ import axios from "axios";
 //import styles
 import styles from "./blogsDetails.module.css";
 
+
+
+
 import logo from "../../public/assets/images/card1.jpg";
 
 const Blogs = () => {
@@ -15,7 +18,6 @@ const Blogs = () => {
   },[])
   return (
     <div className={styles.container}>
-    {console.log(data)}
       <section className={styles.title}>
         <h1>چگونه پایتون را آپدیت کنیم؟ | آموزش صفر تا صد آپدیت کردن پایتون</h1>
         <hr />

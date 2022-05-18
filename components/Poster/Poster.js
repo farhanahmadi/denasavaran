@@ -38,10 +38,10 @@ const Poster = () => {
 
                 <section className={styles.leftImg}>
                     <section className={styles.upImg}>
-                        <img src="/assets/images/upimg.png" />
+                        <img src="/assets/images/upimg.png" alt='poster'/>
                     </section>
                     <section className={styles.downImg}>
-                    <img src="/assets/images/downimg.png" />
+                    <img src="/assets/images/downimg.png" alt='poster'/>
                     </section>
                 </section>
             </section>
