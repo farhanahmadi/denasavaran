@@ -94,11 +94,18 @@ export default function Cart() {
                     <span className={styles.colorText}>{item.color}</span>
                   </section>
                   <section className={styles.garanty}>
-                    <i className="fas fa-shield-check"></i> گارانتی اصالت و
-                    سلامت فیزیکی کالا
+                    <i
+                      style={{ color: "#0E6655" }}
+                      className="fas fa-shield-check"
+                    ></i>{" "}
+                    گارانتی اصالت و سلامت فیزیکی کالا
                   </section>
                   <section className={styles.seller}>
-                    <i className="fas fa-store-alt"></i> لوازم یدکی احمدی
+                    <i
+                      style={{ color: "#3498DB" }}
+                      className="fas fa-store-alt"
+                    ></i>{" "}
+                    لوازم یدکی احمدی
                   </section>
                   <section className={styles.price}>۴۶۰,۰۰۰ تومان</section>
                 </section>
@@ -108,7 +115,43 @@ export default function Cart() {
           ))}
         </section>
       </section>
-      <section className={styles.paymentDetails}></section>
+      <section className={styles.paymentDetails}>
+        <section className={styles.ContinueShopping}>
+          <section className={styles.quantitySection}>
+            <span className={styles.paymentQuantityText}>تعداد کالاها :</span>
+            <span className={styles.paymentQuantityNumber}>۳</span>
+          </section>
+          <section className={styles.toalSection}>
+            <span className={styles.totalText}>جمع سبد خرید :</span>
+            <span className={styles.totalNumber}>۴۹۵,۴۶۰ تومان</span>
+          </section>
+          <p className={styles.sendPrice}>
+            هزینه ارسال براساس آدرس، زمان تحویل، وزن و حجم مرسوله شما محاسبه
+            می‌شود
+          </p>
+          <section className={styles.buyBtnSection}>
+            <button className={styles.buyBtn}>ادامه</button>
+          </section>
+        </section>
+        <section className={styles.freeSend}>
+          <section className={styles.freeSendHeader}>
+            <h2>ارسال رایگان</h2>
+            <p>برای سفارش‌ بالای ۵۰۰ هزار تومان</p>
+          </section>
+          <section className={styles.freeSendImg}>
+            <img src="/assets/images/sendCar.svg" alt="send" />
+          </section>
+        </section>
+      </section>
+      <section className={styles.fixedCart}>
+        <section className={styles.fixedPriceSection}>
+          <span className={styles.fixedPriceText}>جمع سبد خرید</span>
+          <span className={styles.fixedPriceNumber}>۴۹۵,۴۶۰ تومان</span>
+        </section>
+        <section className={styles.fixedBuyBtnSection}>
+          <button className={styles.fixedbuyBtn}>ادامه</button>
+        </section>
+      </section>
     </div>
   );
 }
