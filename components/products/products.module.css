@@ -1,60 +1,137 @@
+.container {
+    margin: 5% 0;
+    display: grid;
+    grid-template-columns: 20% 80%;
+    direction: rtl;
+    align-items: flex-start;
+    position: relative;
+}
+
+.skeletonSidebar {
+    width: 360px;
+    height: 600px;
+    background-color: #E2E2E2;
+    border-radius: 10px;
+    margin-right: 7%;
+}
+
+.skeletonSidebar div {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.skeletonSidebar ul {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.sideBar {
+    padding: 10px 20px;
+    background-color: #f3f3f3;
+    margin-right: 7%;
+    border-radius: 10px;
+    position: sticky;
+    top: 20px;
+}
+
+.filterText {
+    font-size: 1.2em;
+    color: #EF233C;
+    margin-bottom: 20px;
+}
+
+.carFilter {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    direction: ltr;
+    text-align: right;
+    gap: 10px 0px;
+}
+
+.carFilter li {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    position: relative;
+}
+
+.carFilter label {
+    margin-right: 35px;
+}
+
+.Filtercontainer input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 25px;
+    width: 25px;
+    background-color: transparent;
+    border: 1px solid gray;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* On mouse-over, add a grey background color */
+.Filtercontainer:hover input~.checkmark {
+    background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.Filtercontainer input:checked~.checkmark {
+    background-color: #EF394E;
+    border: none;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.Filtercontainer input:checked~.checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.Filtercontainer .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
 .categoryContainer {
     max-width: 70%;
     margin: 30px auto;
     background-color: #E5E6EA;
     border-radius: 15px;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-
-}
-
-.categoryUl {
-    list-style-type: none;
-    direction: rtl;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 5px 15px;
-
-}
-
-.categoryLi {
-    position: relative;
-    padding: 10px 15px;
-    cursor: pointer;
-}
-
-.categoryLi:hover::before {
-    content: ' ';
-    position: absolute;
-    bottom: -5px;
-    right: 0;
-    transform: translateX(-50%);
-    background-color: #db2c3d;
-    width: 50%;
-    height: 2px;
-}
-
-.categoryLi:hover {
-    color: #db2c3d;
-}
-
-.activeLi {
-    color: #db2c3d;
-}
-
-.activeLi::before {
-    content: ' ';
-    position: absolute;
-    bottom: -5px;
-    right: 0;
-    transform: translateX(-50%);
-    background-color: #db2c3d;
-    width: 50%;
-    height: 2px;
+    display: none;
 }
 
 .dropdown {
-    display: none;
+    display: flex;
+}
+
+.dropdownBtn {
+    width: 50%;
 }
 
 .dropdownItem {
@@ -82,7 +159,6 @@
 }
 
 .main {
-    margin: 5% 0;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
     gap: 20px 0px;
@@ -177,12 +253,49 @@
     top: 55%;
 }
 
+@media only screen and (max-width: 1280px) {
+    .container {
+        grid-template-columns: 30% 70%;
+    }
+
+    .skeletonSidebar {
+        width: 270px;
+    }
+}
+
+@media only screen and (max-width: 998px) {
+    .filterText {
+        font-size: 1em;
+        color: #EF233C;
+        margin-bottom: 20px;
+    }
+}
+
 @media only screen and (max-width: 768px) {
+    .container {
+        display: block;
+    }
+
+    .sideBar {
+        display: none;
+    }
+
+    .skeletonSidebar {
+        display: none;
+    }
+
     .categoryUl {
         display: none;
     }
 
-    .dropdown {
+    .categoryContainer {
         display: block;
+    }
+
+}
+
+@media only screen and (max-width: 578px) {
+    .categoryContainer {
+        max-width: 90%;
     }
 }

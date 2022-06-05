@@ -29,50 +29,105 @@ const index = () => {
   }, []);
 
   return (
-    <>
-      <section className={styles.categoryContainer}>
-        <ul className={styles.categoryUl}>
+    <div className={styles.container}>
+      <section className={load ? styles.sideBar : styles.skeletonSidebar}>
+        <br />
+        <div className={styles.filterText}>
+          <i
+            style={{ color: "#EF233C" }}
+            className="fas fa-sort-amount-down"
+          ></i>{" "}
+          فیلتر بر اساس نوع ماشین
+        </div>
+        <ul className={styles.carFilter}>
           <li>
-            <i class="fas fa-sort-amount-down"></i> دسته بندی:
+            <label className={styles.Filtercontainer}>
+              دنا
+              <input type="checkbox" />
+              <span className={styles.checkmark}></span>
+            </label>
           </li>
-          <li
-            onClick={categoryHandler}
-            className={`${styles.categoryLi} ${
-              activeSort === "all" && styles.activeLi
-            } `}
-          >
-            همه محصولات
+          <li>
+            <label className={styles.Filtercontainer}>
+              پژو
+              <input type="checkbox" />
+              <span className={styles.checkmark}></span>
+            </label>
           </li>
-          <li
-            onClick={categoryHandler}
-            className={`${styles.categoryLi} ${
-              activeSort === "موتوری" && styles.activeLi
-            } `}
-          >
-            موتوری
+          <li>
+            <label className={styles.Filtercontainer}>
+              رانا
+              <input type="checkbox" />
+              <span className={styles.checkmark}></span>
+            </label>
           </li>
-          <li
-            onClick={categoryHandler}
-            className={`${styles.categoryLi} ${
-              activeSort === "بدنه" && styles.activeLi
-            } `}
-          >
-            بدنه
+          <li>
+            <label className={styles.Filtercontainer}>
+              سمند
+              <input type="checkbox" />
+              <span className={styles.checkmark}></span>
+            </label>
           </li>
-          <li
-            onClick={categoryHandler}
-            className={`${styles.categoryLi} ${
-              activeSort === "برقی" && styles.activeLi
-            } `}
-          >
-            برقی
+          <li>
+            <label className={styles.Filtercontainer}>
+              پراید
+              <input type="checkbox" />
+              <span className={styles.checkmark}></span>
+            </label>
           </li>
         </ul>
+        {/* ////////////// */}
+        <div className={styles.filterText}>
+          <i
+            style={{ color: "#EF233C" }}
+            className="fas fa-sort-amount-down"
+          ></i>{" "}
+          فیلتر بر اساس نوع قطعه
+        </div>
+        <ul className={styles.carFilter}>
+          <li>
+            <label className={styles.Filtercontainer}>
+              قطعات برقی
+              <input type="checkbox" />
+              <span className={styles.checkmark}></span>
+            </label>
+          </li>
+          <li>
+            <label className={styles.Filtercontainer}>
+              روغن موتور
+              <input type="checkbox" />
+              <span className={styles.checkmark}></span>
+            </label>
+          </li>
+          <li>
+            <label className={styles.Filtercontainer}>
+              قطعات موتوری
+              <input type="checkbox" />
+              <span className={styles.checkmark}></span>
+            </label>
+          </li>
+          <li>
+            <label className={styles.Filtercontainer}>
+              بدنه
+              <input type="checkbox" />
+              <span className={styles.checkmark}></span>
+            </label>
+          </li>
+          <li>
+            <label className={styles.Filtercontainer}>
+              لوازم نگهداری
+              <input type="checkbox" />
+              <span className={styles.checkmark}></span>
+            </label>
+          </li>
+        </ul>
+      </section>
+      <section className={styles.categoryContainer}>
         <section className={styles.dropdown}>
           <DropdownButton
             className={styles.dropdownBtn}
             id="dropdown-basic-button"
-            title="دسته بندی"
+            title="نوع ماشین"
             dir="rtl"
             variant="Secondary"
           >
@@ -82,7 +137,7 @@ const index = () => {
                   activeSort === "all" && styles.activeDropdowm
                 } `}
               >
-                همه محصولات
+                دنا
               </li>
             </Dropdown.Item>
             <Dropdown.Item className={styles.dropdownItem} href="#/action-2">
@@ -91,7 +146,7 @@ const index = () => {
                   activeSort === "engin" && styles.activeDropdowm
                 } `}
               >
-                موتوری
+                پژو
               </li>
             </Dropdown.Item>
             <Dropdown.Item className={styles.dropdownItem} href="#/action-3">
@@ -100,7 +155,79 @@ const index = () => {
                   activeSort === "electronic" && styles.activeDropdowm
                 } `}
               >
-                برقی
+                رانا
+              </li>
+            </Dropdown.Item>
+            <Dropdown.Item className={styles.dropdownItem} href="#/action-3">
+              <li
+                className={`${styles.categoryDropdown} ${
+                  activeSort === "electronic" && styles.activeDropdowm
+                } `}
+              >
+                سمند
+              </li>
+            </Dropdown.Item>
+            <Dropdown.Item className={styles.dropdownItem} href="#/action-3">
+              <li
+                className={`${styles.categoryDropdown} ${
+                  activeSort === "electronic" && styles.activeDropdowm
+                } `}
+              >
+                پراید
+              </li>
+            </Dropdown.Item>
+          </DropdownButton>
+          {/* //////////////////// */}
+          <DropdownButton
+            className={styles.dropdownBtn}
+            id="dropdown-basic-button"
+            title="نوع قطعه"
+            dir="rtl"
+            variant="Secondary"
+          >
+            <Dropdown.Item className={styles.dropdownItem} href="#/action-1">
+              <li
+                className={`${styles.categoryDropdown} ${
+                  activeSort === "all" && styles.activeDropdowm
+                } `}
+              >
+                قطعات برقی
+              </li>
+            </Dropdown.Item>
+            <Dropdown.Item className={styles.dropdownItem} href="#/action-2">
+              <li
+                className={`${styles.categoryDropdown} ${
+                  activeSort === "engin" && styles.activeDropdowm
+                } `}
+              >
+                روغن موتور
+              </li>
+            </Dropdown.Item>
+            <Dropdown.Item className={styles.dropdownItem} href="#/action-3">
+              <li
+                className={`${styles.categoryDropdown} ${
+                  activeSort === "electronic" && styles.activeDropdowm
+                } `}
+              >
+                قطعات موتوری
+              </li>
+            </Dropdown.Item>
+            <Dropdown.Item className={styles.dropdownItem} href="#/action-3">
+              <li
+                className={`${styles.categoryDropdown} ${
+                  activeSort === "electronic" && styles.activeDropdowm
+                } `}
+              >
+                بدنه
+              </li>
+            </Dropdown.Item>
+            <Dropdown.Item className={styles.dropdownItem} href="#/action-3">
+              <li
+                className={`${styles.categoryDropdown} ${
+                  activeSort === "electronic" && styles.activeDropdowm
+                } `}
+              >
+                لوازم نگهداری
               </li>
             </Dropdown.Item>
           </DropdownButton>
@@ -145,7 +272,7 @@ const index = () => {
             ))
           : data.map((item) => <ProductsSkeleton />)}
       </section>
-    </>
+    </div>
   );
 };
 

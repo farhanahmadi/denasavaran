@@ -1,12 +1,19 @@
 .container {
-  background-color: #EF3B50;
+  background-color: #ef233c;
   padding: 20px;
   margin: 30px 20px;
   border-radius: 8px;
   /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
   width: 90%;
 }
-
+.cardName{
+  width: 100%;
+}
+.cardName h1{
+  font-size: 14px;
+  text-align: right;
+  padding: 0px 5px;
+}
 .offerSection {
   display: flex;
   flex-direction: column;
@@ -36,7 +43,7 @@
 }
 
 .card {
-  height: 246px;
+  height: 260px;
   direction: ltr;
   cursor: pointer;
   background-color: white;
@@ -105,7 +112,7 @@
 
 .swiperSlider {
   text-align: center;
-  height: 246px;
+  height: 270px;
   width: 182px;
   font-size: 18px;
   display: -webkit-box;

@@ -1,21 +1,19 @@
-import React from 'react'
-
+import React from "react";
 
 //import components
-import NavbarComponent from '../navbar/NavbarComponent'
-import Footer from '../footer/Footer'
+import NavbarComponent from "../navbar/NavbarComponent";
+import Footer from "../footer/Footer";
+import styles from "./navbar.module.css"
 
-
-
-const Layout = ({children}) => {
+const Layout = ({ children }) => {
   return (
     <>
-    <NavbarComponent />
+      <NavbarComponent />
 
-    {children}
-    <Footer />
+      <div className={styles.container}>{children}</div>
+      <Footer />
     </>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;

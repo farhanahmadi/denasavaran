@@ -80,6 +80,9 @@ export default function LastContents() {
                       <section className={styles.cardImg}>
                         <img src={`/assets/images/${item.number}.jpg`} alt="product" />
                       </section>
+                      <section className={styles.cardName}>
+                        <h1> صفحه کلاج شرکتی تقویتی</h1>
+                      </section>
                       <section className={styles.cardText}>
                        <p className={styles.discountPrice}>
                        ۱۸۵۰۰۰

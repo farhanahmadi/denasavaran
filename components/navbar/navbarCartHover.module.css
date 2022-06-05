@@ -1,0 +1,150 @@
+.container {
+    width: 400px;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    position: absolute;
+    top: 32px;
+    left: 0;
+    z-index: 10;
+    background-color: #fff;
+    overflow-x: hidden;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.header a {
+    display: flex;
+    align-items: center;
+    color: #EF233C !important;
+    gap: 0px 5px;
+    cursor: pointer;
+}
+
+.header span{
+    color: #81858b;
+}
+.productContainer{
+    width: 100%;
+    height: 350px;
+    overflow-y: auto;
+}
+.product {
+    display: flex;
+    justify-content: flex-start;
+    
+}
+
+.image {
+    width: 30%;
+}
+
+.image img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+.quantityContainer{
+    border: 1px solid #81858b;
+    border-radius: 10px;
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.quantityNumber{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    color: #EF233C;
+}
+.pluse{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    flex: 1;
+}
+.minuse{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    flex: 1;
+}
+.details {
+    width: 70%;
+    text-align: right;
+    margin-right: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px 0px;
+    color: #81858b;
+}
+
+.name {
+    font-size: 1.1em;
+    color: rgb(37, 37, 37);
+}
+.seller{
+    margin-bottom: 35px;
+}
+.price{
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-bottom: 5px;
+}
+
+.colorSection{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0px 5px;
+}
+
+.color {
+    width: 18px;
+    height: 18px;
+    background-color: red;
+    border-radius: 50%;
+    border: 1px solid rgb(185, 0, 0);
+}
+.footer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 10px;
+    gap: 0px 50px;
+    border-top: 1px solid #dddddd;
+    margin-top: 20px;
+    padding-top: 20px;
+}
+.totalPriceText{
+    text-align: right;
+    color: #81858b;
+    font-weight: lighter;
+    font-size: .8em;
+}
+.totalPriceSection{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1;
+    gap: 5px 0px;
+}
+.buyBtn{
+    background-color: #EF233C;
+    color: #fff;
+    border-radius: 10px;
+    border: none;
+    flex: 1;
+    height: 50px;
+}

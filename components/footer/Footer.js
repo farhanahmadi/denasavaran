@@ -69,7 +69,7 @@ const Footer = () => {
             </section>
             <section className={styles.searchBar}>
                     <input type="text" className={styles.searchInput} placeholder=" جــســتــجــو در ســایــت" />
-                    <Button variant="danger" className={styles.searchBarBtn}><i class="fas fa-search"></i></Button>
+                    <a variant="danger" className={styles.searchBarBtn}><i className="fas fa-search"  style={{color: '#fff'}}></i></a>
                     <p className={styles.searchInputP}>شبکه های اجتماعی دنا سواران ارومیه</p>
                     <ul className={styles.iconsUl}>
                         <li><a><img src="/assets/svg/telegram.svg" alt="telegram" /></a></li>
