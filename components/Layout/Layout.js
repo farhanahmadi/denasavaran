@@ -5,13 +5,13 @@ import NavbarComponent from "../navbar/NavbarComponent";
 import Footer from "../footer/Footer";
 import styles from "./navbar.module.css"
 
-const Layout = ({ children }) => {
+const Layout = ({ children , profile }) => {
   return (
     <>
       <NavbarComponent />
 
       <div className={styles.container}>{children}</div>
-      <Footer />
+      {!profile ?  <Footer /> : null}
     </>
   );
 };
