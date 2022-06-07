@@ -1,0 +1,134 @@
+.container{
+    width: 80%;
+    margin: 2% auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    direction: rtl;
+    gap: 0 20px;
+}
+.children{
+    flex: 1;
+}
+.childrenMain{
+    flex: 1;
+}
+.sideBar{
+    border: 1px solid #d3d7dd;
+    padding: 15px 0px;
+    border-radius: 10px;
+    min-height: 648px;
+    flex: .30;
+}
+.sideBarMain{
+    border: 1px solid #d3d7dd;
+    padding: 15px 0px;
+    border-radius: 10px;
+    min-height: 565px;
+    flex: .30;
+}
+.userDetails{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0px 10px;
+    padding: 0px 25px;
+    
+}
+.image{
+    width: 50px;
+    height: 50px;
+}
+.image img{
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+}
+.userDetailsText{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    
+}
+.name{
+    font-size: 1.2em;
+}
+.phoneNumber{
+    font-size: .9em;
+    color: #81858b;
+}
+.list{
+    display: flex;
+    flex-direction: column;
+    /* align-items: flex-start; */
+    list-style-type: none;
+    gap: 0px 10px;
+    padding: 20px 0px;
+    
+}
+
+.listItem{
+    position: relative;
+    padding-bottom: 10px;
+    /* background: #ececec; */
+    padding: 15px 25px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0 5px;
+    cursor: pointer;
+    
+}
+.listItem:hover{
+    background: #ececec;
+    
+}
+
+.listItem::after{
+    content: '';
+    position: absolute;
+    background-color: #d3d7dd;
+    width: 90%;
+    height: 1px;
+    bottom: 0px;
+    right: 5%;
+}
+.line{
+    width: 90%;
+    background-color: #838383;
+    margin-left: auto;
+    margin-right: auto;
+}
+.listItem svg{
+    width: 25px;
+    height: 25px;
+}
+
+@media only screen and (max-width: 1400px){
+    .container{
+        width: 95%;
+    }
+}
+@media only screen and (max-width: 1200px){
+    .sideBar{
+        flex: .45;
+    }
+    .sideBarMain{
+        flex: .45;
+    }
+    
+}
+@media only screen and (max-width: 768px){
+    .childrenMain{
+        display: none;
+    }
+    .sideBar{
+        display: none;
+    }
+    .sideBarMain{
+        flex: 1;
+        border: none;
+    }
+    
+}

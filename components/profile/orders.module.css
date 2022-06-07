@@ -1,49 +1,39 @@
 .mainBar{
     flex: 1;
+
 }
-.alert{
-    border: 1px solid #d3d7dd;
+
+.miniNav{
     border-radius: 10px;
-    padding: 15px 25px;
-    font-size: .9em;
-    color: #81858b;
+    padding: 10px 0px;
+    font-size: 1.1em;
+    color: #000000;
     margin-bottom: 10px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
     gap: 0 5px;
 }
-.alert svg{
-    width: 20px;
-    stroke: rgb(212, 187, 41);
+.miniNav svg{
+    width: 30px;
+    stroke: #81858b;
 }
-.inputs {
+
+/* .table {
     border-radius: 10px;
-    padding: 53px 25px 25px 25px;
+    padding: 20px 25px 20px 25px;
     border: 1px solid #d3d7dd;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
     width: 100%;
     height: 100%;
-}
-.inputs section {
-    /* border: 1px solid red; */
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.inputs section input {
+} */
+.mainTable{
     width: 100%;
-    border: 1px solid #d3d7dd;
-    padding: 10px;
-    border-radius: 10px;
-    font-size: .9em;
 }
-
-.inputs section input:focus {
-    outline: none;
+.mainTable tr{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
 }
 .submit{
     background-color: #EF233C;
@@ -70,6 +60,9 @@
 @media only screen and (max-width: 768px){
     .sideBar{
         display: none;
+    }
+    .mainTable{
+        overflow-x: auto;
     }
     
 }

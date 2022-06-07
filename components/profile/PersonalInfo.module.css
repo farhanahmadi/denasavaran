@@ -1,5 +1,6 @@
 .mainBar{
     flex: 1;
+
 }
 .alert{
     border: 1px solid #d3d7dd;
@@ -12,6 +13,21 @@
     align-items: center;
     justify-content: flex-start;
     gap: 0 5px;
+}
+.miniNav{
+    border-radius: 10px;
+    padding: 10px 0px;
+    font-size: 1.1em;
+    color: #000000;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0 5px;
+}
+.miniNav svg{
+    width: 30px;
+    stroke: #81858b;
 }
 .alert svg{
     width: 20px;
@@ -68,6 +84,9 @@
     
 }
 @media only screen and (max-width: 768px){
+    .inputs {
+        grid-template-columns: 1fr ;
+    }
     .sideBar{
         display: none;
     }
