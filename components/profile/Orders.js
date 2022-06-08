@@ -1,7 +1,7 @@
 import React from "react";
 import { Table } from "react-bootstrap";
 import Layout from "./Layout";
-import Link from 'next/link'
+import Link from "next/link";
 //import styles
 import styles from "./orders.module.css";
 
@@ -25,30 +25,36 @@ export default function Profile() {
           </svg>
           پروفایل / لیست سفارشات
         </section>
-        <section className={styles.table}>
-          <table className={styles.mainTable}>
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>نام خریدار</th>
-                <th>تاریخ</th>
-                <th>کد پیگیری</th>
-                <th>مبلغ</th>
-                <th>جزئیات سفارش</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>فرحان</td>
-                <td>1401/03/20</td>
-                <td>1000100101101</td>
-                <td>26,000,00</td>
-                <td><Link href="#">مشاهده</Link></td>
-              </tr>
-            </tbody>
-          </table>
-        </section>
+        <table className={styles.table}>
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">نام خریدار</th>
+              <th scope="col">تاریخ</th>
+              <th scope="col">مبلغ</th>
+              <th scope="col">کد پیگیری</th>
+              <th scope="col">جزئیات سفارش</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="ID">1</td>
+              <td data-label="نام خریدار">فرحان احمدی</td>
+              <td data-label="تاریخ">1400-03-25</td>
+              <td data-label="مبلغ">26,000,000</td>
+              <td data-label="کد پیگیری">100010010101001</td>
+              <Link href={'#'} passHref><td data-label="جزئیات سفارش">مشاهده</td></Link>
+            </tr>
+            <tr>
+              <td data-label="ID">2</td>
+              <td data-label="نام خریدار">فرحان احمدی</td>
+              <td data-label="تاریخ">1400-03-25</td>
+              <td data-label="مبلغ">26,000,000</td>
+              <td data-label="کد پیگیری">100010010101001</td>
+              <Link href={'#'} passHref><td data-label="جزئیات سفارش">مشاهده</td></Link>
+            </tr>
+          </tbody>
+        </table>
       </main>
     </Layout>
   );

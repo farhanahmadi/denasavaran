@@ -1,9 +1,9 @@
-.mainBar{
+.mainBar {
     flex: 1;
 
 }
 
-.miniNav{
+.miniNav {
     border-radius: 10px;
     padding: 10px 0px;
     font-size: 1.1em;
@@ -14,28 +14,100 @@
     justify-content: flex-start;
     gap: 0 5px;
 }
-.miniNav svg{
+
+.miniNav svg {
     width: 30px;
     stroke: #81858b;
 }
 
-/* .table {
+.table {
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    table-layout: fixed;
     border-radius: 10px;
-    padding: 20px 25px 20px 25px;
-    border: 1px solid #d3d7dd;
-    width: 100%;
-    height: 100%;
-} */
-.mainTable{
-    width: 100%;
 }
-.mainTable tr{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
+
+.table caption {
+    font-size: 1.5em;
+    margin: .5em 0 .75em;
 }
-.submit{
+
+.table tr {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: .35em;
+}
+
+.table th,
+.table td {
+    padding: .625em;
+    text-align: center;
+}
+
+.table th {
+    font-size: .85em;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+.table tr:nth-child(even){background-color: #f2f2f2}
+
+@media screen and (max-width: 600px) {
+    .table {
+        border: 0;
+    }
+
+    .table caption {
+        font-size: 1.3em;
+    }
+
+    .table thead {
+        border: none;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    }
+
+    .table tr {
+        border-bottom: 3px solid #ddd;
+        display: block;
+        margin-bottom: .625em;
+    }
+
+    .table td {
+        border-bottom: 1px solid #ddd;
+        display: block;
+        font-size: .8em;
+        text-align: right;
+        display: flex!important;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .table td::before {
+        /*
+      * aria-label has no advantage, it won't be read inside a table
+      content: attr(aria-label);
+      */
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    .table td:last-child {
+        border-bottom: 0;
+    }
+}
+
+
+.submit {
     background-color: #EF233C;
     color: #fff;
     text-align: center;
@@ -46,23 +118,26 @@
     margin-bottom: 0px;
 }
 
-@media only screen and (max-width: 1400px){
-    .container{
+@media only screen and (max-width: 1400px) {
+    .container {
         width: 95%;
     }
 }
-@media only screen and (max-width: 1200px){
-    .sideBar{
+
+@media only screen and (max-width: 1200px) {
+    .sideBar {
         flex: .45;
     }
-    
+
 }
-@media only screen and (max-width: 768px){
-    .sideBar{
+
+@media only screen and (max-width: 768px) {
+    .sideBar {
         display: none;
     }
-    .mainTable{
+
+    .mainTable {
         overflow-x: auto;
     }
-    
+
 }

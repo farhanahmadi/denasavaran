@@ -1,0 +1,182 @@
+.mainBar {
+    flex: 1;
+
+}
+
+.miniNav {
+    border-radius: 10px;
+    padding: 10px 0px;
+    font-size: 1.1em;
+    color: #000000;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0 5px;
+}
+
+.miniNav svg {
+    width: 30px;
+    stroke: #81858b;
+}
+
+.List {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    border: 1px solid #d3d7dd;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.listItem {
+    padding: 5px;
+    cursor: pointer;
+    /* border-radius: 10px; */
+}
+
+.listItem:nth-child(even) {
+    border-right: 1px solid #A1A3A8;
+}
+
+
+.listItem:hover {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.image {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px;
+}
+
+
+.image img {
+    width: 150px;
+    height: 150px;
+}
+
+.name {
+    font-size: 1em;
+    padding: 0 22px;
+    margin-bottom: 20px;
+}
+
+.price {
+    text-align: left;
+    width: 100%;
+    font-size: 1em;
+    padding-left: 25px;
+    margin-bottom: 20px;
+}
+
+.btns {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0 10px;
+    padding: 10px 20px;
+
+}
+
+.btns svg {
+    width: 20px;
+    height: 20px;
+}
+
+.submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0 10px;
+    flex: 2;
+    background-color: transparent;
+    border: 1px solid #EF233C;
+    border-radius: 10px;
+    padding: 5px 10px;
+    color: #EF233C;
+}
+
+.submit svg {
+    stroke: #EF233C;
+}
+
+.cancel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0 10px;
+    flex: 1;
+    background-color: transparent;
+    border: 1px solid #A1A3A8;
+    border-radius: 10px;
+    padding: 5px 10px;
+    color: #A1A3A8;
+}
+
+.cancel svg {
+    stroke: #A1A3A8;
+}
+.line{
+    background-color: #81858b;
+    display: none;
+}
+@media only screen and (max-width: 1400px) {
+    .container {
+        width: 95%;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .sideBar {
+        flex: .45;
+    }
+    .listItem {
+        padding: 0px;
+    }
+    .name{
+        font-size: .9em;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    .price{
+        font-size: .9em;
+        padding-left: 10px;
+        margin-bottom: 10px;
+    }
+    .btns {
+        margin-bottom: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0 5px;
+        padding: 5px 10px;
+    }
+
+}
+
+@media only screen and (max-width: 998px) {
+    .List {
+        grid-template-columns: 1fr;
+    }
+    .listItem:nth-child(even) {
+        border: none;
+    }
+    .line{
+        display: block;
+    }
+
+
+}
+
+@media only screen and (max-width: 768px) {
+    .sideBar {
+        display: none;
+    }
+    .btns {
+        padding: 5px;
+    }
+
+
+}

@@ -17,7 +17,7 @@
     border: 1px solid #d3d7dd;
     padding: 15px 0px;
     border-radius: 10px;
-    min-height: 648px;
+    /* min-height: 648px; */
     flex: .30;
 }
 .sideBarMain{

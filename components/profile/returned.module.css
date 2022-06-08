@@ -1,0 +1,93 @@
+.mainBar{
+    flex: 1;
+}
+.miniNav{
+    border-radius: 10px;
+    padding: 10px 0px;
+    font-size: 1.1em;
+    color: #000000;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0 5px;
+}
+.miniNav svg{
+    width: 30px;
+    stroke: #81858b;
+}
+.inputs {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    border: 1px solid #d3d7dd;
+    width: 100%;
+    height: 100%;
+    padding: 20px 10px;
+}
+.selectBox{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 30px;
+}
+.selectBox select{
+    width: 95%;
+    margin: 0 auto;
+    border-radius: 10px;
+    padding: 5px 10px;
+}
+.selectBox select:focus{
+    outline: none;
+}
+.textarea{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+.textarea label{
+    width: 95%;
+    margin: 10px auto;
+}
+.textarea textarea{
+    width: 95%;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 0 auto;
+}
+.textarea textarea:focus{
+    outline: none;
+}
+.btn{
+    width: 95%;
+    margin: 0 auto;
+}
+.submit{
+    background-color: #EF233C;
+    color: #fff;
+    text-align: center;
+    padding: 5px 20px;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    margin-bottom: 0px;
+}
+
+@media only screen and (max-width: 1400px){
+    .container{
+        width: 95%;
+    }
+}
+@media only screen and (max-width: 1200px){
+    .sideBar{
+        flex: .45;
+    }
+    
+}
+@media only screen and (max-width: 768px){
+    .sideBar{
+        display: none;
+    }
+    
+}
