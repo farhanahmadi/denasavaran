@@ -21,7 +21,7 @@ export async function getServerSideProps(context) {
   const {page} = context.query;
   const {tags__in} = context.query;
   const {categories} = context.query;
-  const products = await axios.get(`${BaseLink}/products/?${page ? `page= ${page}` : ''}${tags__in ? `&tag__in=${tags__in}` : ''}${categories ? `&categories= ${categories}` : ''}`);
+  const products = await axios.get(`${BaseLink}/products/?${page ? `page= ${page}` : ''}${tags__in ? `&tag__in=${tags__in}` : ''}${categories ? `&categories__in= ${categories}` : ''}`);
   const tags = await axios.get(`${BaseLink}/tags_w_p/`);
   const categoriesList = await axios.get(`${BaseLink}/categories-m2-wp/`);
 
