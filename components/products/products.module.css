@@ -157,6 +157,9 @@
     width: 100%;
     height: 2px;
 }
+.mainContainer{
+    
+}
 
 .main {
     display: grid;
@@ -213,6 +216,12 @@
 .price {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    padding: 0 15px 0 15px;
+}
+.priceNoDiscount{
+    display: flex;
+    justify-content: flex-end;
     align-items: center;
     padding: 0 15px 0 15px;
 }

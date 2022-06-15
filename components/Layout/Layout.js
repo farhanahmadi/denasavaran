@@ -9,7 +9,6 @@ const Layout = ({ children , profile }) => {
   return (
     <>
       <NavbarComponent />
-
       <div className={styles.container}>{children}</div>
       {!profile ?  <Footer /> : null}
     </>

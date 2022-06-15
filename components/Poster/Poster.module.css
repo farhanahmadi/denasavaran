@@ -1,24 +1,29 @@
-.container{
-    width: 90%;
+.container {
+    width: 100%;
 }
-.main{
+
+.main {
     display: flex;
     justify-content: space-around;
     align-items: center;
     direction: rtl;
     padding: 15px;
 }
-.slider{
+
+.slider {
     width: calc(200% / 3);
     border-radius: 15px;
 }
-.carouselImg img{
+
+.carouselImg img {
     border-radius: 15px;
 }
-.leftImg{
+
+.leftImg {
     width: calc(calc(100% / 3) - 10px);
 }
-.leftImg img{
+
+.leftImg img {
     width: 100%;
     height: auto;
     padding: 5px 5px;
@@ -26,13 +31,20 @@
 }
 
 @media only screen and (max-width: 767.98px) {
+    .container {
+        width: 95%;
+    }
+
     .slider {
-      width: 100%;
+        width: 100%;
     }
-    .main{
+
+    .main {
         display: block;
+        padding: 15px 0;
     }
-    .leftImg{
+
+    .leftImg {
         display: none;
     }
-  }
+}

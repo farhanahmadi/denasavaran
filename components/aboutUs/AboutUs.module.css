@@ -1,27 +1,35 @@
-.container{
-    width: 90%;
+.container {
+    width: 100%;
 }
-.Images{
+
+.Images {
     width: 100%;
     display: flex;
     text-align: center;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    padding: 5px 10px 5px 15px;
+    padding: 5px 6px 5px 12px;
 }
-.Images img{
+
+.Images img {
     border-radius: 15px;
     width: 95%;
 }
 
 
-@media (max-width: 767.98px){
-    .Images{
+@media (max-width: 767.98px) {
+    .container {
+        width: 95%;
+    }
+    .Images {
         display: grid;
         grid-template-columns: auto auto;
+        padding: 5px 0px 5px 0px;
+
     }
-    .Images img{
+
+    .Images img {
         margin: 10px 5px;
-    
+
     }
 }

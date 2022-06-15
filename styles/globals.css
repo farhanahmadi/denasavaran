@@ -5,7 +5,7 @@
 html,
 body {
   padding: 0;
-  margin: 0;
+  margin: 0 0 50px 0;
   font-family: iranYekan!important;
   /* background-color: #edf2f4!important; */
 }
@@ -30,6 +30,15 @@ a {
 }
 .dropdown-menu{
   width: 100%;
+}
+.pagination{
+  width: auto;
+  margin: 0 auto;
+  direction: ltr;
+  margin-top: 25px;
+}
+.pagination a{
+  padding: 10px 15px;
 }
 
 @media only screen and (min-width: 767.98px) {
