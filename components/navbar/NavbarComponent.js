@@ -42,7 +42,7 @@ const NavbarComponent = () => {
       </Head>
       <div className={styles.mobile}>
         <div className={styles.fixedNav}>
-          <Link href={"#top"}>
+          <a href="#Home">
             <span
               style={
                 router.pathname == "/"
@@ -65,7 +65,7 @@ const NavbarComponent = () => {
                 />
               </svg>
             </span>
-          </Link>
+          </a>
           <ul className={styles.navbarList}>
             <li onClick={() => setActive("home")}>
               <Link href={"#"} passHref>
@@ -92,7 +92,7 @@ const NavbarComponent = () => {
               </Link>
             </li>
             <li onClick={() => setActive("content")}>
-              <Link href="#top" passHref>
+              <Link href={"#"} passHref>
                 <span
                   className={
                     active === "content" ? styles.active : styles.notActive
@@ -175,7 +175,7 @@ const NavbarComponent = () => {
           className={styles.Navbar}
         >
           <Container fluid className={styles.containerFluid}>
-            <Navbar.Brand id='top' href="#" className={styles.textLogo}>
+            <Navbar.Brand id='Home' href="#" className={styles.textLogo}>
               <img src="/assets/images/navbarlogo.png" alt="Logo" />
             </Navbar.Brand>
           </Container>

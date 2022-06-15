@@ -7,6 +7,7 @@ body {
   padding: 0;
   margin: 0 0 50px 0;
   font-family: iranYekan!important;
+  scroll-behavior: smooth;
   /* background-color: #edf2f4!important; */
 }
 
