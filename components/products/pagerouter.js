@@ -1,3 +1,8 @@
+export const pageHandler = (router, prevPage, newPage) => {
+  const result = router.replace(prevPage, newPage);
+
+  return result;
+};
 export const emptyTagFilter = (router, tag) => {
   const result = router.replace(tag, "");
 

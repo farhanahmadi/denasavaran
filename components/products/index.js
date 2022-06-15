@@ -7,7 +7,11 @@ import styles from "./products.module.css";
 //import components
 import ProductsSkeleton from "../SkeletonLoading/ProductsSkeleton";
 import ReactPaginate from "react-paginate";
-import { addTagHandler, emptyTagFilter, removeSelectedFilter, removeSelectedPagination, replaceRouter, replaceTags, tagArrayHandler } from "./pagerouter";
+import {
+  emptyTagFilter,
+  pageHandler,
+  tagArrayHandler,
+} from "./pagerouter";
 
 //bootstarp
 import { Dropdown, DropdownButton, Card, Button } from "react-bootstrap";
@@ -31,36 +35,61 @@ const index = ({ products, tags, categories }) => {
   };
 
   useEffect(() => {
-    // tagsState.push([...new Set(router.query.tags__in)]);
-    // router.query.tags__in && setTagsState(router.query.tags__in.split(","))
-    console.log("hi");
+    console.log(products);
+    !load && router.query.tags__in && setTagsState([...new Set(router.query.tags__in.split(","))]);
     setTimeout(() => {
       setLoad(true);
-    }, 1000);
+    }, 500);
   }, [tagsState]);
-  
+
   const handlePageClick = (event) => {
     const page = event.selected ? event.selected + 1 : 1;
     // push user to new page and check if tags and categories is none put & else put ? in url
-    router.push(`${router.pathname}${router.query.tags__in || router.query.categories ? '&' : '?'}${`page=${page}`}`);
+    router.query.page ? 
+    router.push(
+      `${pageHandler(router.asPath, `page=${router.query.page}`, `page=${page}`)}`
+    )
+    :
+    router.push(
+      `${router.asPath}${
+        router.query.tags__in || router.query.categories ? "&" : "?"
+      }${ `page=${page}`}`
+    );
   };
   const tagHandler = (event) => {
     if (event.target.checked) {
       // push selected filter to tagsState
-      tagsState.push([...new Set(event.target.value)]);
+      tagsState.push(event.target.value);
+      // setTagsState(prevstate => [...prevstate , event.target.value]);
       // router the user to new filters
-      router.replace(`${router.pathname}${router.query.categories ? '&' : '?'}${`tags__in=${tagsState}`}`);
-    }
-    else{
+      router.push(
+        `${router.pathname}${
+          router.query.categories ? "&" : "?"
+        }${`tags__in=${tagsState}`}`
+      );
+    } else {
       // send tags query and selected filter id to tagArrayHandler for make array and set it in setTagsState
-      setTagsState(tagArrayHandler(router.query.tags__in , event.target.value));
+      setTagsState(tagArrayHandler(router.query.tags__in, event.target.value));
       // check if tags is ziro remove te query from url
-      tagArrayHandler(router.query.tags__in , event.target.value).length ?
-      // send query tags and event selected value to tagArrayHandler for split it and make new array to delete it from url
-      router.replace(`${router.pathname}${router.query.categories ? '&' : '?'}${`tags__in=${tagArrayHandler(router.query.tags__in , event.target.value)}`}`)
-      :
-      // remove te query text from url 
-      router.replace(emptyTagFilter(router.asPath , `${router.query.categories ? '&' : '?'}tags__in=${event.target.value}`))
+      tagArrayHandler(router.query.tags__in, event.target.value).length
+        ? // send query tags and event selected value to tagArrayHandler for split it and make new array to delete it from url
+          router.replace(
+            `${router.pathname}${
+              router.query.categories ? "&" : "?"
+            }${`tags__in=${tagArrayHandler(
+              router.query.tags__in,
+              event.target.value
+            )}`}`
+          )
+        : // remove te query text from url
+          router.replace(
+            emptyTagFilter(
+              router.asPath,
+              `${router.query.categories ? "&" : "?"}tags__in=${
+                event.target.value
+              }`
+            )
+          );
     }
   };
 
@@ -88,7 +117,14 @@ const index = ({ products, tags, categories }) => {
             <li key={tag.id}>
               <label className={styles.Filtercontainer}>
                 {tag.name}
-                <input value={tag.id} type="checkbox" onClick={tagHandler} checked={tagsState.indexOf(tag.id.toString()) >= 0 ? true : false } />
+                <input
+                  value={tag.id}
+                  type="checkbox"
+                  onClick={tagHandler}
+                  defaultChecked={
+                    tagsState.indexOf(tag.id.toString()) >= 0 ? true : false
+                  }
+                />
                 <span className={styles.checkmark}></span>
               </label>
             </li>
@@ -286,7 +322,7 @@ const index = ({ products, tags, categories }) => {
                   )}
                 </section>
               ))
-            : data.map((item) => <ProductsSkeleton />)}
+            : data.map((item , index) => <div key={index}><ProductsSkeleton /></div>)}
         </section>
         <div className="pagination">
           <ReactPaginate

@@ -47,15 +47,15 @@ const NavbarCartHover = () => {
                   <span className={styles.pluse}>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      class="h-6 w-6"
+                      className="h-6 w-6"
                       fill="none"
                       viewBox="0 0 24 24"
-                      stroke-width="2"
+                      // strokeWidth="2"
                       style={{ stroke: "#EF233C" , width: '18px' , height: '18px' }}
                     >
                       <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        // strokeLinecap="round"
+                        // strokeLinejoin="round"
                         d="M12 6v6m0 0v6m0-6h6m-6 0H6"
                       />
                     </svg>
@@ -64,15 +64,15 @@ const NavbarCartHover = () => {
                   <span className={styles.minuse}>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      class="h-6 w-6"
+                      className="h-6 w-6"
                       fill="none"
                       viewBox="0 0 24 24"
-                      stroke-width="2"
+                      // strokeWidth="2"
                       style={{ stroke: "#EF233C" , width: '18px' , height: '18px' }}
                     >
                       <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        // strokeLinecap="round"
+                        // strokeLinejoin="round"
                         d="M18 12H6"
                       />
                     </svg>

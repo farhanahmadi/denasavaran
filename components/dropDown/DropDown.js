@@ -99,13 +99,13 @@ const DropDown = () => {
     <div className={styles.container}>
       <div className={styles.main}>
         <ul className={styles.dropdownUl}>
-          {dropdown.map((item) => (
-            <li>
+          {dropdown.map((item , index) => (
+            <li key={index}>
               <section>
                 <h5>{item.name}</h5>
                 <ul>
-                  {item.subItems.map((data) => (
-                    <li>{data.name}</li>
+                  {item.subItems.map((data , index) => (
+                    <li key={index}>{data.name}</li>
                   ))}
                 </ul>
               </section>

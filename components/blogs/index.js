@@ -165,8 +165,8 @@ const index = () => {
         </section>
       </section>
       <div className={styles.cardContainer}>
-      {load ? activeSort === "all" ? data.map((item) => (
-                <section className={styles.card}>
+      {load ? activeSort === "all" ? data.map((item , index) => (
+                <section key={index} className={styles.card}>
                   <Card className={styles.cardMain}>
                     <Card.Img
                       variant="top"
@@ -199,9 +199,9 @@ const index = () => {
                 </section>
               ))
             : data.map(
-                (item) =>
+                (item , index) =>
                   item.category === activeSort && (
-                    <section className={styles.card}>
+                    <section key={index} className={styles.card}>
                       <Card className={styles.cardMain}>
                         <Card.Img
                           variant="top"
@@ -233,7 +233,7 @@ const index = () => {
                     </section>
                   )
               )
-          : data.map((item) => <BlogSkeleton />)}
+          : data.map((item , index) => <div key={index}><BlogSkeleton /></div>)}
       </div>
     </div>
   );
