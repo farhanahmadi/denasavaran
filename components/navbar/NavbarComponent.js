@@ -11,7 +11,7 @@ import { Fragment } from "react"; // import Fragment from React
 import DropDown from "../dropDown/DropDown";
 import NavbarCartHover from "./navbarCartHover";
 
-const NavbarComponent = () => {
+const NavbarComponent = ({ categoriesList }) => {
   const router = useRouter();
   const [dropDownclass, setDropDownclass] = useState(false);
   const [active, setActive] = useState(false);
@@ -174,7 +174,7 @@ const NavbarComponent = () => {
           className={styles.Navbar}
         >
           <Container fluid className={styles.containerFluid}>
-            <Navbar.Brand id='Home' href="#" className={styles.textLogo}>
+            <Navbar.Brand id="Home" href="#" className={styles.textLogo}>
               <img src="/assets/images/navbarlogo.png" alt="Logo" />
             </Navbar.Brand>
           </Container>
@@ -292,15 +292,15 @@ const NavbarComponent = () => {
               </li>
             </ul>
           </section>
-          <section
+          {/* <section
             onMouseEnter={dropdownHandler}
             onMouseLeave={dropdownHandlerRemove}
             className={
               dropDownclass ? styles.dropdownBlock : styles.dropdownNone
             }
           >
-            <DropDown />
-          </section>
+            <DropDown categoriesList={categoriesList} />
+          </section> */}
         </nav>
       </div>
     </>

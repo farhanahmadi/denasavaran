@@ -175,6 +175,8 @@
     border-radius: 5px;
     cursor: pointer;
     transition: all .3s;
+    direction: ltr;
+
 }
 
 .card:hover {
@@ -221,7 +223,7 @@
 }
 .priceNoDiscount{
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     padding: 0 15px 0 15px;
 }
@@ -235,14 +237,14 @@
     height: 20px;
     border-radius: 15px;
     font-size: 12px;
-    margin: 0 5% 0 0;
+    margin: 0 0 0 0;
     background-color: #EF394E;
     color: #fff;
     text-align: center;
 }
 
 .priceBeforeDiscount {
-    text-align: left;
+    width: 100%;
     margin: 0 0 0 5%;
     color: #9FA1A2;
     font-size: 14px;

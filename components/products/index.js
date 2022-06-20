@@ -50,7 +50,7 @@ const index = ({ products, tags, categories }) => {
     !load &&
       router.query.categories &&
       setCategoriesState([...new Set(router.query.categories.split(","))]);
-
+    console.log(categoriesState);
     setTimeout(() => {
       setLoad(true);
     }, 500);
@@ -166,7 +166,7 @@ const index = ({ products, tags, categories }) => {
               UrlHandler(
                 router.asPath,
                 `categories=${router.query.categories}`,
-                `categories=${tagsState}`
+                `categories=${categoriesState}`
               )
             )
         : router.query.page
@@ -239,7 +239,7 @@ const index = ({ products, tags, categories }) => {
                   value={tag.id}
                   type="checkbox"
                   onClick={tagHandler}
-                  defaultChecked={
+                  checked={
                     tagsState.indexOf(tag.id.toString()) >= 0 ? true : false
                   }
                 />
@@ -265,7 +265,7 @@ const index = ({ products, tags, categories }) => {
                   value={category.id}
                   type="checkbox"
                   onClick={filterCategoryHandler}
-                  defaultChecked={
+                  checked={
                     categoriesState.indexOf(category.id.toString()) >= 0
                       ? true
                       : false

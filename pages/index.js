@@ -1,18 +1,18 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import Head from "next/head";
+import Image from "next/image";
+import styles from "../styles/Home.module.css";
+import axios from "axios";
 
 // import components
-import Layout from '../components/Layout/Layout'
-import Poster from '../components/Poster/Poster'
-import AboutUs from '../components/aboutUs/AboutUs'
-import LastContents from '../components/LastContents/LastContents'
-import MostSell from '../components/MostSell/MostSell'
+import Layout from "../components/Layout/Layout";
+import Poster from "../components/Poster/Poster";
+import AboutUs from "../components/aboutUs/AboutUs";
+import LastContents from "../components/LastContents/LastContents";
+import { BaseLink } from "../components/BaseLink/BaseLink";
 
-
-export default function Home() {
+export default function Home({categoriesList , lastProducts}) {
   return (
-    <Layout>
+    <Layout >
       <div className={styles.container}>
         <Head>
           <title>Create Next App</title>
@@ -22,16 +22,22 @@ export default function Home() {
 
         <main className={styles.main}>
           <Poster />
-          <AboutUs />
-          <LastContents />
-          <LastContents />
-          {/* <MostSell /> */}
+          <AboutUs categoriesList={categoriesList} />
+          <LastContents lastProducts={lastProducts} />
+          <LastContents lastProducts={lastProducts} />
         </main>
 
-        <footer className={styles.footer}>
-          
-        </footer>
+        <footer className={styles.footer}></footer>
       </div>
     </Layout>
-  )
+  );
+}
+
+export async function getServerSideProps(context) {
+  const categoriesList = await axios.get(`${BaseLink}/categories-m2-wp/`);
+  const lastProducts = await axios.get(`${BaseLink}/last_products/`);
+
+  return {
+    props: { categoriesList: categoriesList.data , lastProducts: lastProducts.data },
+  };
 }
