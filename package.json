@@ -27,6 +27,7 @@
     "react-scripts": "^5.0.0",
     "react-scroll": "^1.8.6",
     "sass": "^1.42.1",
+    "shamsi-date-converter": "^1.0.5",
     "styled-components": "^5.3.0",
     "swiper": "^6.8.4",
     "web-vitals": "^2.1.4"

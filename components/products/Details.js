@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
 
 //swiper
@@ -10,16 +10,38 @@ import { Navigation, Pagination } from "swiper";
 //import styles
 import styles from "./details.module.css";
 
-const Details = () => {
-  const data = ["1", "2", "3", "4"];
+const Details = ({ productDetails }) => {
+  const data = ["1", "2"];
+  const [activeImage, setActiveImage] = useState();
+  const [image, setImage] = useState([]);
+  const [colors, setColors] = useState([]);
+
+  useEffect(() => {
+    setImage([productDetails.image]);
+    productDetails.image2 &&
+      setImage((prevstate) => [...prevstate, productDetails.image2]);
+    productDetails.image3 &&
+      setImage((prevstate) => [...prevstate, productDetails.image3]);
+    setColors(productDetails.colors.split("-"));
+  }, [activeImage]);
+
+  const imageSelectedHandler = (src) => {
+    setActiveImage(src);
+  };
   return (
     <Row dir="rtl" style={{ margin: "5% auto", width: "98%" }}>
       <Col xl={3} lg={3} md={12}>
-        <div className={styles.imageContainer}></div>
+        <div className={styles.imageContainer}>
+          <img
+            className={styles.swiperImage}
+            src={activeImage ? activeImage : productDetails.image}
+            alt={productDetails.name}
+          />
+        </div>
         <section className={styles.swiperContainer}>
           <Swiper
             dir="rtl"
-            slidesPerView={3}
+            slidesPerView={image.length}
             spaceBetween={10}
             slidesPerGroup={1}
             loop={false}
@@ -30,12 +52,13 @@ const Details = () => {
             navigation={true}
             className={styles.mySwiper}
           >
-            {data.map((item) => (
-              <SwiperSlide key={item.id} className={styles.swiperSlider}>
+            {image.map((item, index) => (
+              <SwiperSlide key={index} className={styles.swiperSlider}>
                 <img
                   className={styles.swiperImage}
-                  src="/assets/images/card1.jpg"
-                  alt="product"
+                  src={item}
+                  alt={productDetails.name}
+                  onClick={() => imageSelectedHandler(item)}
                 />
               </SwiperSlide>
             ))}
@@ -43,31 +66,18 @@ const Details = () => {
         </section>
       </Col>
       <Col xl={9} lg={9} md={12}>
-        <h1 className={styles.title}>
-          صفحه کلاج اورجینال پژو والوو تقویت یافته
-        </h1>
+        <h1 className={styles.title}>{productDetails.name}</h1>
         <hr className={styles.titleLine} />
         <Row>
           <Col xl={7} lg={7} md={12}>
-            <p className={styles.description}>
-              اگر شما یک طراح هستین و یا با طراحی های گرافیکی سروکار دارید به
-              متن های برخورده اید که با نام لورم ایپسوم شناخته می‌شوند. لورم
-              ایپسوم یا طرح‌نما (به انگلیسی: Lorem ipsum) متنی ساختگی و بدون
-              معنی است که برای امتحان فونت و یا پر کردن فضا در یک طراحی گرافیکی
-              و یا صنعت چاپ استفاده میشود. طراحان وب و گرافیک از این متن برای
-              پرکردن صفحه و ارائه شکل کلی طرح استفاده می‌کنند.
-            </p>
+            <p className={styles.description}>{productDetails.descreption}</p>
             <h3 className={styles.colorTitle}>رنگ ها :</h3>
             <section className={styles.colorContainer}>
-              <div className={styles.colorParent}>
-                <span className={styles.color}> </span>
-              </div>
-              <div className={styles.colorParent}>
-                <span className={styles.color}> </span>
-              </div>
-              <div className={styles.colorParent}>
-                <span className={styles.color}> </span>
-              </div>
+              {colors.map((color) => (
+                <div key={color} className={styles.colorParent}>
+                  <span className={styles.color} style={{backgroundColor: color}}></span>
+                </div>
+              ))}
             </section>
             <section className={styles.properties}>
               <h3 className={styles.propertiesTitle}>ویژگی ها :</h3>
@@ -111,7 +121,8 @@ const Details = () => {
               <section className={styles.seller}>
                 <h2 className={styles.sellerTitle}>فروشنده : </h2>
                 <p className={styles.sellerDescription}>
-                  <i className="fas fa-store-alt"></i> لوازم یدکی احمدی
+                  <i className="fas fa-store-alt"></i>{" "}
+                  {productDetails.manufacturer_company}
                 </p>
               </section>
               <hr />
@@ -132,11 +143,29 @@ const Details = () => {
                 <i className="fas fa-dollar-sign"></i> قیمت فروشنده :
               </p>
               <section className={styles.price}>
-                <p className={styles.discountPercent}>۱۰%</p>
-                <h2 className={styles.priceText}>۱۰۶,۲۰۰</h2>
+                {productDetails.discount_percent ? (
+                  <p className={styles.discountPercent}>
+                    {productDetails.discount_percent}%
+                  </p>
+                ) : (
+                  ""
+                )}
+                {productDetails.discount_percent ? (
+                  <h2 className={styles.priceText}>
+                    {productDetails.price_after_discount}
+                  </h2>
+                ) : (
+                  <h2 className={styles.priceText}>{productDetails.price}</h2>
+                )}
               </section>
               <section className={styles.priceBeforeDiscountContainer}>
-                <p className={styles.priceBeforeDiscount}>۱۶۶,۲۰۰</p>
+                {productDetails.discount_percent ? (
+                  <p className={styles.priceBeforeDiscount}>
+                    {productDetails.price}
+                  </p>
+                ) : (
+                  ""
+                )}
               </section>
               <section className={styles.buyBtn}>
                 <button className={styles.Btn}>خرید</button>

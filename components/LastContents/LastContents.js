@@ -13,44 +13,7 @@ import SwiperCore from "swiper";
 SwiperCore.use([Pagination, Navigation]);
 
 export default function LastContents({ lastProducts }) {
-  const data = [
-    {
-      id: "1",
-      number: "p1",
-    },
-    {
-      id: "2",
-      number: "p2",
-    },
-    {
-      id: "3",
-      number: "p3",
-    },
-    {
-      id: "4",
-      number: "p1",
-    },
-    {
-      id: "5",
-      number: "p2",
-    },
-    {
-      id: "6",
-      number: "p3",
-    },
-    {
-      id: "7",
-      number: "p1",
-    },
-    {
-      id: "8",
-      number: "p2",
-    },
-    {
-      id: "9",
-      number: "p3",
-    },
-  ];
+
 
   return (
     <div className={styles.container}>
@@ -113,7 +76,7 @@ export default function LastContents({ lastProducts }) {
                           <span style={{marginTop: '2px'}}>
                             {item.discount_percent ? item.discount_percent : ""}
                           </span>
-                          <span className={styles.percentIcon}>%</span>
+                          {item.discount_percent ? <span className={styles.percentIcon}>%</span> : '' }
                         </span>
                       </p>
                     </section>
