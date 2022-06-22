@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import React, { useState, useEffect, useContext } from "react";
+=======
+import React, { useState, useEffect } from "react";
+>>>>>>> 77daa4cd56e954474df303df4faff5a744b80e7d
 import { Col, Row } from "react-bootstrap";
 
 //swiper
@@ -15,7 +19,10 @@ import styles from "./details.module.css";
 
 const Details = ({ productDetails }) => {
   const data = ["1", "2"];
+<<<<<<< HEAD
   const {state , dispatch} = useContext(cartContext);
+=======
+>>>>>>> 77daa4cd56e954474df303df4faff5a744b80e7d
   const [activeImage, setActiveImage] = useState();
   const [image, setImage] = useState([]);
   const [colors, setColors] = useState([]);
