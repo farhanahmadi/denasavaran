@@ -3,7 +3,7 @@ import React from "react";
 //import styles
 import styles from "./dropdown.module.css";
 
-const DropDown = () => {
+const DropDown = ({categoriesList}) => {
   const dropdown = [
     {
       name: "قطعات موتوری",
@@ -99,13 +99,13 @@ const DropDown = () => {
     <div className={styles.container}>
       <div className={styles.main}>
         <ul className={styles.dropdownUl}>
-          {dropdown.map((item , index) => (
+          {categoriesList[0].map((item , index) => (
             <li key={index}>
-              <section>
+              <section className={styles.ListItem}>
                 <h5>{item.name}</h5>
                 <ul>
-                  {item.subItems.map((data , index) => (
-                    <li key={index}>{data.name}</li>
+                  {item.children.map((data , index) => (
+                    <li key={index}>{data}</li>
                   ))}
                 </ul>
               </section>

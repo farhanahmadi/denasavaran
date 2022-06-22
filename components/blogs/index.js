@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import * as shamsi from "shamsi-date-converter";
+import Link from "next/link"
 
 //import components
 import { descreption } from "../function/TextLength";
@@ -10,7 +12,7 @@ import { Dropdown, DropdownButton, Card, Button } from "react-bootstrap";
 //import styles
 import styles from "./blog.module.css";
 
-const index = () => {
+const index = ({ BlogsList }) => {
   const [activeSort, setActiveSort] = useState("all");
   const [isLoad, setIsLoad] = useState(true);
   const [load, setLoad] = useState(false);
@@ -165,41 +167,54 @@ const index = () => {
         </section>
       </section>
       <div className={styles.cardContainer}>
-      {load ? activeSort === "all" ? data.map((item , index) => (
+        {load
+          ? activeSort === "all"
+            ? BlogsList.results.map((item, index) => (
                 <section key={index} className={styles.card}>
                   <Card className={styles.cardMain}>
                     <Card.Img
                       variant="top"
-                      src={item.image}
+                      src={item.thumbnail}
                       className={styles.cardImg}
                     />
                     <Card.Body>
                       <Card.Title className={styles.cardTitle}>
-                        {item.name}
+                        {item.title}
                       </Card.Title>
                       <hr />
                       <Card.Text className={styles.cardBody}>
-                        {descreption(item.body) + " ..."}
+                        {descreption(item.summery) + " ..."}
                       </Card.Text>
                       <p className={styles.writer}>
-                        {`نویسنده: ${item.writer}`}
+                        {`نویسنده: ${item.author.first_name} ${item.author.last_name}`}
                       </p>
-                      <p className={styles.date}>{item.date}</p>
+                      <p className={styles.date}>
+                        {shamsi
+                          .gregorianToJalali(item.created_at.split("-"))
+                          .join("-")}
+                      </p>
                       <section className={styles.badgeSection}>
-                        <p className={styles.badge}>{item.category}</p>
+                        <p className={styles.badge}>
+                          {item.news_category.name}
+                        </p>
                       </section>
-                      <Button
-                        className={styles.detailsBtn}
-                        variant="outline-danger"
+                      <Link
+                        href={`/blogs/name=${item.title.split(" ").join("_")}?id=${item.id}`}
+                        passHref
                       >
-                        ادامه مطلب
-                      </Button>
+                        <Button
+                          className={styles.detailsBtn}
+                          variant="outline-danger"
+                        >
+                          ادامه مطلب
+                        </Button>
+                      </Link>
                     </Card.Body>
                   </Card>
                 </section>
               ))
             : data.map(
-                (item , index) =>
+                (item, index) =>
                   item.category === activeSort && (
                     <section key={index} className={styles.card}>
                       <Card className={styles.cardMain}>
@@ -233,7 +248,11 @@ const index = () => {
                     </section>
                   )
               )
-          : data.map((item , index) => <div key={index}><BlogSkeleton /></div>)}
+          : data.map((item, index) => (
+              <div key={index}>
+                <BlogSkeleton />
+              </div>
+            ))}
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-
+import Link from "next/link";
 //import styles
 import styles from "./products.module.css";
 
@@ -50,7 +50,7 @@ const index = ({ products, tags, categories }) => {
     !load &&
       router.query.categories &&
       setCategoriesState([...new Set(router.query.categories.split(","))]);
-
+    console.log(categoriesState);
     setTimeout(() => {
       setLoad(true);
     }, 500);
@@ -166,7 +166,7 @@ const index = ({ products, tags, categories }) => {
               UrlHandler(
                 router.asPath,
                 `categories=${router.query.categories}`,
-                `categories=${tagsState}`
+                `categories=${categoriesState}`
               )
             )
         : router.query.page
@@ -239,7 +239,7 @@ const index = ({ products, tags, categories }) => {
                   value={tag.id}
                   type="checkbox"
                   onClick={tagHandler}
-                  defaultChecked={
+                  checked={
                     tagsState.indexOf(tag.id.toString()) >= 0 ? true : false
                   }
                 />
@@ -265,7 +265,7 @@ const index = ({ products, tags, categories }) => {
                   value={category.id}
                   type="checkbox"
                   onClick={filterCategoryHandler}
-                  defaultChecked={
+                  checked={
                     categoriesState.indexOf(category.id.toString()) >= 0
                       ? true
                       : false
@@ -393,56 +393,60 @@ const index = ({ products, tags, categories }) => {
           {load
             ? products.results.map((item) => (
                 <section key={item.id} className={styles.card}>
-                  <section className={styles.headImage}>
-                    <img
-                      className={styles.offertImage}
-                      src="/assets/images/offerHead.svg"
-                      alt="offer"
-                    />
-                  </section>
-                  <section className={styles.image}>
-                    <img
-                      className={styles.productImage}
-                      src="/assets/images/product.jpg"
-                      alt="products"
-                    />
-                  </section>
-                  <section className={styles.title}>
-                    <h1 className={styles.titleText}>{item.name}</h1>
-                    <p className={styles.seller}>
-                      <i
-                        style={{ color: "#18b4d1" }}
-                        className="fas fa-store"
-                      ></i>{" "}
-                      {item.manufacturer_company}
-                    </p>
-                  </section>
-                  <section
-                    className={
-                      item.discountPercent
-                        ? styles.price
-                        : styles.priceNoDiscount
-                    }
-                  >
-                    <h4 className={styles.mainPrice}>
-                      {item.discount_percent
-                        ? item.price_after_discount
-                        : item.price}{" "}
-                      تومان
-                    </h4>
-                    {item.discount_percent ? (
-                      <p className={styles.discountPercent}>
-                        {item.discount_percent}
-                      </p>
-                    ) : (
-                      ""
-                    )}
-                  </section>
-                  {item.discount_percent ? (
-                    <p className={styles.priceBeforeDiscount}>۱۵,۵۰۰,۰۰۰</p>
-                  ) : (
-                    ""
-                  )}
+                  <Link href={`/product/name=${item.slug}?id=${item.id}`} passHref>
+                    <div>
+                      <section className={styles.headImage}>
+                        <img
+                          className={styles.offertImage}
+                          src="/assets/images/offerHead.svg"
+                          alt="offer"
+                        />
+                      </section>
+                      <section className={styles.image}>
+                        <img
+                          className={styles.productImage}
+                          src="/assets/images/product.jpg"
+                          alt="products"
+                        />
+                      </section>
+                      <section className={styles.title}>
+                        <h1 className={styles.titleText}>{item.name}</h1>
+                        <p className={styles.seller}>
+                          <i
+                            style={{ color: "#18b4d1" }}
+                            className="fas fa-store"
+                          ></i>{" "}
+                          {item.manufacturer_company}
+                        </p>
+                      </section>
+                      <section
+                        className={
+                          item.discountPercent
+                            ? styles.price
+                            : styles.priceNoDiscount
+                        }
+                      >
+                        <h4 className={styles.mainPrice}>
+                          {item.discount_percent
+                            ? item.price_after_discount
+                            : item.price}{" "}
+                          تومان
+                        </h4>
+                        {item.discount_percent ? (
+                          <p className={styles.discountPercent}>
+                            {item.discount_percent}
+                          </p>
+                        ) : (
+                          ""
+                        )}
+                      </section>
+                      {item.discount_percent ? (
+                        <p className={styles.priceBeforeDiscount}>۱۵,۵۰۰,۰۰۰</p>
+                      ) : (
+                        ""
+                      )}
+                    </div>
+                  </Link>
                 </section>
               ))
             : data.map((item, index) => (

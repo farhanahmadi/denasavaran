@@ -1,13 +1,14 @@
 .container {
   background-color: #ef233c;
   padding: 20px;
-  margin: 30px 20px;
+  margin: 0px 20px 40px 20px;
   border-radius: 8px;
   /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
   width: 97%;
 }
 .cardName{
   width: 100%;
+  margin: 5px 0px 10px 0px;
 }
 .cardName h1{
   font-size: 14px;
@@ -69,24 +70,32 @@
 
 .discountPrice {
   font-size: 18px;
-  margin: 0 0 0 5%;
+  margin: 0 0 5px 8px;
 }
 
 .discountPercent {
-  width: 34px;
+  width: 40px;
   height: 20px;
   border-radius: 15px;
   font-size: 12px;
-  margin: 0 5% 0 0;
+  margin: 0 0 5px 0;
   background-color: #EF394E;
   color: #fff;
 }
-
+.spanPercent{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0 1px;
+}
+.percentIcon{
+  margin-top: -2px;
+}
 .mainPrice {
   text-align: left;
-  margin: 0 0 0 5%;
+  margin: 0 0 0 10px;
   color: #9FA1A2;
-  font-size: 14px;
+  font-size: 13px;
   position:relative;
   top:-3px;
   width: fit-content;
@@ -100,7 +109,7 @@
   width: 100%;
   background-color: #9FA1A2;
   font-size: 14px;
-  top: 55%;
+  top: 40%;
 }
 
 .card img {
