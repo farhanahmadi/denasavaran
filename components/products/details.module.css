@@ -96,11 +96,13 @@
 }
 .priceBox{
     background-color: #F7F9F9;
-    padding: 30px 10px;
+    padding: 30px 10px 10px 10px;
     border-radius: 8px;
     border: 1px solid #c9c9c9;
     width: 70%;
     direction: rtl;
+    position: relative;
+    min-height: 400px;
 }
 .sellerTitle{
     text-align: right;
@@ -188,6 +190,56 @@
     border-radius: 10px;
     height: 40px;
     /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+}
+.quantityContainer {
+    border: 1px solid #d3d7dd;
+    border-radius: 10px;
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 40%;
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+}
+
+.quantityNumber {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    color: #EF233C;
+}
+
+.pluse {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    flex: 1;
+    cursor: pointer;
+}
+
+.minuse {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    flex: 1;
+    cursor: pointer;
+}
+
+.trash{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    flex: 1;
+    cursor: pointer;
 }
 
 

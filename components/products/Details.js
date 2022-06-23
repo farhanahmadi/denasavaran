@@ -9,13 +9,15 @@ import { Navigation, Pagination } from "swiper";
 
 //import context
 import { cartContext } from "../context/CartContextProvider";
+import { isEmpty, quantityCheck } from "../context/quantityHandler";
+
 
 //import styles
 import styles from "./details.module.css";
 
 const Details = ({ productDetails }) => {
   const data = ["1", "2"];
-  const {state , dispatch} = useContext(cartContext);
+  const { state, dispatch } = useContext(cartContext);
   const [activeImage, setActiveImage] = useState();
   const [image, setImage] = useState([]);
   const [colors, setColors] = useState([]);
@@ -80,7 +82,10 @@ const Details = ({ productDetails }) => {
             <section className={styles.colorContainer}>
               {colors.map((color) => (
                 <div key={color} className={styles.colorParent}>
-                  <span className={styles.color} style={{backgroundColor: color}}></span>
+                  <span
+                    className={styles.color}
+                    style={{ backgroundColor: color }}
+                  ></span>
                 </div>
               ))}
             </section>
@@ -147,7 +152,7 @@ const Details = ({ productDetails }) => {
               <p className={styles.sellerPrice}>
                 <i className="fas fa-dollar-sign"></i> قیمت فروشنده :
               </p>
-              <section className={styles.price}>
+              <section dir="rtl" className={styles.price}>
                 {productDetails.discount_percent ? (
                   <p className={styles.discountPercent}>
                     {productDetails.discount_percent}%
@@ -172,9 +177,99 @@ const Details = ({ productDetails }) => {
                   ""
                 )}
               </section>
-              <section className={styles.buyBtn}>
-                <button onClick={() => dispatch({type: "ADDITEM" , payload: productDetails})} className={styles.Btn}>خرید</button>
-              </section>
+              {isEmpty(state.products, productDetails.id) ? (
+                <section dir="ltr" className={styles.quantityContainer}>
+                  {quantityCheck(state.products, productDetails.id) ? (
+                    <span
+                      onClick={() =>
+                        dispatch({ type: "DECREASE", payload: productDetails })
+                      }
+                      className={styles.minuse}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-6 w-6"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        // strokeWidth="2"
+                        style={{
+                          stroke: "#EF233C",
+                          width: "18px",
+                          height: "18px",
+                        }}
+                      >
+                        <path
+                          // strokeLinecap="round"
+                          // strokeLinejoin="round"
+                          d="M18 12H6"
+                        />
+                      </svg>
+                    </span>
+                  ) : (
+                    <span
+                      onClick={() =>
+                        dispatch({ type: "REMOVEITEM", payload: productDetails })
+                      }
+                      className={styles.trash}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-6 w-6"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        style={{
+                          stroke: "#EF233C",
+                          width: "18px",
+                          height: "18px",
+                        }}
+                      >
+                        <path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                      </svg>
+                    </span>
+                  )}
+                  <span className={styles.quantityNumber}>
+                    {quantityCheck(state.products, productDetails.id)
+                      ? quantityCheck(state.products, productDetails.id)
+                      : 1}
+                  </span>
+                  <span
+                    onClick={() =>
+                      dispatch({ type: "INCREASE", payload: productDetails })
+                    }
+                    className={styles.pluse}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-6 w-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      // strokeWidth="2"
+                      style={{
+                        stroke: "#EF233C",
+                        width: "18px",
+                        height: "18px",
+                      }}
+                    >
+                      <path
+                        // strokeLinecap="round"
+                        // strokeLinejoin="round"
+                        d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                      />
+                    </svg>
+                  </span>
+                </section>
+              ) : (
+                <section className={styles.buyBtn}>
+                  <button
+                    onClick={() =>
+                      dispatch({ type: "ADDITEM", payload: productDetails })
+                    }
+                    className={styles.Btn}
+                  >
+                    خرید
+                  </button>
+                </section>
+              )}
             </section>
           </Col>
         </Row>

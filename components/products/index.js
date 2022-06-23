@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 //import styles
@@ -7,6 +7,8 @@ import styles from "./products.module.css";
 //import components
 import ProductsSkeleton from "../SkeletonLoading/ProductsSkeleton";
 import ReactPaginate from "react-paginate";
+import { cartContext } from "../context/CartContextProvider";
+
 import {
   categoriesArrayHandler,
   categoriesArrayUrlHandler,
@@ -34,6 +36,9 @@ const index = ({ products, tags, categories }) => {
   //filter
   const [tagsState, setTagsState] = useState([]);
   const [categoriesState, setCategoriesState] = useState([]);
+
+  //context
+  const { state, dispatch } = useContext(cartContext);
 
   const categoryHandler = (event) => {
     if (event.target.innerText !== "همه مقالات") {
@@ -393,7 +398,10 @@ const index = ({ products, tags, categories }) => {
           {load
             ? products.results.map((item) => (
                 <section key={item.id} className={styles.card}>
-                  <Link href={`/product/name=${item.slug}?id=${item.id}`} passHref>
+                  <Link
+                    href={`/product/name=${item.slug}?id=${item.id}`}
+                    passHref
+                  >
                     <div>
                       <section className={styles.headImage}>
                         <img
@@ -441,12 +449,15 @@ const index = ({ products, tags, categories }) => {
                         )}
                       </section>
                       {item.discount_percent ? (
-                        <p className={styles.priceBeforeDiscount}>۱۵,۵۰۰,۰۰۰</p>
+                        <p className={styles.priceBeforeDiscount}>
+                          {item.price}
+                        </p>
                       ) : (
                         ""
                       )}
                     </div>
                   </Link>
+                  
                 </section>
               ))
             : data.map((item, index) => (

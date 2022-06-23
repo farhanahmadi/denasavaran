@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from "react";
+import React, { useState, useReducer, useEffect } from "react";
 
 export const cartContext = React.createContext();
 
@@ -15,24 +15,27 @@ const cartReducer = (state, action) => {
           ...action.payload,
           quantity: 1,
         });
+        localStorage.setItem("userCartItems", JSON.stringify(initialState));
       }
       return {
         ...state,
       };
     case "INCREASE":
       const increase = state.products.findIndex(
-        (item) => item === action.payload.id
+        (item) => item.id === action.payload.id
       );
       state.products[increase].quantity++;
+      localStorage.setItem("userCartItems", JSON.stringify(initialState));
       return {
         ...state,
       };
 
     case "DECREASE":
       const decrease = state.products.findIndex(
-        (item) => item === action.payload.id
+        (item) => item.id === action.payload.id
       );
       state.products[decrease].quantity--;
+      localStorage.setItem("userCartItems", JSON.stringify(initialState));
       return {
         ...state,
       };
@@ -41,12 +44,20 @@ const cartReducer = (state, action) => {
       const newProductsList = state.products.filter(
         (item) => item.id !== action.payload.id
       );
+      localStorage.setItem(
+        "userCartItems",
+        JSON.stringify({ products: [...newProductsList], checkout: false })
+      );
       return {
         ...state,
         products: [...newProductsList],
       };
 
     case "CHECKOUT":
+      localStorage.setItem(
+        "userCartItems",
+        JSON.stringify({ products: [], checkout: true })
+      );
       return {
         products: [],
         checkout: true,
@@ -54,14 +65,24 @@ const cartReducer = (state, action) => {
   }
 };
 
-const CartContextProvider = ({children}) => {
+const CartContextProvider = ({ children }) => {
+  useEffect(() => {
+    if (
+      localStorage.getItem("userCartItems") &&
+      initialState.products.length <= 0
+    ) {
+      const data = JSON.parse(localStorage.getItem("userCartItems"));
+      initialState.products.push(...data.products);
+    }
+  });
+
   const [state, dispatch] = useReducer(cartReducer, initialState);
 
-  return( 
-  <cartContext.Provider value={{state , dispatch}}>
+  return (
+    <cartContext.Provider value={{ state, dispatch }}>
       {children}
-  </cartContext.Provider>
-  )
+    </cartContext.Provider>
+  );
 };
 
 export default CartContextProvider;
