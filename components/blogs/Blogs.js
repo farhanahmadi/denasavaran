@@ -8,7 +8,6 @@ import styles from "./blogsDetails.module.css";
 const Blogs = ({ Blog }) => {
   return (
     <div className={styles.container}>
-      {console.log(Blog)}
       <section className={styles.title}>
         <h1>{Blog.title}</h1>
         <hr />

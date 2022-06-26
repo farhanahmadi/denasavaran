@@ -4,7 +4,9 @@ import "swiper/swiper.min.css";
 import { Navigation, Pagination } from "swiper";
 import { Card, Button } from "react-bootstrap";
 import React from "react";
+import Image from "next/image";
 
+//import styles
 import styles from "./LastContents.module.css";
 
 import SwiperCore from "swiper";
@@ -13,8 +15,6 @@ import SwiperCore from "swiper";
 SwiperCore.use([Pagination, Navigation]);
 
 export default function LastContents({ lastProducts }) {
-
-
   return (
     <div className={styles.container}>
       <div className={styles.lg}>
@@ -51,12 +51,16 @@ export default function LastContents({ lastProducts }) {
                   <button className={styles.more}>{"مشاهده همه >"}</button>
                 </section>
               </SwiperSlide>
-              {console.log(lastProducts)}
               {lastProducts.map((item) => (
                 <SwiperSlide key={item.id} className={styles.swiperSlider}>
                   <section className={styles.card}>
                     <section className={styles.cardImg}>
-                      <img src={item.thumbnail} alt={item.name} />
+                      <Image
+                        src={item.thumbnail}
+                        alt={item.title}
+                        width="172"
+                        height="172"
+                      />
                     </section>
                     <section className={styles.cardName}>
                       <h1>{item.name}</h1>
@@ -73,10 +77,14 @@ export default function LastContents({ lastProducts }) {
                         }
                       >
                         <span className={styles.spanPercent}>
-                          <span style={{marginTop: '2px'}}>
+                          <span style={{ marginTop: "2px" }}>
                             {item.discount_percent ? item.discount_percent : ""}
                           </span>
-                          {item.discount_percent ? <span className={styles.percentIcon}>%</span> : '' }
+                          {item.discount_percent ? (
+                            <span className={styles.percentIcon}>%</span>
+                          ) : (
+                            ""
+                          )}
                         </span>
                       </p>
                     </section>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 import "bootstrap/dist/css/bootstrap.css";
 // import 'bootstrap/dist/js/bootstrap.js';
@@ -26,20 +27,6 @@ const NavbarComponent = ({ categoriesList }) => {
   const [name, setName] = useState("محصولات");
   return (
     <>
-      <Head>
-        <link
-          rel="stylesheet"
-          href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="stylesheet"
-          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-          crossorigin="anonymous"
-        />
-      </Head>
       <div className={styles.mobile}>
         <div className={styles.fixedNav}>
           <a href="#Home">
@@ -175,7 +162,12 @@ const NavbarComponent = ({ categoriesList }) => {
         >
           <Container fluid className={styles.containerFluid}>
             <Navbar.Brand id="Home" href="#" className={styles.textLogo}>
-              <img src="/assets/images/navbarlogo.png" alt="Logo" />
+              <Image
+                src="/assets/images/navbarlogo.png"
+                alt="Logo"
+                width="268"
+                height="40"
+              />
             </Navbar.Brand>
           </Container>
           <section className={styles.mobileNavbarBottom}>
@@ -206,7 +198,12 @@ const NavbarComponent = ({ categoriesList }) => {
           <section className={styles.topNav}>
             <section className={styles.rightTopNav}>
               <section className={styles.logo}>
-                <img src="/assets/images/navbarlogo.png" alt="Logo" />
+                <Image
+                  src="/assets/images/navbarlogo.png"
+                  alt="Logo"
+                  width="300"
+                  height="44"
+                />
               </section>
               <section className={styles.searchBar}>
                 <input type="text" placeholder="جستجو" />

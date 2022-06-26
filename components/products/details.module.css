@@ -45,7 +45,6 @@
     margin-top: 50px;
 }
 .colorParent{
-    border: 1px solid #747474;
     border-radius: 50%;
     background: none;
     position: relative;
@@ -62,6 +61,11 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+.color svg{
+    width: 30px;
+    height: 30px;
+    stroke: #fff;
 }
 .properties{
     margin-top: 50px;

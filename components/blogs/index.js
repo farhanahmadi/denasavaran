@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import * as shamsi from "shamsi-date-converter";
 import Link from "next/link"
+import Image from "next/image";
 
 //import components
 import { descreption } from "../function/TextLength";
@@ -93,7 +94,7 @@ const index = ({ BlogsList }) => {
       <section className={styles.categoryContainer}>
         <ul className={styles.categoryUl}>
           <li>
-            <i class="fas fa-sort-amount-down"></i> دسته بندی:
+            <i className="fas fa-sort-amount-down"></i> دسته بندی:
           </li>
           <li
             onClick={categoryHandler}
@@ -172,10 +173,11 @@ const index = ({ BlogsList }) => {
             ? BlogsList.results.map((item, index) => (
                 <section key={index} className={styles.card}>
                   <Card className={styles.cardMain}>
-                    <Card.Img
-                      variant="top"
-                      src={item.thumbnail}
-                      className={styles.cardImg}
+                    <Image
+                    src={item.thumbnail}
+                    alt={item.title}
+                    width="288"
+                    height="240"
                     />
                     <Card.Body>
                       <Card.Title className={styles.cardTitle}>
@@ -248,7 +250,7 @@ const index = ({ BlogsList }) => {
                     </section>
                   )
               )
-          : data.map((item, index) => (
+          : BlogsList.results.map((item, index) => (
               <div key={index}>
                 <BlogSkeleton />
               </div>

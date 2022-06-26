@@ -112,9 +112,9 @@
 .color {
     width: 18px;
     height: 18px;
-    background-color: red;
+    /* background-color: red; */
     border-radius: 50%;
-    border: 1px solid rgb(185, 0, 0);
+    /* border: 1px solid rgb(185, 0, 0); */
 }
 
 .seller {
@@ -250,7 +250,15 @@
     border-radius: 10px;
     margin-bottom: -10px;
 }
-
+.trash{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    flex: 1;
+    cursor: pointer;
+}
 @media only screen and (max-width: 1440px){
     .container {
         width: 90%;

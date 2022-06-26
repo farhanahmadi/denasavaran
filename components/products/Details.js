@@ -11,15 +11,16 @@ import { Navigation, Pagination } from "swiper";
 import { cartContext } from "../context/CartContextProvider";
 import { isEmpty, quantityCheck } from "../context/quantityHandler";
 
-
 //import styles
 import styles from "./details.module.css";
 
 const Details = ({ productDetails }) => {
   const data = ["1", "2"];
   const { state, dispatch } = useContext(cartContext);
+  const [selectedItem, setSelectedItem] = useState([]);
   const [activeImage, setActiveImage] = useState();
   const [image, setImage] = useState([]);
+  const [selectedColor, setSelectedColor] = useState("");
   const [colors, setColors] = useState([]);
 
   useEffect(() => {
@@ -34,6 +35,12 @@ const Details = ({ productDetails }) => {
   const imageSelectedHandler = (src) => {
     setActiveImage(src);
   };
+  const productHandler = (product , color) => {
+    const selectedProduct = product;
+    selectedProduct.colors = color;
+    setSelectedColor(color);
+    setSelectedItem(selectedProduct);
+  }
   return (
     <Row dir="rtl" style={{ margin: "5% auto", width: "98%" }}>
       {console.log(state)}
@@ -81,11 +88,29 @@ const Details = ({ productDetails }) => {
             <h3 className={styles.colorTitle}>رنگ ها :</h3>
             <section className={styles.colorContainer}>
               {colors.map((color) => (
-                <div key={color} className={styles.colorParent}>
+                <div
+                  key={color}
+                  style={{ border: `1px solid ${color}` }}
+                  className={styles.colorParent}
+                >
                   <span
+                    onClick={() => productHandler(productDetails , color)}
                     className={styles.color}
                     style={{ backgroundColor: color }}
-                  ></span>
+                  >
+                    {selectedColor === color ? (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-6 w-6"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M5 13l4 4L19 7" />
+                      </svg>
+                    ) : (
+                      ""
+                    )}
+                  </span>
                 </div>
               ))}
             </section>
@@ -208,7 +233,10 @@ const Details = ({ productDetails }) => {
                   ) : (
                     <span
                       onClick={() =>
-                        dispatch({ type: "REMOVEITEM", payload: productDetails })
+                        dispatch({
+                          type: "REMOVEITEM",
+                          payload: productDetails,
+                        })
                       }
                       className={styles.trash}
                     >
@@ -262,7 +290,7 @@ const Details = ({ productDetails }) => {
                 <section className={styles.buyBtn}>
                   <button
                     onClick={() =>
-                      dispatch({ type: "ADDITEM", payload: productDetails })
+                      dispatch({ type: "ADDITEM", payload: selectedItem })
                     }
                     className={styles.Btn}
                   >

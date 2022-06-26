@@ -107,6 +107,10 @@
     transition: all .5s;
     border: none;
 }
+.cardMain img{
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
 .cardMain:hover {
     width: 18rem;
     border-radius: 10px;

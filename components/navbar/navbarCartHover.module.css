@@ -4,7 +4,7 @@
     border-radius: 10px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     position: absolute;
-    top: 32px;
+    top: 28px;
     left: 0;
     z-index: 10;
     background-color: #fff;
@@ -113,9 +113,9 @@
 .color {
     width: 18px;
     height: 18px;
-    background-color: red;
+    /* background-color: red; */
     border-radius: 50%;
-    border: 1px solid rgb(185, 0, 0);
+    /* border: 1px solid rgb(185, 0, 0); */
 }
 .footer{
     display: flex;
@@ -147,4 +147,13 @@
     border: none;
     flex: 1;
     height: 50px;
+}
+.trash{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    flex: 1;
+    cursor: pointer;
 }
