@@ -2,10 +2,12 @@ import React from "react";
 import { Table } from "react-bootstrap";
 import Layout from "./Layout";
 import Link from "next/link";
+import * as shamsi from "shamsi-date-converter"
+
 //import styles
 import styles from "./orders.module.css";
 
-export default function Profile() {
+export default function Profile({userOrders}) {
   return (
     <Layout>
       <main className={styles.mainBar}>
@@ -37,22 +39,17 @@ export default function Profile() {
             </tr>
           </thead>
           <tbody>
+            {console.log(userOrders)}
+            {userOrders.map(order =>   
             <tr>
               <td data-label="ID">1</td>
-              <td data-label="نام خریدار">فرحان احمدی</td>
-              <td data-label="تاریخ">1400-03-25</td>
-              <td data-label="مبلغ">26,000,000</td>
-              <td data-label="کد پیگیری">100010010101001</td>
+              <td data-label="نام خریدار">{order.owner.first_name + ' ' + order.owner.last_name}</td>
+              <td data-label="تاریخ">{shamsi.gregorianToJalali(order.payment_date.split('-')).join('-')}</td>
+              <td data-label="مبلغ">{order.total_price}</td>
+              <td data-label="کد پیگیری">{order.order_id}</td>
               <Link href={'#'} passHref><td data-label="جزئیات سفارش">مشاهده</td></Link>
             </tr>
-            <tr>
-              <td data-label="ID">2</td>
-              <td data-label="نام خریدار">فرحان احمدی</td>
-              <td data-label="تاریخ">1400-03-25</td>
-              <td data-label="مبلغ">26,000,000</td>
-              <td data-label="کد پیگیری">100010010101001</td>
-              <Link href={'#'} passHref><td data-label="جزئیات سفارش">مشاهده</td></Link>
-            </tr>
+              )}
           </tbody>
         </table>
       </main>

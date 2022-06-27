@@ -1,10 +1,38 @@
-import React from "react";
+import React,{useState , useEffect} from "react";
 import Layout from "./Layout";
 
 //import styles
 import styles from "./profile.module.css";
 
-export default function Profile() {
+export default function Profile({userInfo}) {
+
+  const [userData , setUserData] = useState({
+    first_name: '',
+    last_name: '',
+    avatar: '',
+    email: '',
+    state: '',
+    city: '',
+    address: '',
+    plate: '',
+    zip_code: '',
+    phone_number: ''
+  });
+
+  useEffect(() =>{
+    setUserData({...userData , 
+    first_name: userInfo.first_name,
+    last_name: userInfo.last_name,
+    avatar: userInfo.avatar,
+    email: userInfo.email,
+    state: userInfo.state,
+    city: userInfo.city,
+    address: userInfo.address,
+    plate: userInfo.plate,
+    zip_code: userInfo.zip_code,
+    phone_number: userInfo.phone_number
+    });
+  },[])
 
   return (
     <Layout>
@@ -28,36 +56,45 @@ export default function Profile() {
         <section className={styles.inputs}>
           <section className={styles.username}>
             <label>نام :</label>
-            <input name="name" type="text" placeholder="نام " />
+            <input name="name" type="text" placeholder="نام " value={userData.first_name} />
           </section>
           <section className={styles.lastname}>
             <label>نام خانوادگی :</label>
-            <input name="lastName" type="text" placeholder="نام خانوادگی " />
+            <input name="lastName" type="text" placeholder="نام خانوادگی " value={userData.last_name} />
           </section>
           <section className={styles.email}>
             <label>ایمیل :</label>
-            <input name="email" type="text" placeholder="ایمیل " />
+            <input name="email" type="text" placeholder="ایمیل " value={userData.email} />
           </section>
-          <section className={styles.nationalcode}>
-            <label>کد ملی</label>
-            <input name="nationalcode" type="text" placeholder="کد ملی" />
+          <section className={styles.state}>
+            <label>استان</label>
+            <select className={styles.selects}>
+              <option>استان</option>
+            </select>
+          </section>
+          <section className={styles.city}>
+            <label>شهر</label>
+            <select className={styles.selects}>
+              <option>شهر</option>
+            </select>
           </section>
           <section className={styles.address}>
             <label>آدرس :</label>
-            <input name="address" type="text" placeholder="آدرس" />
+            <input name="address" type="text" placeholder="آدرس" value={userData.address} />
           </section>
           <section className={styles.plate}>
             <label>پلاک :</label>
-            <input name="plate" type="text" placeholder="پلاک" />
+            <input name="plate" type="text" placeholder="پلاک" value={userData.plate} />
           </section>
           <section className={styles.zipcode}>
             <label>کد پستی :</label>
-            <input name="zipcode" type="text" placeholder="کد پستی" />
+            <input name="zipcode" type="text" placeholder="کد پستی" value={userData.zip_code} />
           </section>
           <section className={styles.phone}>
             <label>شماره همراه :</label>
-            <input name="phone" type="text" placeholder="شماره همراه" />
+            <input name="phone" type="text" placeholder="شماره همراه" value={userData.phone_number} />
           </section>
+          <br />
           <section className={styles.btn}>
             <button className={styles.submit}>ذخیره اطلاعات</button>
           </section>

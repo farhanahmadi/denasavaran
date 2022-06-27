@@ -1,7 +1,8 @@
-.mainBar{
+.mainBar {
     flex: 1;
 }
-.alert{
+
+.alert {
     border: 1px solid #d3d7dd;
     border-radius: 10px;
     padding: 15px 25px;
@@ -13,10 +14,12 @@
     justify-content: flex-start;
     gap: 0 5px;
 }
-.alert svg{
+
+.alert svg {
     width: 20px;
     stroke: rgb(212, 187, 41);
 }
+
 .inputs {
     border-radius: 10px;
     padding: 53px 25px 25px 25px;
@@ -27,6 +30,7 @@
     width: 100%;
     height: 100%;
 }
+
 .inputs section {
     /* border: 1px solid red; */
     display: flex;
@@ -42,10 +46,23 @@
     font-size: .9em;
 }
 
+.selects {
+    width: 100%;
+    border: 1px solid #d3d7dd;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: .9em;
+}
+
+.selects:focus {
+    outline: none;
+}
+
 .inputs section input:focus {
     outline: none;
 }
-.submit{
+
+.submit {
     background-color: #EF233C;
     color: #fff;
     text-align: center;
@@ -56,20 +73,22 @@
     margin-bottom: 0px;
 }
 
-@media only screen and (max-width: 1400px){
-    .container{
+@media only screen and (max-width: 1400px) {
+    .container {
         width: 95%;
     }
 }
-@media only screen and (max-width: 1200px){
-    .sideBar{
+
+@media only screen and (max-width: 1200px) {
+    .sideBar {
         flex: .45;
     }
-    
+
 }
-@media only screen and (max-width: 768px){
-    .sideBar{
+
+@media only screen and (max-width: 768px) {
+    .sideBar {
         display: none;
     }
-    
+
 }
