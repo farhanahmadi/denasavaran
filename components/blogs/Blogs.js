@@ -27,7 +27,7 @@ const Blogs = ({ Blog }) => {
       </section>
       <section className={styles.porster}>
         <Image
-          src={Blog.title_image}
+          src={Blog.title_image ? Blog.title_image : "/assets/images/navbarlogo.png"}
           alt={Blog.title}
           width="1100"
           height="500"

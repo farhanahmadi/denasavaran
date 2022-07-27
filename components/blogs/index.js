@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import * as shamsi from "shamsi-date-converter";
-import Link from "next/link"
+import Link from "next/link";
 import Image from "next/image";
 
 //import components
@@ -15,7 +15,6 @@ import styles from "./blog.module.css";
 
 const index = ({ BlogsList }) => {
   const [activeSort, setActiveSort] = useState("all");
-  const [isLoad, setIsLoad] = useState(true);
   const [load, setLoad] = useState(false);
 
   const data = [
@@ -91,49 +90,68 @@ const index = ({ BlogsList }) => {
   }, []);
   return (
     <div className={styles.container}>
-      <section className={styles.categoryContainer}>
-        <ul className={styles.categoryUl}>
-          <li>
-            <i className="fas fa-sort-amount-down"></i> دسته بندی:
-          </li>
-          <li
-            onClick={categoryHandler}
-            className={`${styles.categoryLi} ${
-              activeSort === "all" && styles.activeLi
-            } `}
-          >
-            همه مقالات
-          </li>
-          <li
-            onClick={categoryHandler}
-            className={`${styles.categoryLi} ${
-              activeSort === "موتوری" && styles.activeLi
-            } `}
-          >
-            موتوری
-          </li>
-          <li
-            onClick={categoryHandler}
-            className={`${styles.categoryLi} ${
-              activeSort === "بدنه" && styles.activeLi
-            } `}
-          >
-            بدنه
-          </li>
-          <li
-            onClick={categoryHandler}
-            className={`${styles.categoryLi} ${
-              activeSort === "برقی" && styles.activeLi
-            } `}
-          >
-            برقی
-          </li>
+      <section className={load ? styles.sideBar : styles.skeletonSidebar}>
+        <br />
+        <div className={styles.filterText}>
+          <i
+            style={{ color: "#EF233C" }}
+            className="fas fa-sort-amount-down"
+          ></i>{" "}
+          فیلتر بر اساس نوع ماشین
+        </div>
+        <ul className={styles.carFilter}>
+          {/* {tags.map((tag) => (
+            <li key={tag.id}>
+              <label className={styles.Filtercontainer}>
+                {tag.name}
+                <input
+                  value={tag.id}
+                  type="checkbox"
+                  onClick={tagHandler}
+                  checked={
+                    tagsState.indexOf(tag.id.toString()) >= 0 ? true : false
+                  }
+                />
+                <span className={styles.checkmark}></span>
+              </label>
+            </li>
+          ))} */}
         </ul>
+        {/* ////////////// */}
+        <div className={styles.filterText}>
+          <i
+            style={{ color: "#EF233C" }}
+            className="fas fa-sort-amount-down"
+          ></i>{" "}
+          فیلتر بر اساس نوع قطعه
+        </div>
+        <ul className={styles.carFilter}>
+          {/* {categories.map((category) => (
+            <li key={category.id}>
+              <label className={styles.Filtercontainer}>
+                {category.name}
+                <input
+                  value={category.id}
+                  type="checkbox"
+                  onClick={filterCategoryHandler}
+                  checked={
+                    categoriesState.indexOf(category.id.toString()) >= 0
+                      ? true
+                      : false
+                  }
+                />
+                <span className={styles.checkmark}></span>
+              </label>
+            </li>
+          ))} */}
+        </ul>
+      </section>
+      <section className={styles.categoryContainer}>
         <section className={styles.dropdown}>
           <DropdownButton
             className={styles.dropdownBtn}
             id="dropdown-basic-button"
-            title="دسته بندی"
+            title="نوع ماشین"
             dir="rtl"
             variant="Secondary"
           >
@@ -143,7 +161,7 @@ const index = ({ BlogsList }) => {
                   activeSort === "all" && styles.activeDropdowm
                 } `}
               >
-                همه مقالات
+                دنا
               </li>
             </Dropdown.Item>
             <Dropdown.Item className={styles.dropdownItem} href="#/action-2">
@@ -152,7 +170,7 @@ const index = ({ BlogsList }) => {
                   activeSort === "engin" && styles.activeDropdowm
                 } `}
               >
-                موتوری
+                پژو
               </li>
             </Dropdown.Item>
             <Dropdown.Item className={styles.dropdownItem} href="#/action-3">
@@ -161,23 +179,101 @@ const index = ({ BlogsList }) => {
                   activeSort === "electronic" && styles.activeDropdowm
                 } `}
               >
-                برقی
+                رانا
+              </li>
+            </Dropdown.Item>
+            <Dropdown.Item className={styles.dropdownItem} href="#/action-3">
+              <li
+                className={`${styles.categoryDropdown} ${
+                  activeSort === "electronic" && styles.activeDropdowm
+                } `}
+              >
+                سمند
+              </li>
+            </Dropdown.Item>
+            <Dropdown.Item className={styles.dropdownItem} href="#/action-3">
+              <li
+                className={`${styles.categoryDropdown} ${
+                  activeSort === "electronic" && styles.activeDropdowm
+                } `}
+              >
+                پراید
+              </li>
+            </Dropdown.Item>
+          </DropdownButton>
+          {/* //////////////////// */}
+          <DropdownButton
+            className={styles.dropdownBtn}
+            id="dropdown-basic-button"
+            title="نوع قطعه"
+            dir="rtl"
+            variant="Secondary"
+          >
+            <Dropdown.Item className={styles.dropdownItem} href="#/action-1">
+              <li
+                className={`${styles.categoryDropdown} ${
+                  activeSort === "all" && styles.activeDropdowm
+                } `}
+              >
+                قطعات برقی
+              </li>
+            </Dropdown.Item>
+            <Dropdown.Item className={styles.dropdownItem} href="#/action-2">
+              <li
+                className={`${styles.categoryDropdown} ${
+                  activeSort === "engin" && styles.activeDropdowm
+                } `}
+              >
+                روغن موتور
+              </li>
+            </Dropdown.Item>
+            <Dropdown.Item className={styles.dropdownItem} href="#/action-3">
+              <li
+                className={`${styles.categoryDropdown} ${
+                  activeSort === "electronic" && styles.activeDropdowm
+                } `}
+              >
+                قطعات موتوری
+              </li>
+            </Dropdown.Item>
+            <Dropdown.Item className={styles.dropdownItem} href="#/action-3">
+              <li
+                className={`${styles.categoryDropdown} ${
+                  activeSort === "electronic" && styles.activeDropdowm
+                } `}
+              >
+                بدنه
+              </li>
+            </Dropdown.Item>
+            <Dropdown.Item className={styles.dropdownItem} href="#/action-3">
+              <li
+                className={`${styles.categoryDropdown} ${
+                  activeSort === "electronic" && styles.activeDropdowm
+                } `}
+              >
+                لوازم نگهداری
               </li>
             </Dropdown.Item>
           </DropdownButton>
         </section>
       </section>
+
       <div className={styles.cardContainer}>
+        {console.log(BlogsList)}
         {load
           ? activeSort === "all"
             ? BlogsList.results.map((item, index) => (
                 <section key={index} className={styles.card}>
                   <Card className={styles.cardMain}>
                     <Image
-                    src={item.thumbnail}
-                    alt={item.title}
-                    width="288"
-                    height="240"
+                      src={
+                        item.thumbnail
+                          ? item.thumbnail
+                          : "/assets/images/navbarlogo.png"
+                      }
+                      alt={item.title}
+                      width="288"
+                      height="240"
                     />
                     <Card.Body>
                       <Card.Title className={styles.cardTitle}>
@@ -201,15 +297,14 @@ const index = ({ BlogsList }) => {
                         </p>
                       </section>
                       <Link
-                        href={`/blogs/name=${item.title.split(" ").join("_")}?id=${item.id}`}
+                        href={`/blogs/${item.id}/${item.title
+                          .split(" ")
+                          .join("-")}`}
                         passHref
                       >
-                        <Button
-                          className={styles.detailsBtn}
-                          variant="outline-danger"
-                        >
+                        <a>
                           ادامه مطلب
-                        </Button>
+                        </a>
                       </Link>
                     </Card.Body>
                   </Card>
@@ -239,12 +334,9 @@ const index = ({ BlogsList }) => {
                           <section className={styles.badgeSection}>
                             <p className={styles.badge}>{item.category}</p>
                           </section>
-                          <Button
-                            className={styles.detailsBtn}
-                            variant="danger"
-                          >
-                            ادامه مطلب
-                          </Button>
+                          <Link href={`/blogs/${item.id}`}>
+                            <a>ادامه مطلب</a>
+                          </Link>
                         </Card.Body>
                       </Card>
                     </section>

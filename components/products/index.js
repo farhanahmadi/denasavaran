@@ -8,6 +8,12 @@ import styles from "./products.module.css";
 import ProductsSkeleton from "../SkeletonLoading/ProductsSkeleton";
 import ReactPaginate from "react-paginate";
 import { cartContext } from "../context/CartContextProvider";
+import { persianNumber } from "../function/PersianNumber";
+import Filter from "../Filter/Filter";
+
+//import icons
+import { HiOutlineBookmark, HiChevronDown } from "react-icons/hi/index";
+import { BsShop, BsPatchCheck } from "react-icons/bs/index";
 
 import {
   categoriesArrayHandler,
@@ -24,7 +30,7 @@ import {
 //bootstarp
 import { Dropdown, DropdownButton, Card, Button } from "react-bootstrap";
 
-const index = ({ products, tags, categories }) => {
+const index = ({ products, tags, categories , filterHandler }) => {
   const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
   const router = useRouter();
@@ -224,6 +230,7 @@ const index = ({ products, tags, categories }) => {
     }
   };
 
+
   return (
     <div className={styles.container}>
       <section className={load ? styles.sideBar : styles.skeletonSidebar}>
@@ -284,113 +291,20 @@ const index = ({ products, tags, categories }) => {
       </section>
       <section className={styles.categoryContainer}>
         <section className={styles.dropdown}>
-          <DropdownButton
-            className={styles.dropdownBtn}
-            id="dropdown-basic-button"
-            title="نوع ماشین"
-            dir="rtl"
-            variant="Secondary"
-          >
-            <Dropdown.Item className={styles.dropdownItem} href="#/action-1">
-              <li
-                className={`${styles.categoryDropdown} ${
-                  activeSort === "all" && styles.activeDropdowm
-                } `}
-              >
-                دنا
-              </li>
-            </Dropdown.Item>
-            <Dropdown.Item className={styles.dropdownItem} href="#/action-2">
-              <li
-                className={`${styles.categoryDropdown} ${
-                  activeSort === "engin" && styles.activeDropdowm
-                } `}
-              >
-                پژو
-              </li>
-            </Dropdown.Item>
-            <Dropdown.Item className={styles.dropdownItem} href="#/action-3">
-              <li
-                className={`${styles.categoryDropdown} ${
-                  activeSort === "electronic" && styles.activeDropdowm
-                } `}
-              >
-                رانا
-              </li>
-            </Dropdown.Item>
-            <Dropdown.Item className={styles.dropdownItem} href="#/action-3">
-              <li
-                className={`${styles.categoryDropdown} ${
-                  activeSort === "electronic" && styles.activeDropdowm
-                } `}
-              >
-                سمند
-              </li>
-            </Dropdown.Item>
-            <Dropdown.Item className={styles.dropdownItem} href="#/action-3">
-              <li
-                className={`${styles.categoryDropdown} ${
-                  activeSort === "electronic" && styles.activeDropdowm
-                } `}
-              >
-                پراید
-              </li>
-            </Dropdown.Item>
-          </DropdownButton>
-          {/* //////////////////// */}
-          <DropdownButton
-            className={styles.dropdownBtn}
-            id="dropdown-basic-button"
-            title="نوع قطعه"
-            dir="rtl"
-            variant="Secondary"
-          >
-            <Dropdown.Item className={styles.dropdownItem} href="#/action-1">
-              <li
-                className={`${styles.categoryDropdown} ${
-                  activeSort === "all" && styles.activeDropdowm
-                } `}
-              >
-                قطعات برقی
-              </li>
-            </Dropdown.Item>
-            <Dropdown.Item className={styles.dropdownItem} href="#/action-2">
-              <li
-                className={`${styles.categoryDropdown} ${
-                  activeSort === "engin" && styles.activeDropdowm
-                } `}
-              >
-                روغن موتور
-              </li>
-            </Dropdown.Item>
-            <Dropdown.Item className={styles.dropdownItem} href="#/action-3">
-              <li
-                className={`${styles.categoryDropdown} ${
-                  activeSort === "electronic" && styles.activeDropdowm
-                } `}
-              >
-                قطعات موتوری
-              </li>
-            </Dropdown.Item>
-            <Dropdown.Item className={styles.dropdownItem} href="#/action-3">
-              <li
-                className={`${styles.categoryDropdown} ${
-                  activeSort === "electronic" && styles.activeDropdowm
-                } `}
-              >
-                بدنه
-              </li>
-            </Dropdown.Item>
-            <Dropdown.Item className={styles.dropdownItem} href="#/action-3">
-              <li
-                className={`${styles.categoryDropdown} ${
-                  activeSort === "electronic" && styles.activeDropdowm
-                } `}
-              >
-                لوازم نگهداری
-              </li>
-            </Dropdown.Item>
-          </DropdownButton>
+          <button onClick={filterHandler} className={styles.filter}>
+            فیلتر{" "}
+            <HiChevronDown
+              style={{ stroke: "var(--lightBlack)" }}
+              className="icon"
+            />
+          </button>
+          <button className={styles.categoryDropdown}>
+            دسته بندی{" "}
+            <HiChevronDown
+              style={{ stroke: "var(--lightBlack)" }}
+              className="icon"
+            />
+          </button>
         </section>
       </section>
       <section className={styles.mainContainer}>
@@ -402,29 +316,35 @@ const index = ({ products, tags, categories }) => {
                     href={`/product/name=${item.slug}?id=${item.id}`}
                     passHref
                   >
-                    <div>
-                      <section className={styles.headImage}>
-                        <img
-                          className={styles.offertImage}
-                          src="/assets/images/offerHead.svg"
-                          alt="offer"
-                        />
-                      </section>
+                    <a style={{ all: "unset" }}>
                       <section className={styles.image}>
                         <img
                           className={styles.productImage}
                           src="/assets/images/product.jpg"
                           alt="products"
                         />
+                        <section className={styles.headImage}>
+                          <HiOutlineBookmark
+                            style={{ stroke: "var(--red)" }}
+                            className="icon"
+                          />
+                        </section>
                       </section>
                       <section className={styles.title}>
                         <h1 className={styles.titleText}>{item.name}</h1>
                         <p className={styles.seller}>
-                          <i
-                            style={{ color: "#18b4d1" }}
-                            className="fas fa-store"
-                          ></i>{" "}
-                          {item.manufacturer_company}
+                          <BsShop
+                            style={{ color: "var(--skyBlue)" }}
+                            className="icon"
+                          />
+                          فروشنده : {item.manufacturer_company}
+                        </p>
+                        <p className={styles.warranty}>
+                          <BsPatchCheck
+                            style={{ color: "var(--green)" }}
+                            className="icon"
+                          />
+                          گارانتی اصالت و سلامت فیزیکی کالا
                         </p>
                       </section>
                       <section
@@ -436,13 +356,13 @@ const index = ({ products, tags, categories }) => {
                       >
                         <h4 className={styles.mainPrice}>
                           {item.discount_percent
-                            ? item.price_after_discount
-                            : item.price}{" "}
+                            ? persianNumber(item.price_after_discount)
+                            : persianNumber(item.price)}{" "}
                           تومان
                         </h4>
                         {item.discount_percent ? (
                           <p className={styles.discountPercent}>
-                            {item.discount_percent}
+                            {persianNumber(item.discount_percent)}
                           </p>
                         ) : (
                           ""
@@ -450,14 +370,13 @@ const index = ({ products, tags, categories }) => {
                       </section>
                       {item.discount_percent ? (
                         <p className={styles.priceBeforeDiscount}>
-                          {item.price}
+                          {persianNumber(item.price)}
                         </p>
                       ) : (
                         ""
                       )}
-                    </div>
+                    </a>
                   </Link>
-                  
                 </section>
               ))
             : data.map((item, index) => (

@@ -3,6 +3,16 @@
   src: url('../public/assets/fonts/BYekan.ttf');
 }
 
+:root {
+  --red: #EF233C;
+  --gray: #F8F9F9;
+  --deepgray: #818181;
+  --green: #16A085;
+  --borderGray: #D5DBDB;
+  --skyBlue: #3498DB;
+  --lightBlack: #212F3D;
+}
+
 html,
 body {
   padding: 0;
@@ -45,6 +55,14 @@ a {
 .pagination a {
   padding: 10px 15px;
 }
+
+.icon {
+  width: 18px;
+  height: 18px;
+  margin-left: 5px;
+}
+
+
 
 @media only screen and (max-width: 767.98px) {
 

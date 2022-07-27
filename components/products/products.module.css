@@ -10,7 +10,7 @@
 .skeletonSidebar {
     width: 360px;
     height: 600px;
-    background-color: #E2E2E2;
+    background-color: var(--gray);
     border-radius: 10px;
     margin-right: 7%;
 }
@@ -27,16 +27,17 @@
 
 .sideBar {
     padding: 10px 20px;
-    background-color: #f3f3f3;
+    background-color: var(--gray);
     margin-right: 7%;
     border-radius: 10px;
     position: sticky;
     top: 20px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 .filterText {
     font-size: 1.2em;
-    color: #EF233C;
+    color: var(--red);
     margin-bottom: 20px;
 }
 
@@ -76,19 +77,19 @@
     height: 25px;
     width: 25px;
     background-color: transparent;
-    border: 1px solid gray;
+    border: 1px solid var(--deepgray);
     border-radius: 5px;
     cursor: pointer;
 }
 
 /* On mouse-over, add a grey background color */
 .Filtercontainer:hover input~.checkmark {
-    background-color: #ccc;
+    background-color: var(--gray);
 }
 
 /* When the checkbox is checked, add a blue background */
 .Filtercontainer input:checked~.checkmark {
-    background-color: #EF394E;
+    background-color: var(--red);
     border: none;
 }
 
@@ -120,14 +121,14 @@
 .categoryContainer {
     max-width: 70%;
     margin: 30px auto;
-    background-color: #E5E6EA;
+    background-color: white;
     border-radius: 15px;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     display: none;
 }
 
 .dropdown {
     display: flex;
+    gap: 0 20px;
 }
 
 .dropdownBtn {
@@ -138,14 +139,26 @@
     text-align: right;
 }
 
+.filter{
+    background-color: white;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border: none;
+    height: 35px;
+    border-radius: 5px;
+    flex: 1;
+}
+
 .categoryDropdown {
-    position: relative;
-    padding: 10px 15px;
-    cursor: pointer;
+    background-color: white;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border: none;
+    height: 35px;
+    border-radius: 5px;
+    flex: 1;
 }
 
 .activeDropdowm {
-    color: #db2c3d;
+    color: var(--red);
 }
 
 .activeDropdowm::before {
@@ -153,12 +166,9 @@
     position: absolute;
     bottom: -5px;
     right: 0;
-    background-color: #db2c3d;
+    background-color: var(--red);
     width: 100%;
     height: 2px;
-}
-.mainContainer{
-    
 }
 
 .main {
@@ -169,14 +179,15 @@
 }
 
 .card {
-    border: 1px solid #dadada;
+    border: 1px solid var(--borderGray);
     width: 18rem;
-    height: 30rem;
-    border-radius: 5px;
+    height: 28rem;
+    border-radius: 15px;
     cursor: pointer;
     transition: all .3s;
     direction: ltr;
     position: relative;
+    overflow: hidden;
 
 }
 
@@ -192,30 +203,61 @@
 .image {
     width: 100%;
     text-align: center;
+    position: relative;
+    margin-top: 10px;
 }
 
 .headImage {
     text-align: right;
     margin: 10px 15px;
+    position: absolute;
+    top: 0;
+    right: 0;
 }
 
 .title {
-    margin-top: 30px;
+    margin-top: 20px;
 }
 
 .titleText {
-    font-size: 1em;
-    text-align: center;
+    font-size: 1.1em;
+    text-align: right;
+    padding-right: 8px;
+    margin-bottom: 0;
+    color: var(--lightBlack);
+
 }
 
 .seller {
     font-size: .8em;
-    margin-top: 30px;
+    margin-top: 20px;
     text-align: right;
-    padding-right: 2%;
-    color: #818181;
+    margin-bottom: 0;
+    padding-right: 5px;
+    color: var(--deepgray);
     direction: rtl;
+    display: flex;
+    align-items: center;
+    gap: 0 2px;
 }
+
+.warranty {
+    font-size: .8em;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    text-align: right;
+    padding-right: 5px;
+    color: var(--deepgray);
+    direction: rtl;
+    display: flex;
+    align-items: center;
+    gap: 0 2px;
+}
+
+.warranty i {
+    margin-left: 3px;
+}
+
 
 .seller i {
     margin-left: 3px;
@@ -228,7 +270,8 @@
     align-items: center;
     padding: 0 15px 0 15px;
 }
-.priceNoDiscount{
+
+.priceNoDiscount {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -237,6 +280,7 @@
 
 .mainPrice {
     font-size: 18px;
+    direction: rtl;
 }
 
 .discountPercent {
@@ -245,15 +289,15 @@
     border-radius: 15px;
     font-size: 12px;
     margin: 0 0 0 0;
-    background-color: #EF394E;
-    color: #fff;
+    background-color: var(--red);
+    color: white;
     text-align: center;
 }
 
 .priceBeforeDiscount {
     width: 100%;
     margin: 0 0 0 5%;
-    color: #9FA1A2;
+    color: var(--deepgray);
     font-size: 14px;
     position: relative;
     top: -3px;
@@ -266,7 +310,7 @@
     margin: 0 0 0 5%;
     height: 1px;
     width: 100%;
-    background-color: #9FA1A2;
+    background-color: var(--deepgray);
     font-size: 14px;
     top: 55%;
 }
@@ -286,7 +330,7 @@
 @media only screen and (max-width: 998px) {
     .filterText {
         font-size: 1em;
-        color: #EF233C;
+        color: var(--red);
         margin-bottom: 20px;
     }
 }

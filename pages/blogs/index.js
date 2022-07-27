@@ -14,10 +14,11 @@ export default function index({BlogsList}) {
   );
 }
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   const BlogsList = await axios.get(`${BaseLink}/news/`);
 
   return {
     props: { BlogsList: BlogsList.data },
+    revalidate: 3600,
   };
 }
