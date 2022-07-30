@@ -61,10 +61,10 @@ const index = ({ products, tags, categories , filterHandler }) => {
     !load &&
       router.query.categories &&
       setCategoriesState([...new Set(router.query.categories.split(","))]);
-    console.log(categoriesState);
-    setTimeout(() => {
-      setLoad(true);
-    }, 500);
+    // setTimeout(() => {
+    //   setLoad(true);
+    // }, 500);
+    products && setLoad(true);
   }, [tagsState, categoriesState]);
 
   const handlePageClick = (event) => {

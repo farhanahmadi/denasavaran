@@ -30,7 +30,7 @@
 }
 .description{
     font-size: 14px;
-    color: #747474;
+    color: var(--deepgray);
     margin-top: 20px;
 }
 .colorContainer{
@@ -65,7 +65,7 @@
 .color svg{
     width: 30px;
     height: 30px;
-    stroke: #fff;
+    stroke: white;
 }
 .properties{
     margin-top: 50px;
@@ -76,17 +76,17 @@
     font-size: 16px;
 }
 .propertiesListTitle{
-    color: #747474;
+    color: var(--deepgray);
 }
 .returnText{
-    color: #747474;
+    color: var(--deepgray);
     font-size: 16px;
 }
 .sendNotice{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: 1px solid #c9c9c9;
+    border: 1px solid var(--borderGray);
     padding: 15px;
     border-radius: 10px;
     margin-top: 40px;
@@ -96,13 +96,13 @@
 }
 .sendNoticeDescription{
     font-size: 1em;
-    color: #747474;
+    color: var(--deepgray);
 }
 .priceBox{
-    background-color: #F7F9F9;
+    background-color: var(--gray);
     padding: 30px 10px 10px 10px;
     border-radius: 8px;
-    border: 1px solid #c9c9c9;
+    border: 1px solid var(--borderGray);
     width: 70%;
     direction: rtl;
     position: relative;
@@ -117,19 +117,19 @@
     margin-top: 15px;
 }
 .sellerDescription i {
-    color: #DC3545;
+    color: var(--red);
 }
 .garantyText{
     font-size: 16px;
 }
 .garantyText i {
-    color: #00A049;
+    color: var(--green);
 }
 .checkingText{
     font-size: 16px;
 }
 .checkingText i {
-    color: #00A049;
+    color: var(--green);
 }
 .price{
     display: flex;
@@ -148,13 +148,13 @@
     border-radius: 15px;
     font-size: 12px;
     margin: 0;
-    background-color: #EF394E;
+    background-color: var(--red);
     color: #fff;
     text-align: center;
 }
 .sellerPrice{
     font-size: 14px;
-    color: #747474;
+    color: var(--deepgray);
     margin: 0;
 }
 .priceBeforeDiscountContainer{
@@ -163,7 +163,7 @@
 }
 .priceBeforeDiscount {
     text-align: left;
-    color: #9FA1A2;
+    color: var(--deepgray);
     font-size: 14px;
     position: relative;
     width: fit-content;
@@ -176,7 +176,7 @@
     margin: 0 0 0 5%;
     height: 1px;
     width: 100%;
-    background-color: #9FA1A2;
+    background-color: var(--deepgray);
     font-size: 14px;
     top: 55%;
 }
@@ -187,8 +187,8 @@
     margin-bottom: -10px;
 }
 .Btn{
-    background-color: #EF4056;
-    color: #fff;
+    background-color: var(--red);
+    color: white;
     border: none;
     width: 90%;
     border-radius: 10px;
@@ -196,7 +196,7 @@
     /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
 }
 .quantityContainer {
-    border: 1px solid #d3d7dd;
+    border: 1px solid var(--borderGray);
     border-radius: 10px;
     padding: 5px 10px;
     display: flex;
@@ -213,7 +213,7 @@
     align-items: center;
     justify-content: center;
     flex: 1;
-    color: #EF233C;
+    color: var(--red);
 }
 
 .pluse {
