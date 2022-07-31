@@ -99,7 +99,6 @@
     color: var(--deepgray);
 }
 .priceBox{
-    background-color: var(--gray);
     padding: 30px 10px 10px 10px;
     border-radius: 8px;
     border: 1px solid var(--borderGray);
@@ -141,6 +140,16 @@
 .priceText{
     font-size: 1.5em;
     margin: 0;
+    
+}
+.priceSection{
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    gap: 0 5px;
+}
+.priceSection span{
+    font-size: 1.2em;
 }
 .discountPercent{
     width: 34px;
@@ -186,13 +195,26 @@
     margin-top: 20px;
     margin-bottom: -10px;
 }
-.Btn{
+.activeBtn{
     background-color: var(--red);
     color: white;
     border: none;
     width: 90%;
     border-radius: 10px;
     height: 40px;
+    transition: all 0.3s;
+    margin-bottom: 10px;
+    /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+}
+.disabledBtn{
+    background-color: var(--deepgray);
+    color: white;
+    border: none;
+    width: 90%;
+    border-radius: 10px;
+    height: 40px;
+    transition: all 0.3s;
+    margin-bottom: 10px;
     /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
 }
 .quantityContainer {

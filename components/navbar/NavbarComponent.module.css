@@ -54,7 +54,7 @@
 }
 
 .searchBar input {
-    background-color: #E5E6EA;
+    background-color: var(--gray);
     border: none;
     border-radius: 10px;
     width: 100%;
@@ -72,11 +72,11 @@
     padding: 9px 15px;
     left: 0;
     top: 1px;
-    background-color: #ef233c;
+    background-color: var(--red);
 }
 
 .loginBtn {
-    border: 1px solid #DDDDDD !important;
+    border: 1px solid var(--borderGray) !important;
     margin: 0px 15px;
     font-size: 18px;
     font-weight: 600;
@@ -84,7 +84,7 @@
 
 .loginBtn:hover {
     background-color: transparent !important;
-    color: #ef233c !important;
+    color: var(--red) !important;
 }
 
 .cartHeader {
@@ -114,14 +114,17 @@
 .line {
     height: 4vh;
     width: 1px;
-    background-color: black;
+    background-color: var(--lightBlack);
 }
 
 .bottomNav {
     width: 100%;
     height: calc(100% / 3);
 }
-
+.Hrline{
+    background-color: var(--deepgray);
+    margin-top: 1.5em;
+}
 .navbarUl {
     list-style-type: none;
     padding-bottom: 10px;
@@ -130,14 +133,13 @@
 
 .navbarUl li {
     display: inline-block;
-    margin-top: 30px;
     padding: 0px 10px;
 }
 
 .navbarUl a {
     text-decoration: none;
-    color: black;
-    font-size: 16px;
+    color: var(--lightBlack);
+    font-size: 1.1em;
     position: relative;
     padding: 10px 0px;
 }
@@ -146,14 +148,14 @@
     content: '';
     width: 100%;
     height: 2px;
-    background-color: #DD0508;
+    background-color: var(--red);
     position: absolute;
     bottom: 0;
     left: 0;
 }
 
 .navbarUl a:hover {
-    color: #DD0508;
+    color: var(--red);
 }
 
 .mobile {
@@ -171,7 +173,7 @@
 }
 
 .navbarList {
-    background-color: #fff;
+    background-color: white;
     padding: 5px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     border-top-left-radius: 8px;
@@ -181,7 +183,7 @@
     justify-content: space-between;
     list-style-type: none;
     margin: 0;
-    color: #81858b;
+    color: var(--deepgray);
 }
 .navbarList li {
     flex: 1;
@@ -189,7 +191,7 @@
     padding-bottom: 5px;
 }
 .active {
-    color: #000000;
+    color: var(--lightBlack);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -199,7 +201,7 @@
 }
 
 .notActive {
-    color: #81858b;
+    color: var(--deepgray);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -211,17 +213,22 @@
 .active svg {
     width: 20px;
     height: 20px;
-    stroke: #000000;
+    stroke: var(--lightBlack);
 }
 
 .notActive svg {
     width: 20px;
     height: 20px;
-    stroke: #81858b;
+    stroke: var(--deepgray);
 }
-
+.icons{
+    margin: 0;
+    height: 30px;
+    width: 30px;
+    color: var(--lightBlack);
+}
 .arrow {
-    background-color: #fff;
+    background-color: white;
     border-radius: 50%;
     padding: 10px 12px;
     position: absolute;
@@ -234,7 +241,7 @@
 .arrow svg {
     width: 20px;
     height: 20px;
-    stroke: #000000;
+    stroke: var(--lightBlack);
 }
 
 .dropdownNone {
@@ -295,7 +302,7 @@
 
 .mobileNavbarItems {
     direction: rtl;
-    color: black !important;
+    color: var(--lightBlack) !important;
     margin: 10px 5px;
 
 }
@@ -319,7 +326,7 @@
 
 .containerFluid {
     padding: 5px 2px 5px 2px;
-    border-bottom: 1px solid #E0E0E0;
+    border-bottom: 1px solid var(--borderGray);
 }
 
 .responsiveLogo {
@@ -329,7 +336,7 @@
 }
 
 .navHr {
-    border: 1px solid black !important;
+    border: 1px solid var(--lightBlack) !important;
     opacity: 1 !important;
     margin: 0;
 }
@@ -340,7 +347,7 @@
     font-weight: bold;
     color: white;
     letter-spacing: 2px;
-    text-shadow: 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black;
+    text-shadow: 0 0 4px var(--lightBlack), 0 0 4px var(--lightBlack), 0 0 4px var(--lightBlack), 0 0 4px var(--lightBlack), 0 0 4px var(--lightBlack), 0 0 4px var(--lightBlack), 0 0 4px var(--lightBlack), 0 0 4px var(--lightBlack), 0 0 4px var(--lightBlack), 0 0 4px var(--lightBlack), 0 0 4px var(--lightBlack), 0 0 4px var(--lightBlack), 0 0 4px var(--lightBlack), 0 0 4px var(--lightBlack), 0 0 4px var(--lightBlack), 0 0 4px var(--lightBlack), 0 0 4px var(--lightBlack), 0 0 4px var(--lightBlack), 0 0 4px var(--lightBlack), 0 0 4px var(--lightBlack);
 }
 
 .navbarTop {
@@ -360,7 +367,7 @@
 
 .navbarTop button {
     background-color: white;
-    color: black;
+    color: var(--lightBlack);
     opacity: 1;
 }
 
@@ -398,7 +405,7 @@
 
 .mobileSearchBar input {
     border-radius: 5px;
-    background-color: #ebebeb;
+    background-color: var(--borderGray);
     border: none;
     padding: 7px;
     position: relative;
@@ -413,14 +420,14 @@
     border-bottom-left-radius: 5px;
     left: 0;
     top: 5px;
-    background-color: #ef233c;
+    background-color: var(--red);
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .mobileSearchBar a i {
-    color: #fff;
+    color: white;
 }
 
 .mobileSearchBtn {

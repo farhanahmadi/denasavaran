@@ -1,9 +1,12 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
+
+//?import icons
+import { HiMinus, HiPlus, HiOutlineTrash } from "react-icons/hi/index";
 
 //import context
 import { cartContext } from "../context/CartContextProvider";
-import { quantityCheck } from "../context/quantityHandler";
+import { isEmpty, quantityCheck } from "../context/quantityHandler";
 
 import styles from "./navbarCartHover.module.css";
 
@@ -16,10 +19,16 @@ const NavbarCartHover = () => {
   useEffect(() => {
     setData(state.products);
   }, []);
+
+  const dataHandler = (data, id) => {
+    const newDataList = data.filter((item) => item.id !== id);
+    setData(newDataList);
+  };
+
   return (
     <div className={styles.container}>
       <section className={styles.header}>
-        <span>{data.reduce((total , products) => total + products.quantity , 0)} کالا</span>
+        <span>{state.products.length} کالا</span>
         <a>
           مشاهده سبد خرید <i className="fas fa-angle-left"></i>
         </a>
@@ -40,31 +49,14 @@ const NavbarCartHover = () => {
                     }
                     className={styles.pluse}
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-6 w-6"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      // strokeWidth="2"
-                      style={{
-                        stroke: "#EF233C",
-                        width: "18px",
-                        height: "18px",
-                      }}
-                    >
-                      <path
-                        // strokeLinecap="round"
-                        // strokeLinejoin="round"
-                        d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                      />
-                    </svg>
+                    <HiPlus color="var(--red)" className="icon" />
                   </span>
                   <span className={styles.quantityNumber}>
-                    {quantityCheck(data, item.id)
-                      ? quantityCheck(data, item.id)
+                    {quantityCheck(state.products, item.id)
+                      ? quantityCheck(state.products, item.id)
                       : 1}
                   </span>
-                  {quantityCheck(data, item.id) ? (
+                  {quantityCheck(state.products, item.id) ? (
                     <span
                       onClick={() =>
                         dispatch({
@@ -74,48 +66,20 @@ const NavbarCartHover = () => {
                       }
                       className={styles.minuse}
                     >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-6 w-6"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        // strokeWidth="2"
-                        style={{
-                          stroke: "#EF233C",
-                          width: "18px",
-                          height: "18px",
-                        }}
-                      >
-                        <path
-                          // strokeLinecap="round"
-                          // strokeLinejoin="round"
-                          d="M18 12H6"
-                        />
-                      </svg>
+                      <HiMinus color="var(--red)" className="icon" />
                     </span>
                   ) : (
                     <span
-                      onClick={() =>
-                        {dispatch({
+                      onClick={() => {
+                        dispatch({
                           type: "REMOVEITEM",
                           payload: item,
-                        }) ; setData(state.products)}
-                      }
+                        });
+                        dataHandler(data, item.id);
+                      }}
                       className={styles.trash}
                     >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-6 w-6"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        style={{
-                          stroke: "#EF233C",
-                          width: "18px",
-                          height: "18px",
-                        }}
-                      >
-                        <path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                      </svg>
+                      <HiOutlineTrash color="var(--red)" className="icon" />
                     </span>
                   )}
                 </section>
@@ -154,7 +118,20 @@ const NavbarCartHover = () => {
       <section className={styles.footer}>
         <section className={styles.totalPriceSection}>
           <span className={styles.totalPriceText}>مبلغ قابل پرداخت</span>
-          <span className={styles.totalPrice}>{data.reduce((total , products) => total + products.quantity * (products.discount_percent ? products.price_after_discount : products.price) , 0 )} تومان</span>
+          <section className={styles.priceSection}>
+            <span className={styles.price}>
+              {state.products.reduce(
+                (total, products) =>
+                  total +
+                  products.quantity *
+                    (products.discount_percent
+                      ? products.price_after_discount
+                      : products.price),
+                0
+              )}
+            </span>
+            <span> تومان</span>
+          </section>
         </section>
         <button className={styles.buyBtn}>ادامه فرایند خرید</button>
       </section>

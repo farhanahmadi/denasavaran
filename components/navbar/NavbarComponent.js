@@ -1,21 +1,36 @@
-import React, { useState } from "react";
-import Head from "next/head";
+import React, { useState, useContext } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
-
-import "bootstrap/dist/css/bootstrap.css";
-// import 'bootstrap/dist/js/bootstrap.js';
-import styles from "./NavbarComponent.module.css";
-import { Nav, Navbar, Container, Offcanvas, Button } from "react-bootstrap";
 import Link from "next/link";
-import { Fragment } from "react"; // import Fragment from React
-import DropDown from "../dropDown/DropDown";
+
+//?import components
 import NavbarCartHover from "./navbarCartHover";
+import { cartContext } from "../context/CartContextProvider";
+
+
+//? import icons
+import { HiChevronUp } from "react-icons/hi/index";
+import { IoHomeOutline } from "react-icons/io5/index";
+import { MdOutlineArticle } from "react-icons/md/index";
+import { RiShoppingBasket2Line } from "react-icons/ri/index";
+import { AiOutlineUsergroupAdd } from "react-icons/ai/index";
+import { BiUser } from "react-icons/bi/index";
+
+//?import styles
+import styles from "./NavbarComponent.module.css";
+
+//?import 'bootstrap/dist/js/bootstrap.js';
+import "bootstrap/dist/css/bootstrap.css";
+import { Navbar, Container } from "react-bootstrap";
 
 const NavbarComponent = ({ categoriesList }) => {
   const router = useRouter();
   const [dropDownclass, setDropDownclass] = useState(false);
+  const [load, setLoad] = useState(false);
   const [active, setActive] = useState(false);
+  
+  const { state, dispatch } = useContext(cartContext);
+
 
   const dropdownHandler = () => {
     setDropDownclass(true);
@@ -38,19 +53,7 @@ const NavbarComponent = ({ categoriesList }) => {
               }
               className={styles.arrow}
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                // strokeWidth="2"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M5 15l7-7 7 7"
-                />
-              </svg>
+              <HiChevronUp color="black" className={`icon ${styles.icons}`} />
             </span>
           </a>
           <ul className={styles.navbarList}>
@@ -61,20 +64,7 @@ const NavbarComponent = ({ categoriesList }) => {
                     active === "home" ? styles.active : styles.notActive
                   }
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    // strokeWidth="2"
-                  >
-                    <path
-                      // strokeLinecap="round"
-                      // strokeLinejoin="round"
-                      d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                    />
-                  </svg>{" "}
-                  خانه
+                  <IoHomeOutline className={`icon ${styles.icons}`} /> خانه
                 </span>
               </Link>
             </li>
@@ -85,21 +75,8 @@ const NavbarComponent = ({ categoriesList }) => {
                     active === "content" ? styles.active : styles.notActive
                   }
                 >
-                  {" "}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    // strokeWidth="2"
-                  >
-                    <path
-                      // strokeLinecap="round"
-                      // strokeLinejoin="round"
-                      d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                    />
-                  </svg>{" "}
-                  آرشیو مطالب
+                  <MdOutlineArticle className={`icon ${styles.icons}`} /> آرشیو
+                  مطالب
                 </span>
               </Link>
             </li>
@@ -110,19 +87,7 @@ const NavbarComponent = ({ categoriesList }) => {
                     active === "shop" ? styles.active : styles.notActive
                   }
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    // strokeWidth="2"
-                  >
-                    <path
-                      // strokeLinecap="round"
-                      // strokeLinejoin="round"
-                      d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
-                    />
-                  </svg>
+                  <RiShoppingBasket2Line className={`icon ${styles.icons}`} />
                   فروشگاه
                 </span>
               </Link>
@@ -134,20 +99,7 @@ const NavbarComponent = ({ categoriesList }) => {
                     active === "club" ? styles.active : styles.notActive
                   }
                 >
-                  {" "}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    // strokeWidth="2"
-                  >
-                    <path
-                      // strokeLinecap="round"
-                      // strokeLinejoin="round"
-                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                    />
-                  </svg>
+                  <AiOutlineUsergroupAdd className={`icon ${styles.icons}`} />
                   عضویت در باشگاه
                 </span>
               </Link>
@@ -215,58 +167,31 @@ const NavbarComponent = ({ categoriesList }) => {
             <section className={styles.leftTopNav}>
               <Link href={"/auth/login/"}>
                 <span style={{ width: "30px", margin: "0px 2%" }}>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    style={{ stroke: "#424750" }}
-                  >
-                    <path
-                      // strokeLinecap="round"
-                      // strokeLinejoin="round"
-                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                    />
-                  </svg>
+                  <BiUser className={`icon ${styles.icons}`} />
                 </span>
               </Link>
               <section className={styles.line}></section>
               <span className={styles.shppingBtn} variant="warning">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  style={{ stroke: "#424750" }}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
-                  />
-                </svg>
+                <RiShoppingBasket2Line className={`icon ${styles.icons}`} />
                 <section className={styles.cartHeader}>
                   <NavbarCartHover />
                 </section>
+                {/* {localStorage.getItem("userCartItems") (
+                )} */}
               </span>
             </section>
           </section>
           <section className={styles.bottomNav}>
+            <hr className={styles.Hrline} />
             <ul className={styles.navbarUl}>
               <li>
                 <Link href="/">
-                  <a>
-                    <i className="fas fa-home"></i> خانه{" "}
-                  </a>
+                  <a>خانه</a>
                 </Link>
               </li>
               <li>
                 <Link href="/blogs">
-                  <a>
-                    <i className="fas fa-archive"></i> آرشیو مطالب{" "}
-                  </a>
+                  <a>آرشیو مطالب</a>
                 </Link>
               </li>
               <li
@@ -275,16 +200,12 @@ const NavbarComponent = ({ categoriesList }) => {
                 onMouseLeave={dropdownHandlerRemove}
               >
                 <Link href="/products/">
-                  <a>
-                    <i className="fas fa-shopping-cart"></i> فروشگاه
-                  </a>
+                  <a>فروشگاه</a>
                 </Link>
               </li>
               <li>
                 <Link href="/Join_Us">
-                  <a>
-                    <i className="fas fa-plus-circle"></i> ثبت نام در باشگاه
-                  </a>
+                  <a>ثبت نام در باشگاه</a>
                 </Link>{" "}
               </li>
             </ul>

@@ -1,6 +1,16 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Col, Row } from "react-bootstrap";
 
+// ?import components
+import { persianNumber } from "../function/PersianNumber";
+
+//?import icons
+import { BsCheck, BsShop, BsShieldCheck } from "react-icons/bs/index";
+import { HiMinus, HiPlus, HiOutlineTrash } from "react-icons/hi/index";
+import {AiOutlineCheck} from "react-icons/ai/index"
+import {FaDollarSign} from "react-icons/fa/index"
+import {RiErrorWarningLine} from "react-icons/ri/index"
+
 //swiper
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.min.css";
@@ -15,7 +25,6 @@ import { isEmpty, quantityCheck } from "../context/quantityHandler";
 import styles from "./details.module.css";
 
 const Details = ({ productDetails }) => {
-  const data = ["1", "2"];
   const { state, dispatch } = useContext(cartContext);
   const [selectedItem, setSelectedItem] = useState([]);
   const [activeImage, setActiveImage] = useState();
@@ -35,15 +44,14 @@ const Details = ({ productDetails }) => {
   const imageSelectedHandler = (src) => {
     setActiveImage(src);
   };
-  const productHandler = (product , color) => {
+  const productHandler = (product, color) => {
     const selectedProduct = product;
     selectedProduct.colors = color;
     setSelectedColor(color);
     setSelectedItem(selectedProduct);
-  }
+  };
   return (
     <Row dir="rtl" style={{ margin: "5% auto", width: "98%" }}>
-      {console.log(state)}
       <Col xl={3} lg={3} md={12}>
         <div className={styles.imageContainer}>
           <img
@@ -94,19 +102,12 @@ const Details = ({ productDetails }) => {
                   className={styles.colorParent}
                 >
                   <span
-                    onClick={() => productHandler(productDetails , color)}
+                    onClick={() => productHandler(productDetails, color)}
                     className={styles.color}
                     style={{ backgroundColor: color }}
                   >
                     {selectedColor === color ? (
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-6 w-6"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                      >
-                        <path d="M5 13l4 4L19 7" />
-                      </svg>
+                      <BsCheck color="white" className="icon" />
                     ) : (
                       ""
                     )}
@@ -134,7 +135,7 @@ const Details = ({ productDetails }) => {
             <hr style={{ backgroundColor: "#B1B1B1" }} />
             <section className={styles.return}>
               <p className={styles.returnText}>
-                <i className="fas fa-exclamation-circle"></i> امکان برگشت کالا
+               <RiErrorWarningLine className="icon" style={{margin: 0}} /> امکان برگشت کالا
                 در گروه هدفون، هدست و هندزفری با دلیل "انصراف از خرید" تنها در
                 صورتی مورد قبول است که پلمب کالا باز نشده باشد.
               </p>
@@ -156,47 +157,59 @@ const Details = ({ productDetails }) => {
               <section className={styles.seller}>
                 <h2 className={styles.sellerTitle}>فروشنده : </h2>
                 <p className={styles.sellerDescription}>
-                  <i className="fas fa-store-alt"></i>{" "}
+                  <BsShop color="var(--red)" className="icon" />
                   {productDetails.manufacturer_company}
                 </p>
               </section>
               <hr />
               <section className={styles.garanty}>
                 <p className={styles.garantyText}>
-                  <i className="fas fa-shield-check"></i> گارانتی اصالت و سلامت
-                  فیزیکی کالا
+                  <BsShieldCheck color="var(--green)" className="icon" />{" "}
+                  گارانتی اصالت و سلامت فیزیکی کالا
                 </p>
               </section>
               <hr />
               <section className={styles.checking}>
                 <p className={styles.checkingText}>
-                  <i className="fas fa-check"></i> موجود در انبار
+                  <AiOutlineCheck color="var(--green)" className="icon" /> موجود در
+                  انبار
                 </p>
               </section>
               <hr />
               <p className={styles.sellerPrice}>
-                <i className="fas fa-dollar-sign"></i> قیمت فروشنده :
+               <FaDollarSign color="var(--red)" className="icon" style={{margin: 0}} /> قیمت فروشنده :
               </p>
               <section dir="rtl" className={styles.price}>
                 {productDetails.discount_percent ? (
                   <p className={styles.discountPercent}>
-                    {productDetails.discount_percent}%
+                    {persianNumber(productDetails.discount_percent)}%
                   </p>
                 ) : (
                   ""
                 )}
                 {productDetails.discount_percent ? (
                   <h2 className={styles.priceText}>
-                    {productDetails.price_after_discount}
+                    <div className={styles.priceSection}>
+                      {persianNumber(productDetails.price_after_discount)}
+                      <span>تومان</span>
+                    </div>
                   </h2>
                 ) : (
-                  <h2 className={styles.priceText}>{productDetails.price}</h2>
+                  <div className={styles.priceSection}>
+                    <h2 className={styles.priceText}>
+                      {persianNumber(productDetails.price)}
+                    </h2>
+                    <span>تومان</span>
+                  </div>
                 )}
               </section>
               <section className={styles.priceBeforeDiscountContainer}>
                 {productDetails.discount_percent ? (
                   <p className={styles.priceBeforeDiscount}>
-                    {productDetails.price}
+                    <div className={styles.priceSection}>
+                      {persianNumber(productDetails.price)}
+                      <span>تومان</span>
+                    </div>
                   </p>
                 ) : (
                   ""
@@ -211,24 +224,7 @@ const Details = ({ productDetails }) => {
                       }
                       className={styles.minuse}
                     >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-6 w-6"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        // strokeWidth="2"
-                        style={{
-                          stroke: "#EF233C",
-                          width: "18px",
-                          height: "18px",
-                        }}
-                      >
-                        <path
-                          // strokeLinecap="round"
-                          // strokeLinejoin="round"
-                          d="M18 12H6"
-                        />
-                      </svg>
+                      <HiMinus color="var(--red)" className="icon" />
                     </span>
                   ) : (
                     <span
@@ -240,19 +236,7 @@ const Details = ({ productDetails }) => {
                       }
                       className={styles.trash}
                     >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-6 w-6"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        style={{
-                          stroke: "#EF233C",
-                          width: "18px",
-                          height: "18px",
-                        }}
-                      >
-                        <path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                      </svg>
+                      <HiOutlineTrash color="var(--red)" className="icon" />
                     </span>
                   )}
                   <span className={styles.quantityNumber}>
@@ -266,24 +250,7 @@ const Details = ({ productDetails }) => {
                     }
                     className={styles.pluse}
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-6 w-6"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      // strokeWidth="2"
-                      style={{
-                        stroke: "#EF233C",
-                        width: "18px",
-                        height: "18px",
-                      }}
-                    >
-                      <path
-                        // strokeLinecap="round"
-                        // strokeLinejoin="round"
-                        d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                      />
-                    </svg>
+                    <HiPlus color="var(--red)" className="icon" />
                   </span>
                 </section>
               ) : (
@@ -292,7 +259,10 @@ const Details = ({ productDetails }) => {
                     onClick={() =>
                       dispatch({ type: "ADDITEM", payload: selectedItem })
                     }
-                    className={styles.Btn}
+                    className={`${
+                      !!selectedColor ? styles.activeBtn : styles.disabledBtn
+                    }`}
+                    disabled={!!!selectedColor}
                   >
                     خرید
                   </button>

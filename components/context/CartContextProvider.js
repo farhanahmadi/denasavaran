@@ -34,7 +34,6 @@ const cartReducer = (state, action) => {
       const decrease = state.products.findIndex(
         (item) => item.id === action.payload.id
       );
-      console.log(action.payload);
       state.products[decrease].quantity--;
       localStorage.setItem("userCartItems", JSON.stringify(initialState));
       return {

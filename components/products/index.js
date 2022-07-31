@@ -251,7 +251,7 @@ const index = ({ products, tags, categories , filterHandler }) => {
                   value={tag.id}
                   type="checkbox"
                   onClick={tagHandler}
-                  checked={
+                  defaultChecked={
                     tagsState.indexOf(tag.id.toString()) >= 0 ? true : false
                   }
                 />
@@ -277,7 +277,7 @@ const index = ({ products, tags, categories , filterHandler }) => {
                   value={category.id}
                   type="checkbox"
                   onClick={filterCategoryHandler}
-                  checked={
+                  defaultChecked={
                     categoriesState.indexOf(category.id.toString()) >= 0
                       ? true
                       : false
