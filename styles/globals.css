@@ -62,6 +62,10 @@ a {
   margin-left: 5px;
 }
 
+.saveIcon{
+  width: 22px;
+  height: 22px;
+}
 
 
 @media only screen and (max-width: 767.98px) {

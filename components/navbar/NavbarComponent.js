@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
@@ -6,7 +6,6 @@ import Link from "next/link";
 //?import components
 import NavbarCartHover from "./navbarCartHover";
 import { cartContext } from "../context/CartContextProvider";
-
 
 //? import icons
 import { HiChevronUp } from "react-icons/hi/index";
@@ -26,11 +25,14 @@ import { Navbar, Container } from "react-bootstrap";
 const NavbarComponent = ({ categoriesList }) => {
   const router = useRouter();
   const [dropDownclass, setDropDownclass] = useState(false);
-  const [load, setLoad] = useState(false);
   const [active, setActive] = useState(false);
-  
+  const [cartData, setCartData] = useState([]);
+
   const { state, dispatch } = useContext(cartContext);
 
+  useEffect(() => {
+    setCartData(state);
+  }, [state]);
 
   const dropdownHandler = () => {
     setDropDownclass(true);
@@ -173,9 +175,11 @@ const NavbarComponent = ({ categoriesList }) => {
               <section className={styles.line}></section>
               <span className={styles.shppingBtn} variant="warning">
                 <RiShoppingBasket2Line className={`icon ${styles.icons}`} />
-                <section className={styles.cartHeader}>
-                  <NavbarCartHover />
-                </section>
+                {/* {cartData.products && cartData.products.length ? ( */}
+                  <section className={styles.cartHeader}>
+                    <NavbarCartHover />
+                  </section>
+                {/* ) : null} */}
                 {/* {localStorage.getItem("userCartItems") (
                 )} */}
               </span>

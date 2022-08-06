@@ -1,81 +1,104 @@
-import React,{useState} from 'react'
-import Link from "next/link"
+import React, { useState } from "react";
+import Link from "next/link";
 
+//* import modules
+import { useFormik } from "formik";
+import * as Yup from "yup";
+
+//* import components
+import TextInputs from "../TextInputs";
 
 //import styles
-import styles from "./login.module.css"
+import styles from "./login.module.css";
 
 //import functions
-import { authValidation } from '../../function/authValidation'
+import { authValidation } from "../../function/authValidation";
 
+import { Form, Button, Col, Row } from "react-bootstrap";
+import axios from "axios";
 
-import {Form, Button , Col , Row} from "react-bootstrap"
+const Login = () => {
+  const initialValues = {
+    email: "",
+    password: "",
+  };
 
+  const onSubmit = (values) => {
+    axios
+      .post("http://45.159.113.83:801/api/v1/login/user/", values, {
+        withCredentials: true,
+      })
+      .then(({ data }) => console.log(data))
+      .catch((error) => console.log(error));
+  };
 
-const JoinUs = () => {
+  const validationSchema = Yup.object({
+    email: Yup.string()
+      .required("ایمیل خود را وارد کنید")
+      .email("ایمیل وارد شده صحیح نمیباشد"),
+    password: Yup.string()
+      .required("رمز خود را وارد کنید")
+      .min(6, "رمز وارد شده باید بیشتر از 6 کاراکتر باشد"),
+  });
 
-    const [submit , setSubmit] = useState(false);
-    const [error , setError] = useState([]);
-    const [data , setData] = useState({
-        email: '',
-        password: ''
-    });
-    
-    const changeHandler = event =>{
-        setData({...data , [event.target.name] : event.target.value});
-        setError(authValidation(data));
-    }
+  const formik = useFormik({
+    initialValues,
+    onSubmit,
+    validationSchema,
+    validateOnMount: true,
+  });
 
-    const submitHandler = (event) =>{
-        setSubmit(true);
-        event.preventDefault();
-        setError(authValidation(data));
-    }
+  const [submit, setSubmit] = useState(false);
+  const [error, setError] = useState([]);
+  const [data, setData] = useState({});
 
-    return (
-        <div>
-        <div className={styles.container} dir="rtl">
+  const changeHandler = (event) => {
+    setData({ ...data, [event.target.name]: event.target.value });
+    // setError(authValidation(data));
+  };
+
+  const submitHandler = (event) => {
+    setSubmit(true);
+    event.preventDefault();
+
+    // setError(authValidation(data));
+  };
+
+  return (
+    <form onSubmit={formik.handleSubmit}>
+      <div className={styles.container} dir="rtl">
         <div className={styles.formContainer} dir="rtl">
-            <section className={styles.fromData}>
-            <div className={styles.formLogo} >
-                 <img className={styles.logo} src={"/assets/images/navbarlogo.png"} alt="logo" />
+          <section className={styles.fromData}>
+            <div className={styles.formLogo}>
+              <img
+                className={styles.logo}
+                src={"/assets/images/navbarlogo.png"}
+                alt="logo"
+              />
             </div>
             <hr />
-            <Form>
-                <Row>
-                    <Col lg={12} md={12} sm={12}>
-                        <Form.Group className="mb-3" controlId="formGridEmail">
-                            <Form.Label className={styles.formDataLabel} >ایمیل</Form.Label>
-                            <Form.Control name='email' className={styles.formDataInput} value={data.email} placeholder="ایمیل خود را وارد کنید" onChange={changeHandler}/>
-                            {submit && error.email && <Form.Label className={styles.formDataLabelError} >{error.email}</Form.Label>}
-                        </Form.Group>
-                    </Col>
-
-                    <Col lg={12} md={12} sm={12}>
-                        <Form.Group className="mb-3" controlId="formGridPassword">
-                            <Form.Label className={styles.formDataLabel} >رمز ورود</Form.Label>
-                            <Form.Control name='password' className={styles.formDataInput} value={data.password} placeholder="رمز خود را وارد کنید" onChange={changeHandler}/>
-                            {submit && error.password && <Form.Label className={styles.formDataLabelError} >{error.password}</Form.Label>}
-                        </Form.Group>
-                    </Col>
-                </Row>
-
-
-                <Row className='w-100'>
-                    <Button onClick={submitHandler} className='w-50 mx-auto' variant="primary" type="submit" style={{marginTop: '20px'}}>
-                         ورود
-                    </Button>
-                    <Col lg={12} md={12} sm={12} >
-                        <p className='text-center' style={{marginTop: '15px'}}>اکانت ندارید ؟ <Link href={'/auth/register/'}>ثبت نام کنید</Link></p>
-                    </Col>
-               </Row>
-                </Form>
-            </section>
+            <TextInputs
+              label={"ایمیل"}
+              name={"email"}
+              placeHolder={"ایمیل را وارد کنید ..."}
+              formik={formik}
+            />
+            <TextInputs
+              label={"رمز عبور"}
+              name={"password"}
+              placeHolder={" رمز عبور را وارد کنید ..."}
+              formik={formik}
+            />
+            <div className={styles.submitContainer}>
+              <button type="submit" className={styles.submit}>
+                ورود
+              </button>
+            </div>
+          </section>
         </div>
-    </div>
-</div>
-        
-    )
-}
+      </div>
+    </form>
+  );
+};
 
-export default JoinUs
+export default Login;

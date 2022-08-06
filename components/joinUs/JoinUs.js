@@ -5,7 +5,7 @@ import * as Yup from "yup";
 
 //import components
 import { BaseLink } from "../BaseLink/BaseLink";
-import TextInputs from "./TextInputs";
+import TextInputs from "../auth/TextInputs";
 
 import styles from "./JoinUs.module.css";
 // import 'bootstrap/dist/css/bootstrap.css';

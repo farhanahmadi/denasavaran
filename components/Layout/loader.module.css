@@ -1,0 +1,16 @@
+@keyframes carAnimation {
+    from {left: 0;}
+    to {left: -1500px;}
+  }
+
+.main {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.loader{
+    position: relative;
+    animation: carAnimation 1s forwards;
+}

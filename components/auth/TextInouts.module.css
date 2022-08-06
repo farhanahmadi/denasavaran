@@ -1,0 +1,49 @@
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.formControl {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    flex: 1;
+}
+
+.header {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.input {
+    margin: 0 auto;
+    width: 90%;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-bottom: 16px;
+    border: 1px solid var(--borderGray);
+}
+
+.errorBorder:focus {
+    outline: none;
+    border: 1px solid var(--red);
+}
+
+.successBorder {
+    outline: none;
+    border: 1px solid var(--green);
+}
+
+
+.error {
+    color: var(--red);
+    margin-right: 5px;
+    font-size: .8em;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}

@@ -30,7 +30,7 @@ import {
 //bootstarp
 import { Dropdown, DropdownButton, Card, Button } from "react-bootstrap";
 
-const index = ({ products, tags, categories , filterHandler }) => {
+const index = ({ products, tags, categories, filterHandler }) => {
   const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
   const router = useRouter();
@@ -61,10 +61,10 @@ const index = ({ products, tags, categories , filterHandler }) => {
     !load &&
       router.query.categories &&
       setCategoriesState([...new Set(router.query.categories.split(","))]);
-    // setTimeout(() => {
-    //   setLoad(true);
-    // }, 500);
-    products && setLoad(true);
+    setTimeout(() => {
+      setLoad(true);
+    }, 1000);
+    // products && setLoad(true);
   }, [tagsState, categoriesState]);
 
   const handlePageClick = (event) => {
@@ -230,7 +230,6 @@ const index = ({ products, tags, categories , filterHandler }) => {
     }
   };
 
-
   return (
     <div className={styles.container}>
       <section className={load ? styles.sideBar : styles.skeletonSidebar}>
@@ -312,71 +311,86 @@ const index = ({ products, tags, categories , filterHandler }) => {
           {load
             ? products.results.map((item) => (
                 <section key={item.id} className={styles.card}>
+                  <section className={styles.save}>
+                    <HiOutlineBookmark
+                      style={{ stroke: "var(--red)" }}
+                      className="saveIcon"
+                    />
+                  </section>
                   <Link
                     href={`/product/name=${item.slug}?id=${item.id}`}
                     passHref
                   >
                     <a style={{ all: "unset" }}>
-                      <section className={styles.image}>
-                        <img
-                          className={styles.productImage}
-                          src="/assets/images/product.jpg"
-                          alt="products"
-                        />
-                        <section className={styles.headImage}>
-                          <HiOutlineBookmark
-                            style={{ stroke: "var(--red)" }}
-                            className="icon"
+                      <section className={styles.productsContainer}>
+                        <section className={styles.image}>
+                          <img
+                            className={styles.productImage}
+                            src="/assets/images/product.jpg"
+                            alt="products"
                           />
+                          <section className={styles.imageSectionText}>
+                            <h1 className={styles.imageSectionTitleText}>
+                              {item.name}
+                            </h1>
+                            <p className={styles.seller}>
+                              <BsShop
+                                style={{ color: "var(--skyBlue)" , width: '14px' , height: '14px' , marginLeft: '3px' }}
+                              />
+                              فروشنده : {item.manufacturer_company}
+                            </p>
+                          </section>
                         </section>
-                      </section>
-                      <section className={styles.title}>
-                        <h1 className={styles.titleText}>{item.name}</h1>
-                        <p className={styles.seller}>
-                          <BsShop
-                            style={{ color: "var(--skyBlue)" }}
-                            className="icon"
-                          />
-                          فروشنده : {item.manufacturer_company}
-                        </p>
-                        <p className={styles.warranty}>
-                          <BsPatchCheck
-                            style={{ color: "var(--green)" }}
-                            className="icon"
-                          />
-                          گارانتی اصالت و سلامت فیزیکی کالا
-                        </p>
-                      </section>
-                      <section
-                        className={
-                          item.discountPercent
-                            ? styles.price
-                            : styles.priceNoDiscount
-                        }
-                      >
-                        <h4 className={styles.mainPrice}>
-                          {item.discount_percent
-                            ? persianNumber(item.price_after_discount)
-                            : persianNumber(item.price)}{" "}
-                          تومان
-                        </h4>
+                        <section className={styles.title}>
+                          <h1 className={styles.titleText}>{item.name}</h1>
+                          <p className={styles.seller}>
+                            <BsShop
+                              style={{ color: "var(--skyBlue)" }}
+                              className="icon"
+                            />
+                            فروشنده : {item.manufacturer_company}
+                          </p>
+                          <p className={styles.warranty}>
+                            <BsPatchCheck
+                              style={{ color: "var(--green)" }}
+                              className="icon"
+                            />
+                            گارانتی اصالت و سلامت فیزیکی کالا
+                          </p>
+                        </section>
+                        <section
+                          className={`${styles.priceContainer}
+                            ${
+                              item.discountPercent
+                                ? styles.price
+                                : styles.priceNoDiscount
+                            }`}
+                        >
+                          <h4 className={styles.mainPrice}>
+                            {item.discount_percent
+                              ? persianNumber(item.price_after_discount)
+                              : persianNumber(item.price)}{" "}
+                            تومان
+                          </h4>
+                          {item.discount_percent ? (
+                            <p className={styles.discountPercent}>
+                              {persianNumber(item.discount_percent)}
+                            </p>
+                          ) : (
+                            ""
+                          )}
+                        </section>
                         {item.discount_percent ? (
-                          <p className={styles.discountPercent}>
-                            {persianNumber(item.discount_percent)}
+                          <p className={styles.priceBeforeDiscount}>
+                            {persianNumber(item.price)}
                           </p>
                         ) : (
                           ""
                         )}
                       </section>
-                      {item.discount_percent ? (
-                        <p className={styles.priceBeforeDiscount}>
-                          {persianNumber(item.price)}
-                        </p>
-                      ) : (
-                        ""
-                      )}
                     </a>
                   </Link>
+                  <hr className={styles.headerLine} />
                 </section>
               ))
             : data.map((item, index) => (

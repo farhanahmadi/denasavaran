@@ -26,18 +26,34 @@
     cursor: pointer;
 }
 
-.header span{
+.header span {
     color: var(--deepGray);
 }
-.productContainer{
+
+.productContainer {
     width: 100%;
     height: 350px;
     overflow-y: auto;
 }
+
+.emptyProductContainer {
+    width: 100%;
+    height: 350px;
+    overflow-y: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.emptyCart{
+    text-align: center;
+}
+.emptyCart h2{
+    font-size: 1.5em;
+}
 .product {
     display: flex;
     justify-content: flex-start;
-    
+
 }
 
 .image {
@@ -49,7 +65,8 @@
     height: auto;
     margin-bottom: 20px;
 }
-.quantityContainer{
+
+.quantityContainer {
     border: 1px solid var(--borderGray);
     border-radius: 10px;
     padding: 5px 10px;
@@ -57,14 +74,16 @@
     align-items: center;
     justify-content: space-between;
 }
-.quantityNumber{
+
+.quantityNumber {
     display: flex;
     align-items: center;
     justify-content: center;
     flex: 1;
     color: var(--red);
 }
-.pluse{
+
+.pluse {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -72,7 +91,8 @@
     height: 18px;
     flex: 1;
 }
-.minuse{
+
+.minuse {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -80,6 +100,7 @@
     height: 18px;
     flex: 1;
 }
+
 .details {
     width: 70%;
     text-align: right;
@@ -94,16 +115,18 @@
     font-size: 1.1em;
     color: rgb(37, 37, 37);
 }
-.seller{
+
+.seller {
     margin-bottom: 35px;
 }
-.price{
+
+.price {
     font-weight: bold;
     font-size: 1.1em;
     margin-bottom: 5px;
 }
 
-.colorSection{
+.colorSection {
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -117,7 +140,8 @@
     border-radius: 50%;
     /* border: 1px solid rgb(185, 0, 0); */
 }
-.footer{
+
+.footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -127,25 +151,29 @@
     margin-top: 20px;
     padding-top: 20px;
 }
-.totalPriceText{
+
+.totalPriceText {
     text-align: right;
     color: #81858b;
     font-weight: lighter;
     font-size: .8em;
 }
-.totalPriceSection{
+
+.totalPriceSection {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     flex: 1;
     gap: 5px 0px;
 }
-.priceSection{
+
+.priceSection {
     display: flex;
     align-content: center;
     gap: 0 5px;
 }
-.buyBtn{
+
+.buyBtn {
     background-color: var(--red);
     color: white;
     border-radius: 10px;
@@ -153,7 +181,8 @@
     flex: 1;
     height: 50px;
 }
-.trash{
+
+.trash {
     display: flex;
     align-items: center;
     justify-content: center;

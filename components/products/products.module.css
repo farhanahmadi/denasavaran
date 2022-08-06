@@ -139,7 +139,7 @@
     text-align: right;
 }
 
-.filter{
+.filter {
     background-color: white;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     border: none;
@@ -188,6 +188,7 @@
     direction: ltr;
     position: relative;
     overflow: hidden;
+    padding: 5px;
 
 }
 
@@ -200,19 +201,20 @@
     height: auto;
 }
 
+
 .image {
     width: 100%;
     text-align: center;
     position: relative;
     margin-top: 10px;
+    margin-top: 20px;
 }
 
-.headImage {
-    text-align: right;
-    margin: 10px 15px;
+.save {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 10px;
+    left: 10px;
+    z-index: 30;
 }
 
 .title {
@@ -226,6 +228,19 @@
     margin-bottom: 0;
     color: var(--lightBlack);
 
+}
+
+.imageSectionTitleText {
+    font-size: 1.1em;
+    text-align: right;
+    padding-right: 8px;
+    margin-bottom: 0;
+    color: var(--lightBlack);
+    display: none;
+}
+
+.imageSectionText {
+    display: none;
 }
 
 .seller {
@@ -315,7 +330,17 @@
     top: 55%;
 }
 
+.headerLine {
+    background-color: var(--deepgray);
+    display: none;
 
+}
+
+@media only screen and (min-width: 1280px) {
+    .skeletonSidebar {
+        width: 250px;
+    }
+}
 
 @media only screen and (max-width: 1280px) {
     .container {
@@ -333,11 +358,23 @@
         color: var(--red);
         margin-bottom: 20px;
     }
+
 }
 
 @media only screen and (max-width: 768px) {
     .container {
         display: block;
+
+    }
+
+    .main {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px 0px;
+        justify-items: center;
+        padding: 20px 0px;
+        border-radius: 15px;
+        box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
     }
 
     .sideBar {
@@ -354,6 +391,67 @@
 
     .categoryContainer {
         display: block;
+    }
+
+    .card {
+        border: none;
+        width: auto;
+        height: auto;
+        border-radius: 0;
+        width: 100%;
+
+    }
+
+    .save {
+        top: 0;
+    }
+
+    .image {
+        width: 100%;
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    .image img {
+        width: 118px;
+        height: 118px;
+    }
+
+    .title {
+        display: none;
+    }
+
+    .imageSectionText {
+        display: block;
+    }
+
+    .imageSectionTitleText {
+        font-size: 1.1em;
+        line-height: 25px;
+    }
+
+    .imageSectionTitleText {
+        display: block;
+    }
+
+    .headImage {
+        display: none;
+    }
+
+    .seller {
+        font-size: 12px !important;
+    }
+
+    .card:hover {
+        box-shadow: none;
+    }
+
+    .headerLine {
+        background-color: var(--deepgray);
+        display: block;
+
     }
 
 }
