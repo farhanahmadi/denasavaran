@@ -9,225 +9,73 @@ import ProductsSkeleton from "../SkeletonLoading/ProductsSkeleton";
 import ReactPaginate from "react-paginate";
 import { cartContext } from "../context/CartContextProvider";
 import { persianNumber } from "../function/PersianNumber";
-import Filter from "../Filter/Filter";
 
 //import icons
 import { HiOutlineBookmark, HiChevronDown } from "react-icons/hi/index";
 import { BsShop, BsPatchCheck } from "react-icons/bs/index";
 
-import {
-  categoriesArrayHandler,
-  categoriesArrayUrlHandler,
-  emptyCategoryFilter,
-  emptyTagFilter,
-  tagArrayHandler,
-  tagArrayUrlHandler,
-  UrlHandler,
-  removePage,
-  UrlHandlerWithPage,
-} from "./pagerouter";
-
-//bootstarp
-import { Dropdown, DropdownButton, Card, Button } from "react-bootstrap";
-
-const index = ({ products, tags, categories, filterHandler }) => {
-  const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-
+const index = ({
+  products,
+  tagsFilterSideBar,
+  categoriesFilterSideBar,
+  filterHandler,
+}) => {
   const router = useRouter();
+  const { tags__in, categories } = router.query;
   const paginationNumber = router.query.page;
 
   const pageCount = Math.round(products.count / 2);
-  const [activeSort, setActiveSort] = useState("all");
   const [load, setLoad] = useState(false);
-  //filter
+
+  //state of filters
   const [tagsState, setTagsState] = useState([]);
   const [categoriesState, setCategoriesState] = useState([]);
 
   //context
   const { state, dispatch } = useContext(cartContext);
 
-  const categoryHandler = (event) => {
-    if (event.target.innerText !== "همه مقالات") {
-      setActiveSort(event.target.innerText);
-    } else {
-      setActiveSort("all");
-    }
-  };
-
   useEffect(() => {
-    !load &&
-      router.query.tags__in &&
-      setTagsState([...new Set(router.query.tags__in.split(","))]);
-    !load &&
-      router.query.categories &&
-      setCategoriesState([...new Set(router.query.categories.split(","))]);
+    tags__in && setTagsState(tags__in);
+    categories && setCategoriesState(categories);
     setTimeout(() => {
       setLoad(true);
     }, 1000);
-    // products && setLoad(true);
-  }, [tagsState, categoriesState]);
+  }, []);
 
   const handlePageClick = (event) => {
     const page = event.selected ? event.selected + 1 : 1;
-    // push user to new page and check if tags and categories is none put & else put ? in url
-    router.query.page
-      ? router.push(
-          `${UrlHandler(
-            router.asPath,
-            `page=${router.query.page}`,
-            `page=${page}`
-          )}`
-        )
-      : router.push(
-          `${router.asPath}${
-            router.query.tags__in || router.query.categories ? "&" : "?"
-          }${`page=${page}`}`
-        );
+    router.query.page = page;
+    router.push({ pathname: router.pathname, query: router.query }, undefined, {
+      scroll: false,
+    });
   };
-  const tagHandler = (event) => {
+  
+  const tagHandler = async (event) => {
     if (event.target.checked) {
-      // push selected filter to tagsState
-      tagsState.push(event.target.value);
-      // setTagsState(prevstate => [...prevstate , event.target.value]);
-      // router the user to new filters
-      router.query.tags__in
-        ? router.query.page
-          ? router.push(
-              UrlHandlerWithPage(
-                router.asPath,
-                `${
-                  router.query.tags__in || router.query.categories ? "&" : "?"
-                }page=${router.query.page}`,
-                `tags__in=${router.query.tags__in}`,
-                `tags__in=${tagsState}`
-              )
-            )
-          : router.push(
-              UrlHandler(
-                router.asPath,
-                `tags__in=${router.query.tags__in}`,
-                `tags__in=${tagsState}`
-              )
-            )
-        : router.query.page
-        ? router.push(
-            removePage(
-              router.asPath,
-              `${
-                router.query.tags__in || router.query.categories ? "&" : "?"
-              }page=${router.query.page}`,
-              `${router.query.categories ? "&" : "?"}tags__in=${tagsState}`
-            )
-          )
-        : router.push(
-            `${router.asPath}${
-              router.query.categories ? "&" : "?"
-            }${`tags__in=${tagsState}`}`
-          );
+      setTagsState((prevstate) => [...prevstate, event.target.value]);
+      router.query.tags__in = [...tagsState, event.target.value];
     } else {
-      // send tags query and selected filter id to tagArrayHandler for make array and set it in setTagsState
-      setTagsState(tagArrayHandler(router.query.tags__in, event.target.value));
-      // check if tags is ziro remove te query from url
-      tagArrayHandler(router.query.tags__in, event.target.value).length
-        ? // send query tags and event selected value to tagArrayHandler for split it and make new array to delete it from url
-          router.replace(
-            `${tagArrayUrlHandler(
-              router.query.tags__in,
-              `${
-                router.query.tags__in || router.query.categories ? "&" : "?"
-              }page=${router.query.page}`,
-              router.asPath,
-              event.target.value
-            )}`
-          )
-        : // remove te query text from url
-          router.replace(
-            emptyTagFilter(
-              router.asPath,
-              `${
-                router.query.tags__in || router.query.categories ? "&" : "?"
-              }page=${router.query.page}`,
-              `${router.query.categories ? "&" : "?"}tags__in=${
-                event.target.value
-              }`
-            )
-          );
+      const tagIndex = tagsState.indexOf(event.target.value);
+      tagsState.splice(tagIndex, 1);
+      router.query.tags__in = tagsState;
     }
+    router.push({ pathname: router.pathname, query: router.query }, undefined, {
+      scroll: false,
+    });
   };
 
   const filterCategoryHandler = (event) => {
     if (event.target.checked) {
-      // push selected filter to tagsState
-      categoriesState.push(event.target.value);
-      // setTagsState(prevstate => [...prevstate , event.target.value]);
-      // router the user to new filters
-      router.query.categories
-        ? router.query.page
-          ? router.push(
-              UrlHandlerWithPage(
-                router.asPath,
-                `${
-                  router.query.tags__in || router.query.categories ? "&" : "?"
-                }page=${router.query.page}`,
-                `categories=${router.query.categories}`,
-                `categories=${categoriesState}`
-              )
-            )
-          : router.push(
-              UrlHandler(
-                router.asPath,
-                `categories=${router.query.categories}`,
-                `categories=${categoriesState}`
-              )
-            )
-        : router.query.page
-        ? router.push(
-            removePage(
-              router.asPath,
-              `${
-                router.query.tags__in || router.query.categories ? "&" : "?"
-              }page=${router.query.page}`,
-              `${
-                router.query.tags__in ? "&" : "?"
-              }categories=${categoriesState}`
-            )
-          )
-        : router.push(
-            `${router.asPath}${
-              router.query.tags__in ? "&" : "?"
-            }${`categories=${categoriesState}`}`
-          );
+      setCategoriesState((prevstate) => [...prevstate, event.target.value]);
+      router.query.categories = [...categoriesState, event.target.value];
     } else {
-      // send tags query and selected filter id to categoriesArrayHandler for make array and set it in setTagsState
-      setCategoriesState(
-        categoriesArrayHandler(router.query.categories, event.target.value)
-      );
-      // check if tags is ziro remove te query from url
-      categoriesArrayHandler(router.query.categories, event.target.value).length
-        ? // send query tags and event selected value to categoriesArrayHandler for split it and make new array to delete it from url
-          router.replace(
-            `${categoriesArrayUrlHandler(
-              router.query.categories,
-              `${
-                router.query.tags__in || router.query.categories ? "&" : "?"
-              }page=${router.query.page}`,
-              router.asPath,
-              event.target.value
-            )}`
-          )
-        : // remove te query text from url
-          router.replace(
-            emptyCategoryFilter(
-              router.asPath,
-              `${
-                router.query.tags__in || router.query.categories ? "&" : "?"
-              }page=${router.query.page}`,
-              `${router.query.tags__in ? "&" : "?"}categories=${
-                event.target.value
-              }`
-            )
-          );
+      const categoriesIndex = categoriesState.indexOf(event.target.value);
+      categoriesState.splice(categoriesIndex, 1);
+      router.query.categories = categoriesState;
     }
+    router.push({ pathname: router.pathname, query: router.query }, undefined, {
+      scroll: false,
+    });
   };
 
   return (
@@ -242,16 +90,19 @@ const index = ({ products, tags, categories, filterHandler }) => {
           فیلتر بر اساس نوع ماشین
         </div>
         <ul className={styles.carFilter}>
-          {tags.map((tag) => (
+          {tagsFilterSideBar.map((tag) => (
             <li key={tag.id}>
               <label className={styles.Filtercontainer}>
                 {tag.name}
                 <input
                   value={tag.id}
                   type="checkbox"
+                  readOnly
                   onClick={tagHandler}
-                  defaultChecked={
-                    tagsState.indexOf(tag.id.toString()) >= 0 ? true : false
+                  checked={
+                    tagsState && tagsState.indexOf(tag.id.toString()) >= 0
+                      ? true
+                      : false
                   }
                 />
                 <span className={styles.checkmark}></span>
@@ -268,7 +119,7 @@ const index = ({ products, tags, categories, filterHandler }) => {
           فیلتر بر اساس نوع قطعه
         </div>
         <ul className={styles.carFilter}>
-          {categories.map((category) => (
+          {categoriesFilterSideBar.map((category) => (
             <li key={category.id}>
               <label className={styles.Filtercontainer}>
                 {category.name}
@@ -276,7 +127,9 @@ const index = ({ products, tags, categories, filterHandler }) => {
                   value={category.id}
                   type="checkbox"
                   onClick={filterCategoryHandler}
-                  defaultChecked={
+                  readOnly
+                  checked={
+                    categoriesState &&
                     categoriesState.indexOf(category.id.toString()) >= 0
                       ? true
                       : false
@@ -335,7 +188,12 @@ const index = ({ products, tags, categories, filterHandler }) => {
                             </h1>
                             <p className={styles.seller}>
                               <BsShop
-                                style={{ color: "var(--skyBlue)" , width: '14px' , height: '14px' , marginLeft: '3px' }}
+                                style={{
+                                  color: "var(--skyBlue)",
+                                  width: "14px",
+                                  height: "14px",
+                                  marginLeft: "3px",
+                                }}
                               />
                               فروشنده : {item.manufacturer_company}
                             </p>
@@ -393,7 +251,7 @@ const index = ({ products, tags, categories, filterHandler }) => {
                   <hr className={styles.headerLine} />
                 </section>
               ))
-            : data.map((item, index) => (
+            : tagsFilterSideBar.map((item, index) => (
                 <div key={index}>
                   <ProductsSkeleton />
                 </div>

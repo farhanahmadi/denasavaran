@@ -25,8 +25,8 @@ export default function index({ products, tags, categoriesList }) {
       >
         <Products
           products={products}
-          tags={tags}
-          categories={categoriesList}
+          tagsFilterSideBar={tags}
+          categoriesFilterSideBar={categoriesList}
           filterHandler={filterHandler}
         />
       </Layout>
