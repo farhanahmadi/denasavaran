@@ -4,8 +4,9 @@ import "../styles/skeleton.css";
 import "../styles/Sidebar.css";
 
 //import context
-import CartContextProvider from "../components/context/CartContextProvider";
 import { SSRProvider } from "react-bootstrap";
+import CartContextProvider from "../components/context/CartContextProvider";
+import FilterContextProvider from "../components/context/FilterContextProvider";
 
 //* import loader
 import Loader from "../components/Layout/Loader";
@@ -24,11 +25,13 @@ function MyApp({ Component, pageProps }) {
   return (
     <SSRProvider>
       <CartContextProvider>
-        {!loader ? (
-          <Component {...pageProps} />
-        ) : (
-          <Loader animation={startAnimation} />
-        )}
+        <FilterContextProvider>
+          {!loader ? (
+            <Component {...pageProps} />
+          ) : (
+            <Loader animation={startAnimation} />
+          )}
+        </FilterContextProvider>
       </CartContextProvider>
     </SSRProvider>
   );

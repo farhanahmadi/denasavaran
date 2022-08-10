@@ -49,9 +49,24 @@
     text-align: right;
     gap: 10px 0px;
     padding: 10px;
-    height: 350px;
+    height: 320px;
     overflow-y: scroll;
 
+}
+
+.carFilter::-webkit-scrollbar {
+    width: 3px;
+}
+
+/* Handle */
+.carFilter::-webkit-scrollbar-thumb {
+    background: var(--deepgray);
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+.carFilter::-webkit-scrollbar-thumb:hover {
+    background: var(--deepgray);
 }
 
 .carFilter li {
@@ -85,30 +100,25 @@
     cursor: pointer;
 }
 
-/* On mouse-over, add a grey background color */
 .Filtercontainer:hover input~.checkmark {
     background-color: var(--gray);
 }
 
-/* When the checkbox is checked, add a blue background */
 .Filtercontainer input:checked~.checkmark {
     background-color: var(--red);
     border: none;
 }
 
-/* Create the checkmark/indicator (hidden when not checked) */
 .checkmark:after {
     content: "";
     position: absolute;
     display: none;
 }
 
-/* Show the checkmark when checked */
 .Filtercontainer input:checked~.checkmark:after {
     display: block;
 }
 
-/* Style the checkmark/indicator */
 .Filtercontainer .checkmark:after {
     left: 9px;
     top: 5px;
@@ -143,4 +153,124 @@
     width: 20px;
     height: 20px;
     color: var(--lightBlack);
+}
+
+/** SideBarFilterStyles */
+.skeletonSidebar {
+    width: 360px;
+    height: 600px;
+    background-color: var(--gray);
+    border-radius: 10px;
+    margin-right: 7%;
+}
+
+.skeletonSidebar div {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.skeletonSidebar ul {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.sideBar {
+    padding: 10px 20px;
+    background-color: var(--gray);
+    margin-right: 7%;
+    border-radius: 10px;
+    position: sticky;
+    top: 20px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.categoryContainer {
+    max-width: 70%;
+    margin: 30px auto;
+    background-color: white;
+    border-radius: 15px;
+    display: none;
+}
+
+.dropdown {
+    display: flex;
+    gap: 0 20px;
+}
+
+.dropdownBtn {
+    width: 50%;
+}
+
+.dropdownItem {
+    text-align: right;
+}
+
+.filter {
+    background-color: white;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border: none;
+    height: 35px;
+    border-radius: 5px;
+    flex: 1;
+}
+
+.categoryDropdown {
+    background-color: white;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border: none;
+    height: 35px;
+    border-radius: 5px;
+    flex: 1;
+}
+
+.activeDropdowm {
+    color: var(--red);
+}
+
+.activeDropdowm::before {
+    content: ' ';
+    position: absolute;
+    bottom: -5px;
+    right: 0;
+    background-color: var(--red);
+    width: 100%;
+    height: 2px;
+}
+
+@media only screen and (min-width: 1280px) {
+    .skeletonSidebar {
+        width: 250px;
+    }
+}
+
+@media only screen and (max-width: 1280px) {
+    .container {
+        grid-template-columns: 30% 70%;
+    }
+
+    .skeletonSidebar {
+        width: 270px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+
+    .sideBar {
+        display: none;
+    }
+
+    .skeletonSidebar {
+        display: none;
+    }
+
+    .categoryContainer {
+        display: block;
+    }
+
+}
+
+@media only screen and (max-width: 578px) {
+    .categoryContainer {
+        max-width: 90%;
+    }
 }

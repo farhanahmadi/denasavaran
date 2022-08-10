@@ -45,17 +45,6 @@ a {
   width: 100%;
 }
 
-.pagination {
-  width: auto;
-  margin: 0 auto;
-  direction: ltr;
-  margin-top: 25px;
-}
-
-.pagination a {
-  padding: 10px 15px;
-}
-
 .icon {
   width: 18px;
   height: 18px;

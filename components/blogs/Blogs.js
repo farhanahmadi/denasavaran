@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import * as shamsi from "shamsi-date-converter";
 
+
 //import styles
 import styles from "./blogsDetails.module.css";
 
 const Blogs = ({ Blog }) => {
+ 
   return (
     <React.Fragment>
       <div className={styles.container}>

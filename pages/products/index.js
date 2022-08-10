@@ -6,21 +6,20 @@ import { BaseLink } from "../../components/BaseLink/BaseLink";
 import Layout from "../../components/Layout/Layout";
 import Products from "../../components/products/index";
 
-
 export default function index({ products, tags, categoriesList }) {
-  const [filterStatus, setFilterStatus] = useState(false);
+  const [filterStatus, setFilterStatus] = useState("");
 
   //? handle the filter component
   const filterHandler = (name) => {
-    setFilterStatus(!filterStatus);
+    setFilterStatus(name);
   };
+
 
   return (
     <React.Fragment>
       <Layout
         filterStatus={filterStatus}
-        tags={tags}
-        categories={categoriesList}
+        filterList={filterStatus === "tags" ? tags : categoriesList}
         filterHandler={filterHandler}
       >
         <Products

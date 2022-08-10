@@ -9,10 +9,9 @@ import { cartContext } from "../context/CartContextProvider";
 
 //? import icons
 import { HiChevronUp } from "react-icons/hi/index";
-import { IoHomeOutline } from "react-icons/io5/index";
 import { MdOutlineArticle } from "react-icons/md/index";
 import { RiShoppingBasket2Line } from "react-icons/ri/index";
-import { AiOutlineUsergroupAdd } from "react-icons/ai/index";
+import { AiOutlineUsergroupAdd, AiOutlineHome } from "react-icons/ai/index";
 import { BiUser } from "react-icons/bi/index";
 
 //?import styles
@@ -22,9 +21,8 @@ import styles from "./NavbarComponent.module.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { Navbar, Container } from "react-bootstrap";
 
-const NavbarComponent = ({ categoriesList }) => {
-  const router = useRouter();
-  const [dropDownclass, setDropDownclass] = useState(false);
+const NavbarComponent = () => {
+  const router = useRouter(); 
   const [active, setActive] = useState(false);
   const [cartData, setCartData] = useState([]);
 
@@ -33,15 +31,6 @@ const NavbarComponent = ({ categoriesList }) => {
   useEffect(() => {
     setCartData(state);
   }, [state]);
-
-  const dropdownHandler = () => {
-    setDropDownclass(true);
-  };
-  const dropdownHandlerRemove = () => {
-    setDropDownclass(false);
-  };
-
-  const [name, setName] = useState("محصولات");
   return (
     <>
       <div className={styles.mobile}>
@@ -60,30 +49,29 @@ const NavbarComponent = ({ categoriesList }) => {
           </a>
           <ul className={styles.navbarList}>
             <li onClick={() => setActive("home")}>
-              <Link href={"#"} passHref>
+              <Link href={"/"} passHref>
                 <span
                   className={
                     active === "home" ? styles.active : styles.notActive
                   }
                 >
-                  <IoHomeOutline className={`icon ${styles.icons}`} /> خانه
+                  <AiOutlineHome className={`icon ${styles.icons}`} /> خانه
                 </span>
               </Link>
             </li>
             <li onClick={() => setActive("content")}>
-              <Link href={"#"} passHref>
+              <Link href={"/blogs"} passHref>
                 <span
                   className={
                     active === "content" ? styles.active : styles.notActive
                   }
                 >
-                  <MdOutlineArticle className={`icon ${styles.icons}`} /> آرشیو
-                  مطالب
+                  <MdOutlineArticle className={`icon ${styles.icons}`} /> وبلاگ
                 </span>
               </Link>
             </li>
             <li onClick={() => setActive("shop")}>
-              <Link href={"#"} passHref>
+              <Link href={"/products"} passHref>
                 <span
                   className={
                     active === "shop" ? styles.active : styles.notActive
@@ -95,7 +83,7 @@ const NavbarComponent = ({ categoriesList }) => {
               </Link>
             </li>
             <li onClick={() => setActive("club")}>
-              <Link href={"#"} passHref>
+              <Link href={"/Join_Us"} passHref>
                 <span
                   className={
                     active === "club" ? styles.active : styles.notActive
@@ -176,9 +164,9 @@ const NavbarComponent = ({ categoriesList }) => {
               <span className={styles.shppingBtn} variant="warning">
                 <RiShoppingBasket2Line className={`icon ${styles.icons}`} />
                 {/* {cartData.products && cartData.products.length ? ( */}
-                  <section className={styles.cartHeader}>
-                    <NavbarCartHover />
-                  </section>
+                <section className={styles.cartHeader}>
+                  <NavbarCartHover />
+                </section>
                 {/* ) : null} */}
                 {/* {localStorage.getItem("userCartItems") (
                 )} */}
@@ -194,17 +182,13 @@ const NavbarComponent = ({ categoriesList }) => {
                 </Link>
               </li>
               <li>
-                <Link href="/blogs">
-                  <a>آرشیو مطالب</a>
-                </Link>
-              </li>
-              <li
-                id="shoppingBtn"
-                onMouseEnter={dropdownHandler}
-                onMouseLeave={dropdownHandlerRemove}
-              >
                 <Link href="/products/">
                   <a>فروشگاه</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/blogs">
+                  <a>وبلاگ</a>
                 </Link>
               </li>
               <li>

@@ -6,9 +6,24 @@ import NavbarComponent from "../navbar/NavbarComponent";
 import Footer from "../footer/Footer";
 import styles from "./navbar.module.css";
 
-const Layout = ({ children, profile, filterStatus , tags , categoriesList , filterHandler}) => {
+const Layout = ({
+  children,
+  profile,
+  filterStatus,
+  BlogsCategoris,
+  blog,
+  filterList,
+  filterHandler,
+}) => {
   if (filterStatus) {
-    return <Filter tags={tags} categories={categoriesList} filterHandler={filterHandler} />;
+    return (
+      <Filter
+        filterList={filterList}
+        filterStatus={filterStatus}
+        filterHandler={filterHandler}
+        blog={blog}
+      />
+    );
   }
 
   return (

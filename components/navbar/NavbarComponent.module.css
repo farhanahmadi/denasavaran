@@ -225,7 +225,7 @@
     margin: 0;
     height: 30px;
     width: 30px;
-    color: var(--lightBlack);
+    color: var(--deepgray);
 }
 .arrow {
     background-color: white;

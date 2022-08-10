@@ -25,9 +25,7 @@ const Login = () => {
 
   const onSubmit = (values) => {
     axios
-      .post("http://45.159.113.83:801/api/v1/login/user/", values, {
-        withCredentials: true,
-      })
+      .post("http://45.159.113.83:801/api/v1/login/user/", values)
       .then(({ data }) => console.log(data))
       .catch((error) => console.log(error));
   };
