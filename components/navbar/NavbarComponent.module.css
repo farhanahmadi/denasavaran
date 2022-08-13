@@ -139,7 +139,7 @@
 .navbarUl a {
     text-decoration: none;
     color: var(--lightBlack);
-    font-size: 1.1em;
+    font-size: 1em;
     position: relative;
     padding: 10px 0px;
 }

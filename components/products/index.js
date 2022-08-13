@@ -26,7 +26,7 @@ const index = ({
   const router = useRouter();
 
   const currentPage = Number(router.query.page);
-  const pageCount = Math.round(products.count / 2);
+  const pageCount = Math.round(products.count / 20);
 
   const [load, setLoad] = useState(false);
 
@@ -124,7 +124,7 @@ const index = ({
                           </h4>
                           {item.discount_percent ? (
                             <p className={styles.discountPercent}>
-                              {persianNumber(item.discount_percent)}
+                              {persianNumber(item.discount_percent) + "%"}
                             </p>
                           ) : (
                             ""
@@ -143,10 +143,10 @@ const index = ({
                   <hr className={styles.headerLine} />
                 </section>
               ))
-            : tagsFilterSideBar.map((item, index) => (
-                <div key={index}>
+            : products.results.map((item, index) => (
+                <React.Fragment key={index}>
                   <ProductsSkeleton />
-                </div>
+                </React.Fragment>
               ))}
         </section>
         <div className={styles.pagination}>

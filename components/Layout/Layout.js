@@ -5,12 +5,12 @@ import Filter from "../Filter/Filter";
 import NavbarComponent from "../navbar/NavbarComponent";
 import Footer from "../footer/Footer";
 import styles from "./navbar.module.css";
+import Jumbotron from "../jumbotron/Jumbotron";
 
 const Layout = ({
   children,
   profile,
   filterStatus,
-  BlogsCategoris,
   blog,
   filterList,
   filterHandler,
@@ -29,6 +29,7 @@ const Layout = ({
   return (
     <>
       <NavbarComponent />
+      <Jumbotron />
       <div className={styles.container}>{children}</div>
       {!profile ? <Footer /> : null}
     </>

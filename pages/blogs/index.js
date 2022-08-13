@@ -20,6 +20,7 @@ export default function index({ BlogsList, BlogsCategoris }) {
         filterStatus={filterStatus}
         filterList={BlogsCategoris}
         filterHandler={filterHandler}
+        blog={true}
       >
         <Blog
           BlogsList={BlogsList}

@@ -1,17 +1,22 @@
+.container{
+    width: 95%;
+    margin: 0 auto;
+}
 .card {
     width: 18rem;
     height: 480px;
-    border: 1px solid #E2E2E2;
+    border: 1px solid var(--borderGray);
     border-radius: 10px;
     direction: rtl;
     margin: 0px 20px 20px 20px;
+    display: none;
 
 }
 
 .cardImage {
     width: 100%;
     height: 250px;
-    background-color: #E2E2E2;
+    background-color: var(--borderGray);
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 }
@@ -21,20 +26,21 @@
 }
 
 .title {
-    background-color: #E2E2E2;
+    background-color: var(--borderGray);
     width: 70%;
     height: 15px;
     margin: 1.2rem auto;
 }
 
 .body {
-    background-color: #E2E2E2;
+    background-color: var(--borderGray);
     width: 50%;
     height: 15px;
     margin: 30px 5% 0 5%;
     padding: 0 10px;
 }
-.priceParent{
+
+.priceParent {
     direction: ltr;
     width: 100%;
     height: 28px;
@@ -43,18 +49,90 @@
     align-items: center;
     margin-top: 45px;
 }
-.price{
-    background-color: #E2E2E2;
+
+.price {
+    background-color: var(--borderGray);
     width: 89px;
     height: 20px;
     margin: 10px 5% 0 5%;
     padding: 0 10px;
 }
-.button{
-    background-color: #E2E2E2;
+
+.button {
+    background-color: var(--borderGray);
     width: 34px;
     height: 20px;
     margin: 10px 5% 0 5%;
     padding: 0 10px;
     border-radius: 15px;
+}
+
+.cardMobile {
+    width: 100%;
+    display: none;
+}
+
+.imageText {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0 20px;
+}
+
+.image {
+    width: 200px;
+    height: 118px;
+    background-color: var(--borderGray);
+    /* flex: 1; */
+}
+
+.textContainer{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.text {
+    background-color: var(--borderGray);
+    width: 90%;
+    height: 15px;
+    margin: 20px 0;
+    /* margin: 1.2rem auto; */
+    /* flex: 1; */
+}
+.seller{
+    background-color: var(--borderGray);
+    width: 50%;
+    height: 15px;
+    /* margin: 1.2rem auto; */
+}
+.priceContainer{
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+    margin: 20px 0;
+    gap: 0 30px;
+}
+.mobilePrice{
+    background-color: var(--borderGray);
+    width: 35%;
+    height: 15px;
+}
+.mobilePriceDiscount{
+    background-color: var(--borderGray);
+    width: 15%;
+    height: 15px;
+}
+
+@media only screen and (max-width: 768px) {
+    .card{
+        display: none;
+    }
+    .cardMobile{
+        display: block;
+    }
 }

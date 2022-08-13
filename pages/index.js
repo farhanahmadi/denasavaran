@@ -5,7 +5,6 @@ import axios from "axios";
 
 // import components
 import Layout from "../components/Layout/Layout";
-import Poster from "../components/Poster/Poster";
 import AboutUs from "../components/aboutUs/AboutUs";
 import LastContents from "../components/LastContents/LastContents";
 import { BaseLink } from "../components/BaseLink/BaseLink";
@@ -21,7 +20,6 @@ export default function Home({categoriesList , lastProducts}) {
         </Head>
 
         <main className={styles.main}>
-          <Poster />
           <AboutUs categoriesList={categoriesList} />
           <LastContents lastProducts={lastProducts} />
           <LastContents lastProducts={lastProducts} />
