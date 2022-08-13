@@ -110,6 +110,14 @@
     opacity: 1;
 }
 
+@media only screen and (max-width: 1200px) {
+    .text h1{
+        color: white;
+        font-size: 2.5em;
+    }
+    
+}
+
 @media only screen and (max-width: 768px) {
     .container::after{
         display: none;
@@ -129,6 +137,10 @@
     }
     .text {
         flex: none;
+    }
+    .text h1{
+        color: white;
+        font-size: 2em;
     }
     .line{
         display: block;

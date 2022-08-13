@@ -10,39 +10,39 @@ const Footer = () => {
       <section className={styles.topSection} dir="rtl">
         <section className={styles.footerDescriptionImg}>
           <Image
-            src="/assets/images/online-reservation.png"
-            alt="online-Reservation"
+            src="/assets/images/express-delivery.svg"
+            alt="express-delivery"
             width="80"
             height="80"
           />
-          <p className={styles.topSectionP}>رزور وقت انلاین</p>
+          <p className={styles.topSectionP}>ارسال سریع کالا</p>
         </section>
         <section className={styles.footerDescriptionImg}>
           <Image
-            src="/assets/images/Followup.png"
-            alt="Follow-up"
+            src="/assets/images/support.svg"
+            alt="support"
             width="80"
             height="80"
           />
-          <p className={styles.topSectionP}>پیگیری سفارشات</p>
+          <p className={styles.topSectionP}>پشتیبانی ۲۴ ساعته</p>
         </section>
         <section className={styles.footerDescriptionImg}>
           <Image
-            src="/assets/images/website.png"
-            alt="Repairs"
+            src="/assets/images/days-return.svg"
+            alt="days-return"
             width="80"
             height="80"
           />
-          <p className={styles.topSectionP}>مشاوره خودرویی</p>
+          <p className={styles.topSectionP}>هفت رو ضمانت بازگشت کالا</p>
         </section>
         <section className={styles.footerDescriptionImg}>
           <Image
-            src="/assets/images/join.png"
-            alt="join"
+            src="/assets/images/original-products.svg"
+            alt="original-products"
             width="80"
             height="80"
           />
-          <p className={styles.topSectionP}>عضویت در باشگاه</p>
+          <p className={styles.topSectionP}>ضمانت اصالت کالا</p>
         </section>
       </section>
       <section className={styles.betweenSection}>

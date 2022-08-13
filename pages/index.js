@@ -8,10 +8,11 @@ import Layout from "../components/Layout/Layout";
 import AboutUs from "../components/aboutUs/AboutUs";
 import LastContents from "../components/LastContents/LastContents";
 import { BaseLink } from "../components/BaseLink/BaseLink";
+import Link from "next/link";
 
-export default function Home({categoriesList , lastProducts}) {
+export default function Home({ categoriesList, lastProducts }) {
   return (
-    <Layout >
+    <Layout>
       <div className={styles.container}>
         <Head>
           <title>فروشگاه آنلاین دناسواران ارومیه</title>
@@ -22,7 +23,49 @@ export default function Home({categoriesList , lastProducts}) {
         <main className={styles.main}>
           <AboutUs categoriesList={categoriesList} />
           <LastContents lastProducts={lastProducts} />
+          <div className={styles.posters}>
+            <section className={styles.denaTools}>
+              <Link href={`#`}>
+                <a>
+                  <img
+                    src="/assets/images/denaTools.jpg"
+                    alt="denaToolsPoster"
+                  />
+                </a>
+              </Link>
+            </section>
+            <section className={styles.peugeotTools}>
+              <Link href={`#`}>
+                <a>
+                  <img
+                    src="/assets/images/peugeotTools.jpg"
+                    alt="peugeotToolsPoster"
+                  />
+                </a>
+              </Link>
+            </section>
+          </div>
           <LastContents lastProducts={lastProducts} />
+
+          <div className={styles.posters}>
+            <section className={styles.denaTools}>
+              <Link href={`#`}>
+                <a>
+                  <img
+                    src="/assets/images/carClutch.jpg"
+                    alt="carClutchPoster"
+                  />
+                </a>
+              </Link>
+            </section>
+            <section className={styles.peugeotTools}>
+              <Link href={`#`}>
+                <a>
+                  <img src="/assets/images/carOil.jpg" alt="carOilPoster" />
+                </a>
+              </Link>
+            </section>
+          </div>
         </main>
 
         <footer className={styles.footer}></footer>
@@ -36,6 +79,9 @@ export async function getServerSideProps(context) {
   const lastProducts = await axios.get(`${BaseLink}/last_products/`);
 
   return {
-    props: { categoriesList: categoriesList.data , lastProducts: lastProducts.data },
+    props: {
+      categoriesList: categoriesList.data,
+      lastProducts: lastProducts.data,
+    },
   };
 }
