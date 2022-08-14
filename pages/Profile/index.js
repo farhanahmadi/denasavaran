@@ -9,7 +9,7 @@ import { BaseLink } from "../../components/BaseLink/BaseLink";
 
 export default function index({ userInfo }) {
   return (
-    <Layout profile={true}>
+    <Layout page={"profile"}>
       {console.log(userInfo)}
       <Profile userInfo={userInfo} />
     </Layout>

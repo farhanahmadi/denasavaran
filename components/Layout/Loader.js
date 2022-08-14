@@ -18,7 +18,7 @@ export default function Loader({ animation }) {
   };
   return (
     <div className={styles.main}>
-      <section className={animation && styles.loader}>
+      <section className={animation ? styles.loader : undefined}>
         <Lottie options={defaultOptions} height="100%" width="100%" />
       </section>
     </div>

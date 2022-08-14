@@ -10,24 +10,18 @@ import TextInputs from "../TextInputs";
 
 //import styles
 import styles from "./login.module.css";
-
-//import functions
-import { authValidation } from "../../function/authValidation";
-
-import { Form, Button, Col, Row } from "react-bootstrap";
-import axios from "axios";
+import { useAuth, useAuthActions } from "../../context/AuthContextProvider";
 
 const Login = () => {
+  const userDispatch = useAuthActions();
+
   const initialValues = {
     email: "",
     password: "",
   };
 
   const onSubmit = (values) => {
-    axios
-      .post("http://45.159.113.83:801/api/v1/login/user/", values)
-      .then(({ data }) => console.log(data))
-      .catch((error) => console.log(error));
+    userDispatch({ type: "SIGNIN", payload: values });
   };
 
   const validationSchema = Yup.object({
@@ -45,22 +39,6 @@ const Login = () => {
     validationSchema,
     validateOnMount: true,
   });
-
-  const [submit, setSubmit] = useState(false);
-  const [error, setError] = useState([]);
-  const [data, setData] = useState({});
-
-  const changeHandler = (event) => {
-    setData({ ...data, [event.target.name]: event.target.value });
-    // setError(authValidation(data));
-  };
-
-  const submitHandler = (event) => {
-    setSubmit(true);
-    event.preventDefault();
-
-    // setError(authValidation(data));
-  };
 
   return (
     <form onSubmit={formik.handleSubmit}>

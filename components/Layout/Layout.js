@@ -9,7 +9,7 @@ import Jumbotron from "../jumbotron/Jumbotron";
 
 const Layout = ({
   children,
-  profile,
+  page,
   filterStatus,
   blog,
   filterList,
@@ -29,9 +29,9 @@ const Layout = ({
   return (
     <>
       <NavbarComponent />
-      <Jumbotron />
+      {page === "home" && <Jumbotron />}
       <div className={styles.container}>{children}</div>
-      {!profile ? <Footer /> : null}
+      {page !== "profile" ? <Footer /> : null}
     </>
   );
 };

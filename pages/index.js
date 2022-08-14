@@ -12,7 +12,7 @@ import Link from "next/link";
 
 export default function Home({ categoriesList, lastProducts }) {
   return (
-    <Layout>
+    <Layout page={"home"}>
       <div className={styles.container}>
         <Head>
           <title>فروشگاه آنلاین دناسواران ارومیه</title>

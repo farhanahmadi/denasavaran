@@ -7,6 +7,7 @@ import "../styles/Sidebar.css";
 import { SSRProvider } from "react-bootstrap";
 import CartContextProvider from "../components/context/CartContextProvider";
 import FilterContextProvider from "../components/context/FilterContextProvider";
+import AuthContextProvider from "../components/context/AuthContextProvider";
 
 //* import loader
 import Loader from "../components/Layout/Loader";
@@ -24,15 +25,17 @@ function MyApp({ Component, pageProps }) {
   }, []);
   return (
     <SSRProvider>
-      <CartContextProvider>
-        <FilterContextProvider>
-          {!loader ? (
-            <Component {...pageProps} />
-          ) : (
-            <Loader animation={startAnimation} />
-          )}
-        </FilterContextProvider>
-      </CartContextProvider>
+      <AuthContextProvider>
+        <CartContextProvider>
+          <FilterContextProvider>
+            {!loader ? (
+              <Component {...pageProps} />
+            ) : (
+              <Loader animation={startAnimation} />
+            )}
+          </FilterContextProvider>
+        </CartContextProvider>
+      </AuthContextProvider>
     </SSRProvider>
   );
 }
