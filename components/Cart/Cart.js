@@ -5,6 +5,7 @@ import { cartContext } from "../context/CartContextProvider";
 
 //import components
 import { quantityCheck } from "../context/quantityHandler";
+import { persianNumber } from "../function/PersianNumber";
 
 //import styles
 import styles from "./cart.module.css";
@@ -12,22 +13,23 @@ import styles from "./cart.module.css";
 export default function Cart() {
   const { state, dispatch } = useContext(cartContext);
 
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    setData(state.products);
-  }, []);
-
   return (
     <div className={styles.container}>
-      {console.log(state)}
       <section className={styles.productDetails}>
         <section className={styles.header}>
           <span className={styles.headerTitle}>سبد خرید شما</span>
-          <span className={styles.headerQuantity}>۳ کالا</span>
+          <span className={styles.headerQuantity}>
+            {persianNumber(
+              state.products.reduce(
+                (total, products) => total + products.quantity,
+                0
+              )
+            )}{" "}
+            کالا
+          </span>
         </section>
         <section className={styles.products}>
-          {data.map((item) => (
+          {state.products.map((item) => (
             <React.Fragment key={item.id}>
               <section key={item.id} className={styles.productItem}>
                 <section className={styles.image}>
@@ -62,11 +64,11 @@ export default function Cart() {
                       </svg>
                     </span>
                     <span className={styles.quantityNumber}>
-                      {quantityCheck(data, item.id)
-                        ? quantityCheck(data, item.id)
+                      {quantityCheck(state.products, item.id)
+                        ? quantityCheck(state.products, item.id)
                         : 1}
                     </span>
-                    {quantityCheck(data, item.id) ? (
+                    {quantityCheck(state.products, item.id) ? (
                       <span
                         onClick={() =>
                           dispatch({
@@ -102,7 +104,6 @@ export default function Cart() {
                             type: "REMOVEITEM",
                             payload: item,
                           });
-                          setData(state.products);
                         }}
                         className={styles.trash}
                       >
@@ -166,11 +167,31 @@ export default function Cart() {
         <section className={styles.ContinueShopping}>
           <section className={styles.quantitySection}>
             <span className={styles.paymentQuantityText}>تعداد کالاها :</span>
-            <span className={styles.paymentQuantityNumber}>{data.reduce((total , products) => total + products.quantity , 0)}</span>
+            <span className={styles.paymentQuantityNumber}>
+              {persianNumber(
+                state.products.reduce(
+                  (total, products) => total + products.quantity,
+                  0
+                )
+              )}
+            </span>
           </section>
           <section className={styles.toalSection}>
             <span className={styles.totalText}>جمع سبد خرید :</span>
-            <span className={styles.totalNumber}>{data.reduce((total , products) => total + products.quantity * (products.discount_percent ? products.price_after_discount : products.price) , 0 )} تومان</span>
+            <span className={styles.totalNumber}>
+              {persianNumber(
+                state.products.reduce(
+                  (total, products) =>
+                    total +
+                    products.quantity *
+                      (products.discount_percent
+                        ? products.price_after_discount
+                        : products.price),
+                  0
+                )
+              )}{" "}
+              تومان
+            </span>
           </section>
           <p className={styles.sendPrice}>
             هزینه ارسال براساس آدرس، زمان تحویل، وزن و حجم مرسوله شما محاسبه
@@ -193,7 +214,18 @@ export default function Cart() {
       <section className={styles.fixedCart}>
         <section className={styles.fixedPriceSection}>
           <span className={styles.fixedPriceText}>جمع سبد خرید</span>
-          <span className={styles.fixedPriceNumber}>{data.reduce((total , products) => total + products.quantity * (products.discount_percent ? products.price_after_discount : products.price) , 0 )} تومان</span>
+          <span className={styles.fixedPriceNumber}>
+            {state.products.reduce(
+              (total, products) =>
+                total +
+                products.quantity *
+                  (products.discount_percent
+                    ? products.price_after_discount
+                    : products.price),
+              0
+            )}{" "}
+            تومان
+          </span>
         </section>
         <section className={styles.fixedBuyBtnSection}>
           <button className={styles.fixedbuyBtn}>ادامه</button>

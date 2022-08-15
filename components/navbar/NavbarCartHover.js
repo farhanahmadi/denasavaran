@@ -1,46 +1,52 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 //?import icons
 import { HiMinus, HiPlus, HiOutlineTrash } from "react-icons/hi/index";
 
 //import context
 import { cartContext } from "../context/CartContextProvider";
-import { isEmpty, quantityCheck } from "../context/quantityHandler";
+import { quantityCheck } from "../context/quantityHandler";
 
 import styles from "./navbarCartHover.module.css";
+import { persianNumber } from "../function/PersianNumber";
 
 const NavbarCartHover = () => {
-  const router = useRouter();
-
   const { state, dispatch } = useContext(cartContext);
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    setData(state.products);
-  }, []);
-
-  const dataHandler = (data, id) => {
-    const newDataList = data.filter((item) => item.id !== id);
-    setData(newDataList);
-  };
 
   return (
     <div className={styles.container}>
       <section className={styles.header}>
-        <span>{state.products.length} کالا</span>
-        <a>
-          مشاهده سبد خرید <i className="fas fa-angle-left"></i>
-        </a>
+        <span>
+          {persianNumber(
+            state.products.reduce(
+              (total, products) => total + products.quantity,
+              0
+            )
+          )}{" "}
+          کالا
+        </span>
+        <Link href={`/cart`}>
+          <a>
+            مشاهده سبد خرید <i className="fas fa-angle-left"></i>
+          </a>
+        </Link>
       </section>
-      <section className={`${data && !data.length ? styles.emptyProductContainer : styles.productContainer}`}>
-        {data && !data.length ? (
+      <section
+        className={`${
+          !state.products.length
+            ? styles.emptyProductContainer
+            : styles.productContainer
+        }`}
+      >
+        {!state.products.length ? (
           <section className={styles.emptyCart}>
             <img src="/assets/images/empty-cart.svg" alt="empty-cart" />
             <h2>سبد خرید شما خالی است !</h2>
           </section>
         ) : (
-          data.map((item) => (
+          state.products.map((item) => (
             <React.Fragment key={item.id}>
               <section key={item.id} className={styles.product}>
                 <div className={styles.image}>
@@ -81,7 +87,6 @@ const NavbarCartHover = () => {
                             type: "REMOVEITEM",
                             payload: item,
                           });
-                          dataHandler(data, item.id);
                         }}
                         className={styles.trash}
                       >
@@ -127,20 +132,22 @@ const NavbarCartHover = () => {
           <span className={styles.totalPriceText}>مبلغ قابل پرداخت</span>
           <section className={styles.priceSection}>
             <span className={styles.price}>
-              {state.products.reduce(
-                (total, products) =>
-                  total +
-                  products.quantity *
-                    (products.discount_percent
-                      ? products.price_after_discount
-                      : products.price),
-                0
+              {persianNumber(
+                state.products.reduce(
+                  (total, products) =>
+                    total +
+                    products.quantity *
+                      (products.discount_percent
+                        ? products.price_after_discount
+                        : products.price),
+                  0
+                )
               )}
             </span>
             <span> تومان</span>
           </section>
         </section>
-        <button className={styles.buyBtn}>ادامه فرایند خرید</button>
+        <button className={state.products.length ? styles.buyBtn : styles.disabledBtn } disabled={state.products.length ? false : true } >ادامه فرایند خرید</button>
       </section>
     </div>
   );

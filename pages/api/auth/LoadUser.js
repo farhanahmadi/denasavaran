@@ -14,6 +14,6 @@ export default async function handler(req, res) {
       res.status(200).json({ userData: data.user_data });
     }
   } else {
-    res.status(200).json({ userData: "an error has occurred" });
+    res.status(200).json({ userData: "" });
   }
 }

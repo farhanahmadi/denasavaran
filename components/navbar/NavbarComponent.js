@@ -6,13 +6,15 @@ import Link from "next/link";
 //?import components
 import NavbarCartHover from "./navbarCartHover";
 import { cartContext } from "../context/CartContextProvider";
+import { useAuth } from "../context/AuthContextProvider";
 
 //? import icons
 import { HiChevronUp } from "react-icons/hi/index";
-import { MdOutlineArticle } from "react-icons/md/index";
+import { MdOutlineArticle, MdOutlineExitToApp } from "react-icons/md/index";
 import { RiShoppingBasket2Line } from "react-icons/ri/index";
 import { AiOutlineUsergroupAdd, AiOutlineHome } from "react-icons/ai/index";
 import { BiUser } from "react-icons/bi/index";
+import { CgProfile } from "react-icons/cg/index";
 
 //?import styles
 import styles from "./NavbarComponent.module.css";
@@ -22,11 +24,12 @@ import "bootstrap/dist/css/bootstrap.css";
 import { Navbar, Container } from "react-bootstrap";
 
 const NavbarComponent = () => {
-  const router = useRouter(); 
+  const router = useRouter();
   const [active, setActive] = useState(false);
   const [cartData, setCartData] = useState([]);
 
   const { state, dispatch } = useContext(cartContext);
+  const {user} = useAuth();
 
   useEffect(() => {
     setCartData(state);
@@ -155,9 +158,48 @@ const NavbarComponent = () => {
               </section>
             </section>
             <section className={styles.leftTopNav}>
-              <Link href={"/auth/login/"}>
-                <span style={{ width: "30px", margin: "0px 2%" }}>
+              <Link href={user ? "#" : "/auth/login/"}>
+                <span className={styles.user}>
                   <BiUser className={`icon ${styles.icons}`} />
+                  {user ? (
+                    <section className={styles.profileSection}>
+                      <section className={styles.userDetails}>
+                        <section className={styles.userImg}>
+                          <img src="/assets/images/user.jpg" alt="user" />
+                        </section>
+                        <section className={styles.userDetailsText}>
+                          <span className={styles.userName}>{user.first_name + " " + user.last_name}</span>
+                          <span className={styles.userNumber}>{user.phone_number}</span>
+                        </section>
+                      </section>
+                      <hr style={{ margin: "1rem 0 0 0 " }} />
+                      <ul>
+                        <li>
+                          <Link href={`/profile`}>
+                            <a>
+                              <CgProfile
+                                color="var(--lightBlack)"
+                                className={styles.icon}
+                              />{" "}
+                              پروفایل{" "}
+                            </a>
+                          </Link>
+                        </li>
+                        <hr style={{ width: "80%", margin: "0 auto" }} />
+                        <li>
+                          <Link href={`#`}>
+                            <a>
+                              <MdOutlineExitToApp
+                                color="var(--lightBlack)"
+                                className={styles.icon}
+                              />
+                              خروج
+                            </a>
+                          </Link>
+                        </li>
+                      </ul>
+                    </section>
+                  ) : null}
                 </span>
               </Link>
               <section className={styles.line}></section>

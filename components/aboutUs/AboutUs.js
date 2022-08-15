@@ -7,7 +7,6 @@ import styles from "./AboutUs.module.css";
 const AboutUs = ({ categoriesList }) => {
   return (
     <div className={styles.container}>
-      {console.log(categoriesList)}
       <section className={styles.categories}>
         <ul>
           {categoriesList.map((categories) => (

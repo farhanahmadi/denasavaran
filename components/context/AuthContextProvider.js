@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useRef } from "react";
 import { useReducerAsync } from "use-reducer-async";
 import axios from "axios";
+import Router from "next/router";
 import { BaseLink } from "../BaseLink/BaseLink";
 import cookie from "cookie";
 
@@ -34,6 +35,21 @@ const asyncActionHandlers = {
         .then(({ data }) => {
           axios.post("/api/auth", { token: data.token });
           dispatch({ type: "SIGNIN_SUCCESS", payload: data.user_data });
+        })
+        .catch((error) =>
+          dispatch({ type: "SIGNIN_FAIL", error: "an error has occurred" })
+        );
+    },
+
+    SIGNUP:
+    ({ dispatch }) =>
+    async (action) => {
+      dispatch({ type: "SIGNIN_PENDING" });
+      axios
+        .post(`${BaseLink}/register/user/`, action.payload)
+        .then(({ data }) => {
+          dispatch({ type: "SIGNIN_SUCCESS", payload: "" });
+          Router.push("/auth/login");
         })
         .catch((error) =>
           dispatch({ type: "SIGNIN_FAIL", error: "an error has occurred" })

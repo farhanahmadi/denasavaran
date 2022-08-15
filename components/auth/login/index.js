@@ -62,6 +62,7 @@ const Login = () => {
             <TextInputs
               label={"رمز عبور"}
               name={"password"}
+              type={"password"}
               placeHolder={" رمز عبور را وارد کنید ..."}
               formik={formik}
             />

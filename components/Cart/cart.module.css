@@ -167,7 +167,7 @@
     margin: 0 auto;
 }
 .buyBtn{
-    background-color: #EF233C;
+    background-image: linear-gradient(to right, var(--red) , #FF0000);
     color: #fff;
     text-align: center;
     width: 100%;
@@ -241,7 +241,7 @@
     height: 40px;
 }
 .fixedbuyBtn{
-    background-color: #EF233C;
+    background-image: linear-gradient(to right, var(--red) , #FF0000);
     color: #fff;
     text-align: center;
     width: 100%;

@@ -1,9 +1,18 @@
-import React from "react";
+import React,{useContext} from "react";
 
 //import styles
 import styles from "./postInformation.module.css";
 
+//import context
+import { cartContext } from "../context/CartContextProvider";
+
+//import components
+import { quantityCheck } from "../context/quantityHandler";
+import { persianNumber } from "../function/PersianNumber";
+
 export default function PostInformation() {
+  const { state, dispatch } = useContext(cartContext);
+
   return (
     <div className={styles.container}>
       <section className={styles.status}>
@@ -113,11 +122,24 @@ export default function PostInformation() {
           <section className={styles.ContinueShopping}>
             <section className={styles.quantitySection}>
               <span className={styles.paymentQuantityText}>تعداد کالاها :</span>
-              <span className={styles.paymentQuantityNumber}>۳</span>
+              <span className={styles.paymentQuantityNumber}>{persianNumber(state.products.reduce((total , products) => total + products.quantity , 0))}</span>
             </section>
             <section className={styles.toalSection}>
               <span className={styles.totalText}>جمع سبد خرید :</span>
-              <span className={styles.totalNumber}>۴۹۵,۴۶۰ تومان</span>
+              <span className={styles.totalNumber}>
+                {persianNumber(
+                  state.products.reduce(
+                    (total, products) =>
+                      total +
+                      products.quantity *
+                        (products.discount_percent
+                          ? products.price_after_discount
+                          : products.price),
+                    0
+                  )
+                )}{" "}
+                تومان
+              </span>
             </section>
             <p className={styles.sendPrice}>
               هزینه ارسال براساس آدرس، زمان تحویل، وزن و حجم مرسوله شما محاسبه

@@ -25,23 +25,7 @@ export default function Profile({ userInfo }) {
   });
   const [userCity , setUserCity] = useState('');
 
-  useEffect(() => {
-    setUserData({
-      ...userData,
-      first_name: userInfo.first_name,
-      last_name: userInfo.last_name,
-      avatar: userInfo.avatar,
-      email: userInfo.email,
-      state: userInfo.state,
-      city: userInfo.city,
-      address: userInfo.address,
-      plate: userInfo.plate,
-      zip_code: userInfo.zip_code,
-      phone_number: userInfo.phone_number,
-    });
-    setUserCity(userInfo.state);
-  }, []);
-
+  
   const userDataHandler = (event) => {
     setUserData({ ...userData, [event.target.name]: event.target.value});
     event.target.name == 'city' && setUserCity(event.target.value);

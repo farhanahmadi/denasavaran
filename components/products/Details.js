@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Col, Row } from "react-bootstrap";
+import { useRouter } from "next/router";
 
 // ?import components
 import { persianNumber } from "../function/PersianNumber";
@@ -7,9 +8,9 @@ import { persianNumber } from "../function/PersianNumber";
 //?import icons
 import { BsCheck, BsShop, BsShieldCheck } from "react-icons/bs/index";
 import { HiMinus, HiPlus, HiOutlineTrash } from "react-icons/hi/index";
-import {AiOutlineCheck} from "react-icons/ai/index"
-import {FaDollarSign} from "react-icons/fa/index"
-import {RiErrorWarningLine} from "react-icons/ri/index"
+import { AiOutlineCheck } from "react-icons/ai/index";
+import { FaDollarSign } from "react-icons/fa/index";
+import { RiErrorWarningLine } from "react-icons/ri/index";
 
 //swiper
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -32,6 +33,8 @@ const Details = ({ productDetails }) => {
   const [selectedColor, setSelectedColor] = useState("");
   const [colors, setColors] = useState([]);
 
+  const router = useRouter();
+
   useEffect(() => {
     setImage([productDetails.image]);
     productDetails.image2 &&
@@ -52,6 +55,7 @@ const Details = ({ productDetails }) => {
   };
   return (
     <Row dir="rtl" style={{ margin: "5% auto", width: "98%" }}>
+      {console.log(state)}
       <Col xl={3} lg={3} md={12}>
         <div className={styles.imageContainer}>
           <img
@@ -135,9 +139,9 @@ const Details = ({ productDetails }) => {
             <hr style={{ backgroundColor: "#B1B1B1" }} />
             <section className={styles.return}>
               <p className={styles.returnText}>
-               <RiErrorWarningLine className="icon" style={{margin: 0}} /> امکان برگشت کالا
-                در گروه هدفون، هدست و هندزفری با دلیل "انصراف از خرید" تنها در
-                صورتی مورد قبول است که پلمب کالا باز نشده باشد.
+                <RiErrorWarningLine className="icon" style={{ margin: 0 }} />{" "}
+                امکان برگشت کالا در گروه هدفون، هدست و هندزفری با دلیل "انصراف
+                از خرید" تنها در صورتی مورد قبول است که پلمب کالا باز نشده باشد.
               </p>
             </section>
             <section className={styles.sendNotice}>
@@ -171,13 +175,18 @@ const Details = ({ productDetails }) => {
               <hr />
               <section className={styles.checking}>
                 <p className={styles.checkingText}>
-                  <AiOutlineCheck color="var(--green)" className="icon" /> موجود در
-                  انبار
+                  <AiOutlineCheck color="var(--green)" className="icon" /> موجود
+                  در انبار
                 </p>
               </section>
               <hr />
               <p className={styles.sellerPrice}>
-               <FaDollarSign color="var(--red)" className="icon" style={{margin: 0}} /> قیمت فروشنده :
+                <FaDollarSign
+                  color="var(--red)"
+                  className="icon"
+                  style={{ margin: 0 }}
+                />{" "}
+                قیمت فروشنده :
               </p>
               <section dir="rtl" className={styles.price}>
                 {productDetails.discount_percent ? (
@@ -256,9 +265,14 @@ const Details = ({ productDetails }) => {
               ) : (
                 <section className={styles.buyBtn}>
                   <button
-                    onClick={() =>
-                      dispatch({ type: "ADDITEM", payload: selectedItem })
-                    }
+                    onClick={() => {
+                      dispatch({ type: "ADDITEM", payload: selectedItem });
+                      router.push(
+                        { pathname: router.pathname, query: router.query },
+                        undefined,
+                        { scroll: false }
+                      );
+                    }}
                     className={`${
                       !!selectedColor ? styles.activeBtn : styles.disabledBtn
                     }`}

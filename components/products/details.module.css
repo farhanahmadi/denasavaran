@@ -196,7 +196,7 @@
     margin-bottom: -10px;
 }
 .activeBtn{
-    background-color: var(--red);
+    background-image: linear-gradient(to right, var(--red) , #FF0000);
     color: white;
     border: none;
     width: 90%;

@@ -1,88 +1,90 @@
-import React,{useState} from 'react'
-import Link from "next/link"
+import React, { useState } from "react";
+import Link from "next/link";
+
+//* import modules
+import { useFormik } from "formik";
+import * as Yup from "yup";
+
+//* import components
+import TextInputs from "../TextInputs";
 
 //import styles
-import styles from "./register.module.css"
+import styles from "./register.module.css";
+import { useAuth, useAuthActions } from "../../context/AuthContextProvider";
 
-//import functions
-import { authValidation } from '../../function/authValidation'
+const Register = () => {
+  const userDispatch = useAuthActions();
 
+  const initialValues = {
+    email: "",
+    password1: "",
+    password2: "",
+  };
 
-import {Form, Button , Col , Row} from "react-bootstrap"
+  const onSubmit = (values) => {
+    userDispatch({ type: "SIGNUP", payload: values });
+  };
 
+  const validationSchema = Yup.object({
+    email: Yup.string()
+      .required("ایمیل خود را وارد کنید")
+      .email("ایمیل وارد شده صحیح نمیباشد"),
+    password1: Yup.string()
+      .required("رمز خود را وارد کنید")
+      .min(6, "رمز وارد شده باید بیشتر از 6 کاراکتر باشد"),
+      password2: Yup.string().required("تکرار رمز عبور را وارد کنید").oneOf([Yup.ref('password1'), null], 'رمز وارد شده مطابقت ندارد')
+  });
 
-const JoinUs = () => {
+  const formik = useFormik({
+    initialValues,
+    onSubmit,
+    validationSchema,
+    validateOnMount: true,
+  });
 
-    const [submit , setSubmit] = useState(false);
-    const [error , setError] = useState([]);
-    const [data , setData] = useState({
-        email: '',
-        password: '',
-        rePassword: ''
-    });
-    
-    const changeHandler = event =>{
-        setData({...data , [event.target.name] : event.target.value});
-        setError(authValidation(data));
-    }
-
-    const submitHandler = (event) =>{
-        setSubmit(true);
-        event.preventDefault();
-        setError(authValidation(data));
-    }
-
-    return (
-        <div>
-        <div className={styles.container} dir="rtl">
+  return (
+    <form onSubmit={formik.handleSubmit}>
+      <div className={styles.container} dir="rtl">
         <div className={styles.formContainer} dir="rtl">
-            <section className={styles.fromData}>
-            <div className={styles.formLogo} >
-                 <img className={styles.logo} src={"/assets/images/navbarlogo.png"} alt="logo" />
+          <section className={styles.fromData}>
+            <div className={styles.formLogo}>
+              <img
+                className={styles.logo}
+                src={"/assets/images/navbarlogo.png"}
+                alt="logo"
+              />
             </div>
             <hr />
-            <Form>
-                <Row>
-                    <Col lg={12} md={12} sm={12}>
-                        <Form.Group className="mb-3" controlId="formGridEmail">
-                            <Form.Label className={styles.formDataLabel} >ایمیل</Form.Label>
-                            <Form.Control name='email' className={styles.formDataInput} value={data.email} placeholder="ایمیل خود را وارد کنید" onChange={changeHandler}/>
-                            {submit && error.email && <Form.Label className={styles.formDataLabelError} >{error.email}</Form.Label>}
-                        </Form.Group>
-                    </Col>
-
-                    <Col lg={12} md={12} sm={12}>
-                        <Form.Group className="mb-3" controlId="formGridPassword">
-                            <Form.Label className={styles.formDataLabel} >رمز ورود</Form.Label>
-                            <Form.Control name='password' className={styles.formDataInput} value={data.password} placeholder="رمز خود را وارد کنید" onChange={changeHandler}/>
-                            {submit && error.password && <Form.Label className={styles.formDataLabelError} >{error.password}</Form.Label>}
-                        </Form.Group>
-                    </Col>
-
-                    <Col lg={12} md={12} sm={12}>
-                        <Form.Group className="mb-3" controlId="formGridPassword">
-                            <Form.Label className={styles.formDataLabel} > تکرار رمز ورود</Form.Label>
-                            <Form.Control name='rePassword' className={styles.formDataInput} value={data.rePassword} placeholder="تکرار رمز خود را وارد کنید" onChange={changeHandler}/>
-                            {submit && error.rePassword && <Form.Label className={styles.formDataLabelError} >{error.rePassword}</Form.Label>}
-                        </Form.Group>
-                    </Col>
-                </Row>
-
-               <Row className='w-100'>
-                    <Button onClick={submitHandler} className='w-50 m-auto' variant="primary" type="submit" style={{marginTop: '20px'}}>
-                        ثبت نام
-                    </Button>
-                    <Col lg={12} md={12} sm={12} >
-                        <p className='text-center' style={{marginTop: '15px'}}>اکانت دارید ؟ <Link href={'/auth/login/'}>وارد شوید</Link></p>
-                    </Col>
-               </Row>
-                </Form>
-            </section>
+            <TextInputs
+              label={"ایمیل"}
+              name={"email"}
+              placeHolder={"ایمیل را وارد کنید ..."}
+              formik={formik}
+            />
+            <TextInputs
+              label={"رمز عبور"}
+              name={"password1"}
+              type={"password"}
+              placeHolder={" رمز عبور را وارد کنید ..."}
+              formik={formik}
+            />
+             <TextInputs
+              label={"تکرار رمز عبور"}
+              name={"password2"}
+              type={"password"}
+              placeHolder={" تکرار رمز عبور را وارد کنید ..."}
+              formik={formik}
+            />
+            <div className={styles.submitContainer}>
+              <button type="submit" className={styles.submit}>
+                ورود
+              </button>
+            </div>
+          </section>
         </div>
-    </div>
-</div>
-        
-    )
-}
+      </div>
+    </form>
+  );
+};
 
-export default JoinUs
+export default Register;
