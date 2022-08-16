@@ -46,6 +46,7 @@ export default function SideBarFilter({
   return (
     <React.Fragment>
       <section className={load ? styles.sideBar : styles.skeletonSidebar}>
+        {console.log(blogsState)}
         {blog ? (
           <div>
             <br />
@@ -161,14 +162,20 @@ export default function SideBarFilter({
       </section>
       <section className={styles.categoryContainer}>
         <section className={styles.dropdown}>
-          <button onClick={() => filterHandler("tags")} className={styles.filter}>
+          <button
+            onClick={() => filterHandler("tags")}
+            className={styles.filter}
+          >
             فیلتر{" "}
             <HiChevronDown
               style={{ stroke: "var(--lightBlack)" }}
               className="icon"
             />
           </button>
-          <button onClick={() => filterHandler("categories")} className={styles.categoryDropdown}>
+          <button
+            onClick={() => filterHandler("categories")}
+            className={styles.categoryDropdown}
+          >
             دسته بندی{" "}
             <HiChevronDown
               style={{ stroke: "var(--lightBlack)" }}

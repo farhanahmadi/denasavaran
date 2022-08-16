@@ -7,7 +7,6 @@ import styles from "./layout.module.css";
 
 export default function Layout({ children }) {
   const router = useRouter();
-  console.log(router.pathname);
   return (
     <div className={styles.container}>
       <section

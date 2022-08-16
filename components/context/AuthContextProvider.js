@@ -3,13 +3,14 @@ import { useReducerAsync } from "use-reducer-async";
 import axios from "axios";
 import Router from "next/router";
 import { BaseLink } from "../BaseLink/BaseLink";
-import cookie from "cookie";
+import toast from "react-hot-toast";
 
 const AuthContext = React.createContext();
 const AuthContextDispatcher = React.createContext();
 
 const initialState = {
   user: "",
+  token: "",
   loading: true,
   error: false,
 };
@@ -17,11 +18,23 @@ const initialState = {
 const reducer = (state, action) => {
   switch (action.type) {
     case "SIGNIN_PENDING":
-      return { ...state, user: "", loading: true, error: false };
+      return { ...state, user: "", token: "", loading: true, error: false };
     case "SIGNIN_SUCCESS":
-      return { ...state, user: action.payload, loading: false, error: false };
+      return {
+        ...state,
+        user: action.payload,
+        token: action.token,
+        loading: false,
+        error: false,
+      };
     case "SIGNIN_FAIL":
-      return { ...state, user: "", loading: false, error: action.error };
+      return {
+        ...state,
+        user: "",
+        token: "",
+        loading: false,
+        error: action.error,
+      };
   }
 };
 
@@ -34,14 +47,21 @@ const asyncActionHandlers = {
         .post(`${BaseLink}/login/user/`, action.payload)
         .then(({ data }) => {
           axios.post("/api/auth", { token: data.token });
-          dispatch({ type: "SIGNIN_SUCCESS", payload: data.user_data });
+          dispatch({
+            type: "SIGNIN_SUCCESS",
+            payload: data.user_data,
+            token: data.token,
+          });
+          toast.success("با موفقیت وارد شدید");
+          Router.push("/");
         })
-        .catch((error) =>
-          dispatch({ type: "SIGNIN_FAIL", error: "an error has occurred" })
-        );
+        .catch((error) => {
+          dispatch({ type: "SIGNIN_FAIL", error: "an error has occurred" });
+          toast.error("نام کاربری یا رمز وارد شده صحیح نمیباشد");
+        });
     },
 
-    SIGNUP:
+  SIGNUP:
     ({ dispatch }) =>
     async (action) => {
       dispatch({ type: "SIGNIN_PENDING" });
@@ -56,15 +76,42 @@ const asyncActionHandlers = {
         );
     },
 
+  SIGNOUT:
+    ({ dispatch }) =>
+    async (action) => {
+      dispatch({ type: "SIGNIN_PENDING" });
+      axios
+        .post("/api/auth/Logout")
+        .then(() => {
+          dispatch({ type: "SIGNIN_SUCCESS", payload: "" });
+          toast.success("با موفقیت خارج شدید");
+          Router.push(
+            { pathname: Router.pathname, query: Router.query },
+            undefined,
+            {
+              scroll: false,
+            }
+          );
+        })
+        .catch((error) => {
+          dispatch({ type: "SIGNIN_FAIL", error: "an error has occurred" });
+          toast.error("مشکلی رخ داده است لطفا دوباره تلاش کنید");
+        });
+    },
+
   LOAD_USER:
     ({ dispatch }) =>
     async (action) => {
       dispatch({ type: "SIGNIN_PENDING" });
       axios
         .post("/api/auth/LoadUser")
-        .then(({ data }) =>
-          dispatch({ type: "SIGNIN_SUCCESS", payload: data.userData })
-        )
+        .then(({ data }) => {
+          dispatch({
+            type: "SIGNIN_SUCCESS",
+            payload: data.userData,
+            token: data.token,
+          });
+        })
         .catch((error) =>
           dispatch({ type: "SIGNIN_FAIL", error: "an error has occurred" })
         );

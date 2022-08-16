@@ -3,10 +3,13 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
 
+//?import modules
+import toast from "react-hot-toast";
+
 //?import components
 import NavbarCartHover from "./navbarCartHover";
 import { cartContext } from "../context/CartContextProvider";
-import { useAuth } from "../context/AuthContextProvider";
+import { useAuth, useAuthActions } from "../context/AuthContextProvider";
 
 //? import icons
 import { HiChevronUp } from "react-icons/hi/index";
@@ -15,6 +18,7 @@ import { RiShoppingBasket2Line } from "react-icons/ri/index";
 import { AiOutlineUsergroupAdd, AiOutlineHome } from "react-icons/ai/index";
 import { BiUser } from "react-icons/bi/index";
 import { CgProfile } from "react-icons/cg/index";
+import axios from "axios";
 
 //?import styles
 import styles from "./NavbarComponent.module.css";
@@ -29,11 +33,17 @@ const NavbarComponent = () => {
   const [cartData, setCartData] = useState([]);
 
   const { state, dispatch } = useContext(cartContext);
-  const {user} = useAuth();
+  const { user } = useAuth();
+
+  const userAction = useAuthActions();
 
   useEffect(() => {
     setCartData(state);
   }, [state]);
+
+  const logout = () => {
+    userAction({ type: "SIGNOUT" });
+  };
   return (
     <>
       <div className={styles.mobile}>
@@ -165,11 +175,15 @@ const NavbarComponent = () => {
                     <section className={styles.profileSection}>
                       <section className={styles.userDetails}>
                         <section className={styles.userImg}>
-                          <img src="/assets/images/user.jpg" alt="user" />
+                        <img src="/assets/images/logo.jpg" alt="profile" />
                         </section>
                         <section className={styles.userDetailsText}>
-                          <span className={styles.userName}>{user.first_name + " " + user.last_name}</span>
-                          <span className={styles.userNumber}>{user.phone_number}</span>
+                          <span className={styles.userName}>
+                            {user.first_name + " " + user.last_name}
+                          </span>
+                          <span className={styles.userNumber}>
+                            {user.phone_number}
+                          </span>
                         </section>
                       </section>
                       <hr style={{ margin: "1rem 0 0 0 " }} />
@@ -186,16 +200,12 @@ const NavbarComponent = () => {
                           </Link>
                         </li>
                         <hr style={{ width: "80%", margin: "0 auto" }} />
-                        <li>
-                          <Link href={`#`}>
-                            <a>
-                              <MdOutlineExitToApp
-                                color="var(--lightBlack)"
-                                className={styles.icon}
-                              />
-                              خروج
-                            </a>
-                          </Link>
+                        <li onClick={logout}>
+                          <MdOutlineExitToApp
+                            color="var(--lightBlack)"
+                            className={styles.icon}
+                          />
+                          خروج
                         </li>
                       </ul>
                     </section>

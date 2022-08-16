@@ -9,7 +9,7 @@ import { HiChevronUp } from "react-icons/hi/index";
 //*context
 import { useFilter, useFilterAction } from "../context/FilterContextProvider";
 
-//! import styles
+//* import styles
 import styles from "./filter.module.css";
 
 const Filter = ({ filterList, filterHandler, filterStatus, blog }) => {
@@ -61,6 +61,7 @@ const Filter = ({ filterList, filterHandler, filterStatus, blog }) => {
 
   return (
     <div className={styles.container}>
+      {console.log(blogsState)}
       <section className={styles.header}>
         <h4>فیلتر</h4>
         <IoMdClose

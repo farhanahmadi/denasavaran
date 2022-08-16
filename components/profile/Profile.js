@@ -1,20 +1,31 @@
-import React, { useState, useEffect,useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Layout from "./Layout";
+
+//* import modules
+import { useFormik } from "formik";
+import * as Yup from "yup";
+
 import axios from "axios";
 
 //import styles
 import styles from "./profile.module.css";
 
+//* icons
+import { AiOutlineWarning } from "react-icons/ai/index";
+
 //import components
 import { ProvincesNames } from "../cities/ProvincesNames";
 import { cities } from "../cities/cities";
 import { BaseLink } from "../BaseLink/BaseLink";
+import { useAuth } from "../context/AuthContextProvider";
 
 export default function Profile({ userInfo }) {
-  const [userData, setUserData] = useState({
+  const { user, token } = useAuth();
+  const [formValues, setFormValues] = useState(null);
+  const initialValues = {
     first_name: "",
     last_name: "",
-    avatar: "",
+    // avatar: "",
     email: "",
     state: "",
     city: "",
@@ -22,75 +33,79 @@ export default function Profile({ userInfo }) {
     plate: "",
     zip_code: "",
     phone_number: "",
-  });
-  const [userCity , setUserCity] = useState('');
-
-  
-  const userDataHandler = (event) => {
-    setUserData({ ...userData, [event.target.name]: event.target.value});
-    event.target.name == 'city' && setUserCity(event.target.value);
-    event.target.name == 'state' && setUserCity('');
   };
 
-  const submit = () => {
-    if (userData.first_name === '' || userData.last_name === '' || userData.phone_number === '') {
-      alert("error")
-    }else{
-     if (userData.state !== '' && userCity == '' ) {
-        alert('error');
-     }else{
-      const formdata = new FormData();
-      // formdata.append('avatar' , userData.avatar);
-      formdata.append("first_name", userData.first_name);
-      formdata.append("last_name", userData.last_name);
-      formdata.append("email", userData.email);
-      formdata.append("state", userData.state);
-      formdata.append("city", userData.city);
-      formdata.append("address", userData.address);
-      formdata.append("plate", userData.plate);
-      formdata.append("zip_code", userData.zip_code);
-      formdata.append("phone_number", userData.phone_number);
-      fetch(`${BaseLink}/user/${userInfo.id}/`, {
-        method: "PUT",
-        body: formdata,
+  const onSubmit = (values) => {
+    axios
+      .put(`${BaseLink}/user/${user.id}/`, values, {
         headers: {
-          Authorization: "Token " + "1a43ce13cdd644d49671d1a0bcae55cde07c4d50",
+          Authorization: "Token " + token,
         },
       })
-        .then((response) => response.json())
-        .then((json) => console.log(json));
-    };
-     }
-  }
+      .then(({ data }) => console.log(data))
+      .catch(function (error) {
+        if (error.response) {
+          console.log(error.response.data);
+        }
+      });
+  };
+
+  const validationSchema = Yup.object({
+    first_name: Yup.string().min(
+      3,
+      "نام وارد شده باید بیشتر از ۳ کاراکتر باشد"
+    ),
+    last_name: Yup.string().min(
+      3,
+      "نام خانوادگی وارد شده باید بیشتر از ۳ کاراکتر باشد"
+    ),
+    email: Yup.string()
+      .required("ایمیل خود را وارد کنید")
+      .email("ایمیل وارد شده صحیح نمیباشد"),
+    phone_number: Yup.string()
+      .min(10, "شماره وارد شده صحیح نمیباشد")
+      .max(11, "شماره وارد شده صحیح نمیباشد"),
+  });
+
+  const formik = useFormik({
+    initialValues: formValues || initialValues,
+    onSubmit,
+    validationSchema,
+    validateOnMount: true,
+    enableReinitialize: true,
+  });
+  console.log(formik.errors);
+
+  const [userCity, setUserCity] = useState("");
+
+  // const userDataHandler = (event) => {
+  //   setUserData({ ...userData, [event.target.name]: event.target.value });
+  //   event.target.name == "city" && setUserCity(event.target.value);
+  //   event.target.name == "state" && setUserCity("");
+  // };
+
+  useEffect(async () => {
+    setFormValues(await user);
+  }, [user]);
 
   return (
     <Layout>
       <main className={styles.mainBar}>
         <section className={styles.alert}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            // strokeWidth="2"
-          >
-            <path
-              // strokeLinecap="round"
-              // strokeLinejoin="round"
-              d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
-            />
-          </svg>
+          <AiOutlineWarning
+            style={{ margin: 0, color: "#F1C40F" }}
+            className="icon"
+          />
           برای بهتر مدیریت کردن سفارشات خود لطفا اطلاعات حساب خود را تکمیل کنید
         </section>
-        <section className={styles.inputs}>
+        <form onSubmit={formik.handleSubmit} className={styles.inputs}>
           <section className={styles.username}>
             <label>نام :</label>
             <input
               name="first_name"
               type="text"
               placeholder="نام "
-              value={userData.first_name}
-              onChange={userDataHandler}
+              {...formik.getFieldProps("first_name")}
             />
           </section>
           <section className={styles.lastname}>
@@ -99,8 +114,7 @@ export default function Profile({ userInfo }) {
               name="last_name"
               type="text"
               placeholder="نام خانوادگی "
-              value={userData.last_name}
-              onChange={userDataHandler}
+              {...formik.getFieldProps("last_name")}
             />
           </section>
           <section className={styles.email}>
@@ -109,11 +123,10 @@ export default function Profile({ userInfo }) {
               name="email"
               type="text"
               placeholder="ایمیل "
-              value={userData.email}
-              onChange={userDataHandler}
+              {...formik.getFieldProps("email")}
             />
           </section>
-          <section className={styles.state}>
+          {/* <section className={styles.state}>
             <label>استان</label>
             <select
               name="state"
@@ -167,15 +180,14 @@ export default function Profile({ userInfo }) {
                   )
               )}
             </select>
-          </section>
+          </section> */}
           <section className={styles.address}>
             <label>آدرس :</label>
             <input
               name="address"
               type="text"
               placeholder="آدرس"
-              value={userData.address}
-              onChange={userDataHandler}
+              {...formik.getFieldProps("address")}
             />
           </section>
           <section className={styles.plate}>
@@ -184,8 +196,7 @@ export default function Profile({ userInfo }) {
               name="plate"
               type="text"
               placeholder="پلاک"
-              value={userData.plate}
-              onChange={userDataHandler}
+              {...formik.getFieldProps("plate")}
             />
           </section>
           <section className={styles.zipcode}>
@@ -194,8 +205,7 @@ export default function Profile({ userInfo }) {
               name="zip_code"
               type="text"
               placeholder="کد پستی"
-              value={userData.zip_code}
-              onChange={userDataHandler}
+              {...formik.getFieldProps("zip_code")}
             />
           </section>
           <section className={styles.phone}>
@@ -204,15 +214,16 @@ export default function Profile({ userInfo }) {
               name="phone_number"
               type="text"
               placeholder="شماره همراه"
-              value={userData.phone_number}
-              onChange={userDataHandler}
+              {...formik.getFieldProps("phone_number")}
             />
           </section>
           <br />
           <section className={styles.btn}>
-            <button onClick={submit} className={styles.submit}>ذخیره اطلاعات</button>
+            <button type="submit" className={styles.submit}>
+              ذخیره اطلاعات
+            </button>
           </section>
-        </section>
+        </form>
       </main>
     </Layout>
   );

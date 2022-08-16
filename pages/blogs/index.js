@@ -32,7 +32,7 @@ export default function index({ BlogsList, BlogsCategoris }) {
   );
 }
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   const BlogsList = await axios.get(`${BaseLink}/news/`);
   const BlogsCategoris = await axios.get(`${BaseLink}/news_categories/`);
 
@@ -40,6 +40,5 @@ export async function getStaticProps(context) {
 
   return {
     props: { BlogsList: BlogsList.data, BlogsCategoris: results },
-    revalidate: 3600,
   };
 }

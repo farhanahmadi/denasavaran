@@ -11,7 +11,7 @@ export default async function handler(req, res) {
       },
     });
     if (data) {
-      res.status(200).json({ userData: data.user_data });
+      res.status(200).json({ userData: data.user_data, token: cookies.token });
     }
   } else {
     res.status(200).json({ userData: "" });

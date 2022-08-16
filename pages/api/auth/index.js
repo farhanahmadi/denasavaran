@@ -13,5 +13,5 @@ export default function handler (req, res) {
     "Set-Cookie",
     cookie.serialize("token", req.body.token, cookieOptions)
   );
-  res.status(200).json({ success: true });
+  res.status(200).json({ token: true });
 };
