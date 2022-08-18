@@ -4,24 +4,15 @@ import Layout from "./Layout";
 //import styles
 import styles from "./returned.module.css";
 
+//* import icons
+import { BsArrowRight } from "react-icons/bs/index";
+
 export default function Returned() {
   return (
     <Layout>
       <main className={styles.mainBar}>
         <section className={styles.miniNav}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            // strokeWidth="2"
-          >
-            <path
-              // strokeLinecap="round"
-              // strokeLinejoin="round"
-              d="M17 8l4 4m0 0l-4 4m4-4H3"
-            />
-          </svg>
+          <BsArrowRight />
           پروفایل / مرجوعی
         </section>
         <hr />

@@ -149,14 +149,16 @@ const index = ({
                 </React.Fragment>
               ))}
         </section>
-        <div className={styles.pagination}>
-          <Pagination
-            count={pageCount}
-            page={currentPage || 1}
-            onChange={paginationHandler}
-            color="primary"
-          />
-        </div>
+        {pageCount ? (
+          <div className={styles.pagination}>
+            <Pagination
+              count={pageCount}
+              page={currentPage || 1}
+              onChange={paginationHandler}
+              color="primary"
+            />
+          </div>
+        ) : null}
       </section>
     </div>
   );

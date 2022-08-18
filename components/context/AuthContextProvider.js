@@ -4,6 +4,7 @@ import axios from "axios";
 import Router from "next/router";
 import { BaseLink } from "../BaseLink/BaseLink";
 import toast from "react-hot-toast";
+import { useRouter } from "next/router";
 
 const AuthContext = React.createContext();
 const AuthContextDispatcher = React.createContext();
@@ -85,7 +86,7 @@ const asyncActionHandlers = {
         .then(() => {
           dispatch({ type: "SIGNIN_SUCCESS", payload: "" });
           toast.success("با موفقیت خارج شدید");
-          Router.push(
+          Router.push("/",
             { pathname: Router.pathname, query: Router.query },
             undefined,
             {
@@ -119,6 +120,7 @@ const asyncActionHandlers = {
 };
 
 export default function AuthContextProvider({ children }) {
+  const router = useRouter();
   const isInitialMount = useRef(true);
   const [user, dispatch] = useReducerAsync(
     reducer,
@@ -132,7 +134,7 @@ export default function AuthContextProvider({ children }) {
       dispatch({ type: "LOAD_USER" });
     } else {
     }
-  }, []);
+  }, [router.query]);
   return (
     <AuthContext.Provider value={user}>
       <AuthContextDispatcher.Provider value={dispatch}>

@@ -35,26 +35,21 @@ export default function FilterContextProvider({ children }) {
 
   useEffect(() => {
     //! hard code :(
-    if (isInitialMount.current) {
-      isInitialMount.current = false;
-      blogs__in
-        ? typeof blogs__in == "string"
-          ? initalState.blogsState.push(blogs__in)
-          : initalState.blogsState.push(...blogs__in)
-        : null;
-      tags__in
-        ? typeof tags__in == "string"
-          ? initalState.tagsState.push(tags__in)
-          : initalState.tagsState.push(...tags__in)
-        : null;
-      categories
-        ? typeof categories == "string"
-          ? initalState.categoriesState.push(categories)
-          : initalState.categoriesState.push(...categories)
-        : null;
-    } else {
-      // Your useEffect code here to be run on update
-    }
+    blogs__in
+      ? typeof blogs__in == "string"
+        ? initalState.blogsState.push(blogs__in)
+        : initalState.blogsState.push(...blogs__in)
+      : null;
+    tags__in
+      ? typeof tags__in == "string"
+        ? initalState.tagsState.push(tags__in)
+        : initalState.tagsState.push(...tags__in)
+      : null;
+    categories
+      ? typeof categories == "string"
+        ? initalState.categoriesState.push(categories)
+        : initalState.categoriesState.push(...categories)
+      : null;
   }, [router.query]);
 
   return (

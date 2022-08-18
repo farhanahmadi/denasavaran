@@ -11,13 +11,23 @@ const AboutUs = ({ categoriesList }) => {
         <ul>
           {categoriesList.map((categories) => (
             <li key={categories.id}>
-              <Link href={`/products?categories=${categories.id}`} passHref>
-                <section className={styles.categoriesItem}>
-                  <img src={categories.image} alt={categories.name} />
-                  <span className={styles.categoriesName}>
-                    {categories.name}
-                  </span>
-                </section>
+              <Link
+                href={{
+                  pathname: "/products",
+                  query: { categories: categories.id },
+                }}
+                passHref
+              >
+                <a
+                  style={{ textDecoration: "none", color: "var(--lightBlack)" }}
+                >
+                  <section className={styles.categoriesItem}>
+                    <img src={categories.image} alt={categories.name} />
+                    <span className={styles.categoriesName}>
+                      {categories.name}
+                    </span>
+                  </section>
+                </a>
               </Link>
             </li>
           ))}

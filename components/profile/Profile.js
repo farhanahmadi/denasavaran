@@ -4,7 +4,7 @@ import Layout from "./Layout";
 //* import modules
 import { useFormik } from "formik";
 import * as Yup from "yup";
-
+import toast from "react-hot-toast";
 import axios from "axios";
 
 //import styles
@@ -13,11 +13,12 @@ import styles from "./profile.module.css";
 //* icons
 import { AiOutlineWarning } from "react-icons/ai/index";
 
-//import components
+//*import components
 import { ProvincesNames } from "../cities/ProvincesNames";
 import { cities } from "../cities/cities";
 import { BaseLink } from "../BaseLink/BaseLink";
 import { useAuth } from "../context/AuthContextProvider";
+import InputsComponent from "./InputsComponent";
 
 export default function Profile({ userInfo }) {
   const { user, token } = useAuth();
@@ -42,10 +43,10 @@ export default function Profile({ userInfo }) {
           Authorization: "Token " + token,
         },
       })
-      .then(({ data }) => console.log(data))
+      .then(({ data }) => toast.success("اطلاعات با موفقیت ذخیره شد"))
       .catch(function (error) {
         if (error.response) {
-          console.log(error.response.data);
+          toast.error("مشکلی رخ داده لطفا دوباره سعی کنید");
         }
       });
   };
@@ -74,15 +75,6 @@ export default function Profile({ userInfo }) {
     validateOnMount: true,
     enableReinitialize: true,
   });
-  console.log(formik.errors);
-
-  const [userCity, setUserCity] = useState("");
-
-  // const userDataHandler = (event) => {
-  //   setUserData({ ...userData, [event.target.name]: event.target.value });
-  //   event.target.name == "city" && setUserCity(event.target.value);
-  //   event.target.name == "state" && setUserCity("");
-  // };
 
   useEffect(async () => {
     setFormValues(await user);
@@ -99,52 +91,46 @@ export default function Profile({ userInfo }) {
           برای بهتر مدیریت کردن سفارشات خود لطفا اطلاعات حساب خود را تکمیل کنید
         </section>
         <form onSubmit={formik.handleSubmit} className={styles.inputs}>
-          <section className={styles.username}>
-            <label>نام :</label>
-            <input
-              name="first_name"
-              type="text"
-              placeholder="نام "
-              {...formik.getFieldProps("first_name")}
-            />
-          </section>
-          <section className={styles.lastname}>
-            <label>نام خانوادگی :</label>
-            <input
-              name="last_name"
-              type="text"
-              placeholder="نام خانوادگی "
-              {...formik.getFieldProps("last_name")}
-            />
-          </section>
-          <section className={styles.email}>
-            <label>ایمیل :</label>
-            <input
-              name="email"
-              type="text"
-              placeholder="ایمیل "
-              {...formik.getFieldProps("email")}
-            />
-          </section>
-          {/* <section className={styles.state}>
+          <InputsComponent
+            className={"username"}
+            label={"نام"}
+            formik={formik}
+            name={"first_name"}
+            placeholder={"نام ..."}
+          />
+          <InputsComponent
+            className={"lastname"}
+            label={"نام خانوادگی"}
+            formik={formik}
+            name={"last_name"}
+            placeholder={"نام خانوادگی ..."}
+          />
+          <InputsComponent
+            className={"email"}
+            label={"ایمیل"}
+            formik={formik}
+            name={"email"}
+            placeholder={"ایمیل ..."}
+          />
+          <section className={styles.state}>
             <label>استان</label>
             <select
               name="state"
               className={styles.selects}
-              onChange={userDataHandler}
+              {...formik.getFieldProps("state")}
             >
-              {userData.state ? (
+              {formik.values.state ? (
                 <option
                   hidden
                   value={
                     ProvincesNames.find(
-                      (province) => province.id == userData.state
+                      (province) => province.id == formik.values.state
                     ).id
                   }
                 >
                   {
                     ProvincesNames.find(
-                      (province) => province.id == userData.state
+                      (province) => province.id == formik.values.state
                     ).name
                   }
                 </option>
@@ -152,7 +138,9 @@ export default function Profile({ userInfo }) {
                 <option hidden>انتخاب استان</option>
               )}
               {ProvincesNames.map((province) => (
-                <option value={province.id}>{province.name}</option>
+                <option key={province.id} value={province.id}>
+                  {province.name}
+                </option>
               ))}
             </select>
           </section>
@@ -161,62 +149,58 @@ export default function Profile({ userInfo }) {
             <select
               name="city"
               className={styles.selects}
-              onChange={userDataHandler}
+              {...formik.getFieldProps("city")}
             >
-              {userData.city && userCity ? (
+              {formik.values.city ? (
                 <option
                   hidden
-                  value={cities.find((city) => city.id == userData.city).id}
+                  value={
+                    cities.find((city) => city.id == formik.values.city).id
+                  }
                 >
-                  {cities.find((city) => city.id == userData.city).name}
+                  {cities.find((city) => city.id == formik.values.city).name}
                 </option>
               ) : (
                 <option hidden>انتخاب شهر</option>
               )}
               {cities.map(
                 (city) =>
-                  city.province_id == userData.state && (
-                    <option value={city.id}>{city.name}</option>
+                  city.province_id == formik.values.state && (
+                    <option key={city.id} value={city.id}>
+                      {city.name}
+                    </option>
                   )
               )}
             </select>
-          </section> */}
-          <section className={styles.address}>
-            <label>آدرس :</label>
-            <input
-              name="address"
-              type="text"
-              placeholder="آدرس"
-              {...formik.getFieldProps("address")}
-            />
           </section>
-          <section className={styles.plate}>
-            <label>پلاک :</label>
-            <input
-              name="plate"
-              type="text"
-              placeholder="پلاک"
-              {...formik.getFieldProps("plate")}
-            />
-          </section>
-          <section className={styles.zipcode}>
-            <label>کد پستی :</label>
-            <input
-              name="zip_code"
-              type="text"
-              placeholder="کد پستی"
-              {...formik.getFieldProps("zip_code")}
-            />
-          </section>
-          <section className={styles.phone}>
-            <label>شماره همراه :</label>
-            <input
-              name="phone_number"
-              type="text"
-              placeholder="شماره همراه"
-              {...formik.getFieldProps("phone_number")}
-            />
-          </section>
+          <InputsComponent
+            className={"address"}
+            label={"آدرس"}
+            formik={formik}
+            name={"address"}
+            placeholder={"آدرس..."}
+          />
+          <InputsComponent
+            className={"plate"}
+            label={"پلاک"}
+            formik={formik}
+            name={"plate"}
+            placeholder={"پلاک..."}
+          />
+          <InputsComponent
+            className={"zipcode"}
+            label={"کد پستی"}
+            formik={formik}
+            name={"zip_code"}
+            placeholder={"کد پستی ..."}
+          />
+          <InputsComponent
+            className={"phone"}
+            label={"شماره همراه"}
+            formik={formik}
+            name={"phone_number"}
+            placeholder={"شماره همراه ..."}
+          />
           <br />
           <section className={styles.btn}>
             <button type="submit" className={styles.submit}>

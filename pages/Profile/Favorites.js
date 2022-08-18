@@ -1,29 +1,52 @@
-import React from 'react'
-import axios from 'axios'
+import React from "react";
+import axios from "axios";
+import cookie from "cookie";
 
 //import components
-import Layout from '../../components/Layout/Layout'
-import Favorites from '../../components/profile/Favorites'
+import Layout from "../../components/Layout/Layout";
+import Favorites from "../../components/profile/Favorites";
 import { BaseLink } from "../../components/BaseLink/BaseLink";
 
-
-
-
-export default function index ({userFavorites}) {
+export default function index({ userFavorites }) {
   return (
     <Layout profile={true}>
-        <Favorites userFavorites={userFavorites} />
+      <Favorites userFavorites={userFavorites} />
     </Layout>
-  )
+  );
 }
 
-export async function getServerSideProps(context) {
-  const userFavorites = await axios.get(`${BaseLink}/marks/`, {
-    headers: {
-      Authorization: "Token " + "1a43ce13cdd644d49671d1a0bcae55cde07c4d50",
-    },
-  });
-  return {
-    props: { userFavorites: userFavorites.data },
-  };
+export async function getServerSideProps({ req, res }) {
+  const { token } = cookie.parse(req.headers.cookie || "");
+  var isValid = false;
+  if (token) {
+    await axios
+      .get(`${BaseLink}/profile/orders/`, {
+        headers: {
+          Authorization: "Token " + token,
+        },
+      })
+      .then((data) => {
+        isValid = true;
+      })
+      .catch((error) => {
+        isValid = false;
+      });
+  }
+  if (isValid) {
+    const userFavorites = await axios.get(`${BaseLink}/marks/`, {
+      headers: {
+        Authorization: "Token " + token,
+      },
+    });
+    return {
+      props: { userFavorites: userFavorites.data },
+    };
+  } else {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/",
+      },
+    };
+  }
 }

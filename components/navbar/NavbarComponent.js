@@ -175,15 +175,15 @@ const NavbarComponent = () => {
                     <section className={styles.profileSection}>
                       <section className={styles.userDetails}>
                         <section className={styles.userImg}>
-                        <img src="/assets/images/logo.jpg" alt="profile" />
+                          <img src="/assets/images/logo.jpg" alt="profile" />
                         </section>
                         <section className={styles.userDetailsText}>
                           <span className={styles.userName}>
-                            {user.first_name + " " + user.last_name}
+                            {user.first_name
+                              ? user.first_name + " " + user.last_name
+                              : "کاربر جدید"}
                           </span>
-                          <span className={styles.userNumber}>
-                            {user.phone_number}
-                          </span>
+                          <span className={styles.userEmail}>{user.email}</span>
                         </section>
                       </section>
                       <hr style={{ margin: "1rem 0 0 0 " }} />

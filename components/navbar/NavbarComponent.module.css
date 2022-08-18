@@ -533,6 +533,10 @@
     font-weight: bold;
 }
 
+.userEmail{
+    font-size: 12px;
+}
+
 @media only screen and (min-width: 1800px) {
     .topNav {
         max-width: 1800px;

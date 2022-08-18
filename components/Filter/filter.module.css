@@ -266,6 +266,10 @@
     .categoryContainer {
         display: block;
     }
+    .carFilter {
+        height: 260px;
+    
+    }
 
 }
 

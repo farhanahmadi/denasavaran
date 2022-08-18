@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useRouter } from "next/router";
 
 //*context
@@ -46,7 +46,6 @@ export default function SideBarFilter({
   return (
     <React.Fragment>
       <section className={load ? styles.sideBar : styles.skeletonSidebar}>
-        {console.log(blogsState)}
         {blog ? (
           <div>
             <br />

@@ -1,5 +1,6 @@
 import React from 'react'
-import axios from 'axios';
+import axios from "axios";
+import cookie from "cookie";
 
 
 //import components
@@ -17,13 +18,38 @@ export default function index ({userOrders}) {
   )
 }
 
-export async function getServerSideProps(context) {
-  const userOrders = await axios.get(`${BaseLink}/profile/orders/`, {
-    headers: {
-      Authorization: "Token " + "1a43ce13cdd644d49671d1a0bcae55cde07c4d50",
-    },
-  });
-  return {
-    props: { userOrders: userOrders.data },
-  };
+export async function getServerSideProps({ req, res }) {
+  const { token } = cookie.parse(req.headers.cookie || "");
+  var isValid = false;
+  if (token) {
+    await axios
+      .get(`${BaseLink}/profile/orders/`, {
+        headers: {
+          Authorization: "Token " + token,
+        },
+      })
+      .then((data) => {
+        isValid = true;
+      })
+      .catch((error) => {
+        isValid = false;
+      });
+  }
+  if (isValid) {
+    const userOrders = await axios.get(`${BaseLink}/profile/orders/`, {
+      headers: {
+        Authorization: "Token " + token,
+      },
+    });
+    return {
+      props: { userOrders: userOrders.data },
+    };
+  } else {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/",
+      },
+    };
+  }
 }
