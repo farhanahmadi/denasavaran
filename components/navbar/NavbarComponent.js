@@ -7,7 +7,7 @@ import Link from "next/link";
 import toast from "react-hot-toast";
 
 //?import components
-import NavbarCartHover from "./navbarCartHover";
+import NavbarCartHover from "./NavbarCartHover";
 import { cartContext } from "../context/CartContextProvider";
 import { useAuth, useAuthActions } from "../context/AuthContextProvider";
 
