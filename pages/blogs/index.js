@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Head from "next/head";
 
 //import components
 import Layout from "../../components/Layout/Layout";
@@ -16,6 +17,14 @@ export default function index({ BlogsList, BlogsCategoris }) {
 
   return (
     <React.Fragment>
+      <Head>
+        <title>وبلاگ دناسواران ارومیه</title>
+        <meta charset="UTF-8" />
+        <meta
+          name="description"
+          content="وبلاگ دناسواران ارومیه"
+        />
+      </Head>
       <Layout
         filterStatus={filterStatus}
         filterList={BlogsCategoris}

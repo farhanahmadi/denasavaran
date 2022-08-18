@@ -1,19 +1,22 @@
-import React from 'react'
+import React from "react";
 import axios from "axios";
 import cookie from "cookie";
+import Head from "next/head";
 
 //import components
-import Layout from '../../components/Layout/Layout'
-import PersonalInfo from '../../components/profile/PersonalInfo'
-import { BaseLink } from '../../components/BaseLink/BaseLink';
+import Layout from "../../components/Layout/Layout";
+import PersonalInfo from "../../components/profile/PersonalInfo";
+import { BaseLink } from "../../components/BaseLink/BaseLink";
 
-
-export default function index () {
+export default function index() {
   return (
     <Layout profile={true}>
-        <PersonalInfo />
+      <Head>
+        <title>پروفایل کاربری</title>
+      </Head>
+      <PersonalInfo />
     </Layout>
-  )
+  );
 }
 
 export async function getServerSideProps({ req, res }) {

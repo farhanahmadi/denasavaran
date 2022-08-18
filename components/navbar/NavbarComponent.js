@@ -18,6 +18,8 @@ import { RiShoppingBasket2Line } from "react-icons/ri/index";
 import { AiOutlineUsergroupAdd, AiOutlineHome } from "react-icons/ai/index";
 import { BiUser } from "react-icons/bi/index";
 import { CgProfile } from "react-icons/cg/index";
+import { BsHandbag } from "react-icons/bs/index";
+import { IoIosLogIn } from "react-icons/io/index";
 import axios from "axios";
 
 //?import styles
@@ -72,17 +74,6 @@ const NavbarComponent = () => {
                 </span>
               </Link>
             </li>
-            <li onClick={() => setActive("content")}>
-              <Link href={"/blogs"} passHref>
-                <span
-                  className={
-                    active === "content" ? styles.active : styles.notActive
-                  }
-                >
-                  <MdOutlineArticle className={`icon ${styles.icons}`} /> وبلاگ
-                </span>
-              </Link>
-            </li>
             <li onClick={() => setActive("shop")}>
               <Link href={"/products"} passHref>
                 <span
@@ -92,6 +83,17 @@ const NavbarComponent = () => {
                 >
                   <RiShoppingBasket2Line className={`icon ${styles.icons}`} />
                   فروشگاه
+                </span>
+              </Link>
+            </li>
+            <li onClick={() => setActive("content")}>
+              <Link href={"/blogs"} passHref>
+                <span
+                  className={
+                    active === "content" ? styles.active : styles.notActive
+                  }
+                >
+                  <MdOutlineArticle className={`icon ${styles.icons}`} /> وبلاگ
                 </span>
               </Link>
             </li>
@@ -120,8 +122,8 @@ const NavbarComponent = () => {
               <Image
                 src="/assets/images/navbarlogo.png"
                 alt="Logo"
-                width="268"
-                height="40"
+                width={268}
+                height={40}
               />
             </Navbar.Brand>
           </Container>
@@ -137,13 +139,32 @@ const NavbarComponent = () => {
               </a>
             </section>
             <section className={styles.mobileUserBtn}>
-              <a>
-                <i className="fas fa-users"></i>
-              </a>
+              <Link href={user ? "/profile" : "/auth/login"}>
+                {user ? (
+                  <a>
+                    <BiUser size={24} color="var(--lightBlack)" />
+                  </a>
+                ) : (
+                  <a
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "0 5px",
+                      textDecoration: "none",
+                      color: "var(--lightBlack)",
+                    }}
+                  >
+                    <IoIosLogIn size={24} color="var(--lightBlack)" />
+                    ورود
+                  </a>
+                )}
+              </Link>
               <section className={styles.line}></section>
-              <a>
-                <i className="fas fa-shopping-bag"></i>
-              </a>
+              <Link href={"/cart"}>
+                <a>
+                  <BsHandbag size={24} color="var(--lightBlack)" />
+                </a>
+              </Link>
             </section>
           </section>
         </Navbar>
@@ -156,13 +177,13 @@ const NavbarComponent = () => {
                 <Image
                   src="/assets/images/navbarlogo.png"
                   alt="Logo"
-                  width="300"
-                  height="44"
+                  width={300}
+                  height={44}
                 />
               </section>
               <section className={styles.searchBar}>
                 <input type="text" placeholder="جستجو" />
-                <a className={styles.searchBtn} variant="danger">
+                <a href={"#"} className={styles.searchBtn} variant="danger">
                   <i className="fas fa-search" style={{ color: "#fff" }}></i>
                 </a>
               </section>
@@ -250,15 +271,6 @@ const NavbarComponent = () => {
               </li>
             </ul>
           </section>
-          {/* <section
-            onMouseEnter={dropdownHandler}
-            onMouseLeave={dropdownHandlerRemove}
-            className={
-              dropDownclass ? styles.dropdownBlock : styles.dropdownNone
-            }
-          >
-            <DropDown categoriesList={categoriesList} />
-          </section> */}
         </nav>
       </div>
     </>

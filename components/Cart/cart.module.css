@@ -162,12 +162,14 @@
     text-align: right;
     margin-bottom: 40px;
 }
-.buyBtnSection{
+
+.buyBtnSection {
     width: 90%;
     margin: 0 auto;
 }
-.buyBtn{
-    background-image: linear-gradient(to right, var(--red) , #FF0000);
+
+.buyBtn {
+    background-image: linear-gradient(to right, var(--red), #FF0000);
     color: #fff;
     text-align: center;
     width: 100%;
@@ -175,7 +177,17 @@
     border: none;
     border-radius: 10px;
     margin-bottom: -10px;
-    
+}
+
+.buyBtnDisabled {
+    background-color: var(--deepgray);
+    color: #fff;
+    text-align: center;
+    width: 100%;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    margin-bottom: -10px;
 }
 
 .freeSend {
@@ -186,29 +198,35 @@
     align-items: center;
     justify-content: space-between;
 }
-.freeSendHeader{
+
+.freeSendHeader {
     display: flex;
     flex-direction: column;
     gap: 5px 0px;
     flex: 2;
 }
-.freeSendHeader h2{
+
+.freeSendHeader h2 {
     font-size: 1.2em;
     margin: 0;
 }
-.freeSendHeader p{
+
+.freeSendHeader p {
     font-size: .8em;
     margin: 0;
     color: #81858b;
 }
-.freeSendImg{
+
+.freeSendImg {
     flex: 1;
 }
-.freeSendImg img{
+
+.freeSendImg img {
     width: 100%;
     height: auto;
 }
-.fixedCart{
+
+.fixedCart {
     display: none;
     position: fixed;
     bottom: 60px;
@@ -223,25 +241,30 @@
     /* border-top-right-radius: 10px; */
     box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
 }
-.fixedPriceSection{
+
+.fixedPriceSection {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     flex: auto;
 
 }
-.fixedPriceText{
+
+.fixedPriceText {
     color: #81858b;
 }
-.fixedPriceNumber{
+
+.fixedPriceNumber {
     font-size: 1em;
 }
-.fixedBuyBtnSection{
+
+.fixedBuyBtnSection {
     flex: auto;
     height: 40px;
 }
-.fixedbuyBtn{
-    background-image: linear-gradient(to right, var(--red) , #FF0000);
+
+.fixedbuyBtn {
+    background-image: linear-gradient(to right, var(--red), #FF0000);
     color: #fff;
     text-align: center;
     width: 100%;
@@ -249,8 +272,22 @@
     border: none;
     border-radius: 10px;
     margin-bottom: -10px;
+    font-size: 12px;
 }
-.trash{
+
+.fixedbuyBtnDisabled {
+    background-color: var(--deepgray);
+    color: #fff;
+    text-align: center;
+    width: 100%;
+    height: inherit;
+    border: none;
+    border-radius: 10px;
+    margin-bottom: -10px;
+    font-size: 12px;
+}
+
+.trash {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -259,84 +296,113 @@
     flex: 1;
     cursor: pointer;
 }
-@media only screen and (max-width: 1440px){
+
+.emptyCart {
+    text-align: center;
+}
+
+.emptyCart h2 {
+    font-size: 1.5em;
+}
+
+@media only screen and (max-width: 1440px) {
     .container {
         width: 90%;
     }
-    .productDetails{
+
+    .productDetails {
         padding: 0 2%;
     }
+
     .image {
         width: 20%;
     }
-    .quantityContainer{
+
+    .quantityContainer {
         width: 80%;
     }
 }
-@media only screen and (max-width: 1200px){
+
+@media only screen and (max-width: 1200px) {
     .image {
         width: 25%;
     }
-    .quantityContainer{
+
+    .quantityContainer {
         width: 75%;
     }
-    .totalNumber{
+
+    .totalNumber {
         font-size: 1em;
         margin: 0;
     }
 }
-@media only screen and (max-width: 998px){
+
+@media only screen and (max-width: 998px) {
     .container {
         width: 100%;
         display: flex;
         flex-direction: column;
     }
-    .productDetails{
+
+    .productDetails {
         width: 100%;
         border: none;
         box-shadow: none;
     }
-    .paymentDetails{
+
+    .paymentDetails {
         width: 100%;
     }
-    .ContinueShopping{
+
+    .ContinueShopping {
         border: none;
         box-shadow: none;
     }
-    .buyBtn{
+
+    .buyBtn {
         display: none;
     }
-    .freeSend{
+
+    .freeSend {
         width: 90%;
         height: 80px;
-        margin: 0  auto 10% auto;
+        margin: 0 auto 10% auto;
     }
-    .freeSendImg{
+
+    .freeSendImg {
         text-align: left;
     }
-    .freeSendImg img{
+
+    .freeSendImg img {
         width: 135px;
         height: 70px;
     }
-    .fixedCart{
+
+    .fixedCart {
         display: flex;
     }
 }
-@media only screen and (max-width: 576px){
+
+@media only screen and (max-width: 576px) {
     .image {
         width: 40%;
     }
-    .quantityContainer{
+
+    .quantityContainer {
         width: 90%;
     }
-    .totalNumber{
+
+    .totalNumber {
         font-size: 1em;
         margin: 0;
     }
-    .name{
+
+    .name {
         font-size: 18px;
     }
-    .price{
+
+    .price {
         text-align: left;
         width: 100%;
         padding: 0 5px;

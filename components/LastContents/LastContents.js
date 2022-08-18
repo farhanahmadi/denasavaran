@@ -57,9 +57,9 @@ export default function LastContents({ lastProducts }) {
                     <section className={styles.cardImg}>
                       <Image
                         src={item.thumbnail}
-                        alt={item.title}
-                        width="172"
-                        height="172"
+                        alt={item.name}
+                        width={172}
+                        height={172}
                       />
                     </section>
                     <section className={styles.cardName}>

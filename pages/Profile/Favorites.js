@@ -1,6 +1,8 @@
 import React from "react";
 import axios from "axios";
 import cookie from "cookie";
+import Head from "next/head";
+
 
 //import components
 import Layout from "../../components/Layout/Layout";
@@ -10,6 +12,9 @@ import { BaseLink } from "../../components/BaseLink/BaseLink";
 export default function index({ userFavorites }) {
   return (
     <Layout profile={true}>
+       <Head>
+        <title>لیست علاقه مندی ها</title>
+      </Head>
       <Favorites userFavorites={userFavorites} />
     </Layout>
   );

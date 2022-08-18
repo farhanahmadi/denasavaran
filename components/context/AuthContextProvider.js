@@ -54,7 +54,7 @@ const asyncActionHandlers = {
             token: data.token,
           });
           toast.success("با موفقیت وارد شدید");
-          Router.push("/");
+          Router.back();
         })
         .catch((error) => {
           dispatch({ type: "SIGNIN_FAIL", error: "an error has occurred" });
@@ -86,7 +86,8 @@ const asyncActionHandlers = {
         .then(() => {
           dispatch({ type: "SIGNIN_SUCCESS", payload: "" });
           toast.success("با موفقیت خارج شدید");
-          Router.push("/",
+          Router.push(
+            "/",
             { pathname: Router.pathname, query: Router.query },
             undefined,
             {

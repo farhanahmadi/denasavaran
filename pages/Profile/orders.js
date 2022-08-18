@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from "axios";
 import cookie from "cookie";
+import Head from "next/head";
 
 
 //import components
@@ -13,6 +14,9 @@ import { BaseLink } from "../../components/BaseLink/BaseLink";
 export default function index ({userOrders}) {
   return (
     <Layout profile={true}>
+       <Head>
+        <title>لیست سفارشات</title>
+      </Head>
         <Orders userOrders={userOrders} />
     </Layout>
   )

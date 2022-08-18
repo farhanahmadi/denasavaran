@@ -14,9 +14,6 @@ export default function index({ productDetails }) {
         <title>{productDetails.name}</title>
         <meta charset="UTF-8" />
         <meta name="description" content={productDetails.description} />
-        <meta name="keywords" content={productDetails.hashtag} />
-        <meta name="author" content="Farhan Ahmadi" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
       <Details productDetails={productDetails} />
     </Layout>

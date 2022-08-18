@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 //import styles
 import styles from "./AboutUs.module.css";
@@ -22,7 +23,12 @@ const AboutUs = ({ categoriesList }) => {
                   style={{ textDecoration: "none", color: "var(--lightBlack)" }}
                 >
                   <section className={styles.categoriesItem}>
-                    <img src={categories.image} alt={categories.name} />
+                    <Image
+                      src={categories.image}
+                      alt={categories.name}
+                        width={100}
+                        height={100}
+                      />
                     <span className={styles.categoriesName}>
                       {categories.name}
                     </span>

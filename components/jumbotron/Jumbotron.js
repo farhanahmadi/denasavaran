@@ -15,7 +15,7 @@ export default function jumbotron() {
           <h1>لوازم یدکی دنا سواران ارومیه ! قطعه رو جستجو کن:</h1>
           <section className={styles.input}>
             <input type="text" placeholder="جـسـتـجـو در تـمـام قـطـعـات" />
-            <a className={styles.searchBtn} variant="danger">
+            <a href={'#'} className={styles.searchBtn} variant="danger">
               <FaSearch className={styles.searchIcon} />
             </a>
           </section>

@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { BaseLink } from "../../components/BaseLink/BaseLink";
+import Head from "next/head";
+
 
 //import components
 import Layout from "../../components/Layout/Layout";
@@ -14,9 +16,13 @@ export default function index({ products, tags, categoriesList }) {
     setFilterStatus(name);
   };
 
-
   return (
     <React.Fragment>
+      <Head>
+        <title>فروشگاه دناسواران ارومیه</title>
+        <meta charset="UTF-8" />
+        <meta name="description" content="فروشگاه آنلاین دناسواران ارومیه ، فروش انواع قطعات ماشین های ایرانی و خارجی و ماشین هارو توربوشارژ" />
+      </Head>
       <Layout
         filterStatus={filterStatus}
         filterList={filterStatus === "tags" ? tags : categoriesList}

@@ -11,8 +11,10 @@ import { quantityCheck } from "../context/quantityHandler";
 
 import styles from "./navbarCartHover.module.css";
 import { persianNumber } from "../function/PersianNumber";
+import { useAuth } from "../context/AuthContextProvider";
 
 const NavbarCartHover = () => {
+  const { user } = useAuth();
   const { state, dispatch } = useContext(cartContext);
 
   return (
@@ -147,7 +149,16 @@ const NavbarCartHover = () => {
             <span> تومان</span>
           </section>
         </section>
-        <button className={state.products.length ? styles.buyBtn : styles.disabledBtn } disabled={state.products.length ? false : true } >ادامه فرایند خرید</button>
+        <Link href={user ? "/cart" : "/auth/login" }>
+          <button
+            className={
+              state.products.length ? styles.buyBtn : styles.disabledBtn
+            }
+            disabled={state.products.length ? false : true}
+          >
+            {user ? "ادامه فرایند خرید" : "ورود و ادامه فرایند خرید"}
+          </button>
+        </Link>
       </section>
     </div>
   );
