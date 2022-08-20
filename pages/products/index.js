@@ -51,7 +51,7 @@ export async function getServerSideProps(context) {
     `${BaseLink}/products/?${queryString.stringify(query)}`,
     {
       headers: {
-        Authorization: "Token " + token,
+        Authorization: "Token " + token || "",
       },
     }
   );
