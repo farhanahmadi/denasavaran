@@ -49,11 +49,13 @@ export async function getServerSideProps(context) {
   const { token } = cookie.parse(req.headers.cookie || "");
   const products = await axios.get(
     `${BaseLink}/products/?${queryString.stringify(query)}`,
-    {
-      headers: {
-        Authorization: "Token " + token || "",
-      },
-    }
+    token
+      ? {
+          headers: {
+            Authorization: "Token " + token,
+          },
+        }
+      : null
   );
   const tags = await axios.get(`${BaseLink}/tags_w_p/`);
   const categoriesList = await axios.get(`${BaseLink}/categories-m2-wp/`);
