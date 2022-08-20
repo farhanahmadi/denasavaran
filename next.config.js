@@ -8,7 +8,7 @@ module.exports = nextConfig
 
 module.exports = {
   images: {
-    domains: ['https://spiffy-torte-6b3448'],
+    domains: ['45.159.113.83'],
   },
   eslint: {
     // Warning: This allows production builds to successfully complete even if
