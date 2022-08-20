@@ -6,6 +6,7 @@ export default function Document() {
       <Head>
         <meta name="author" content="Farhan Ahmadi" />
         <link rel="shortcut icon" href="/favicon.ico" />
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"></meta>
         <link
           rel="stylesheet"
           href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
@@ -16,7 +17,7 @@ export default function Document() {
           rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-          crossorigin="anonymous"
+          crossOrigin="anonymous"
         />
       </Head>
       <body>
