@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef } from "react";
 import { useReducerAsync } from "use-reducer-async";
 import axios from "axios";
 import Router from "next/router";
-import { BaseLink , LoginLink} from "../BaseLink/BaseLink";
+import { BaseLink } from "../BaseLink/BaseLink";
 import toast from "react-hot-toast";
 import { useRouter } from "next/router";
 
@@ -45,7 +45,7 @@ const asyncActionHandlers = {
     async (action) => {
       dispatch({ type: "SIGNIN_PENDING" });
       axios
-        .post(`${LoginLink}/login/user/`, action.payload)
+        .post(`${BaseLink}/login/user/`, action.payload)
         .then(({ data }) => {
           axios.post("/api/auth", { token: data.token });
           dispatch({
