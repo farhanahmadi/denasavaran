@@ -8,7 +8,7 @@ module.exports = nextConfig
 
 module.exports = {
   images: {
-    domains: ['45.159.113.83' , 'https://spiffy-torte-6b3448.netlify.app/'],
+    domains: ['https://spiffy-torte-6b3448'],
   },
   eslint: {
     // Warning: This allows production builds to successfully complete even if
