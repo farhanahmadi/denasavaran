@@ -54,10 +54,21 @@ body::-webkit-scrollbar {
 
 a {
   text-decoration: none;
+  color: var(--lightBlack);
 }
 
 * {
   box-sizing: border-box;
+}
+
+.disableA{
+  text-decoration: none;
+  color: var(--lightBlack);
+}
+
+.disableA:hover{
+  text-decoration: none;
+  color: var(--lightBlack);
 }
 
 .dropdown-toggle {

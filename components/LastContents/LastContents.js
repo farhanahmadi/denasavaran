@@ -5,7 +5,7 @@ import { Navigation, Pagination } from "swiper";
 import { Card, Button } from "react-bootstrap";
 import React from "react";
 import Image from "next/image";
-
+import Link from "next/link";
 //import styles
 import styles from "./LastContents.module.css";
 
@@ -48,52 +48,65 @@ export default function LastContents({ lastProducts }) {
                     src="/assets/images/offer.png"
                     alt="offer"
                   />
-                  <button className={styles.more}>{"مشاهده همه >"}</button>
+                  <Link href={"/products"}>
+                    <a className="disableA" style={{color: 'white!important'}}>{"مشاهده همه >"}</a>
+                  </Link>
                 </section>
               </SwiperSlide>
               {lastProducts.map((item) => (
                 <SwiperSlide key={item.id} className={styles.swiperSlider}>
-                  <section className={styles.card}>
-                    <section className={styles.cardImg}>
-                      <Image
-                        src={item.thumbnail}
-                        alt={item.name}
-                        width={172}
-                        height={172}
-                      />
-                    </section>
-                    <section className={styles.cardName}>
-                      <h1>{item.name}</h1>
-                    </section>
-                    <section className={styles.cardText}>
-                      <p className={styles.discountPrice}>
-                        {item.price_after_discount
-                          ? item.price_after_discount
-                          : item.price}
-                      </p>
-                      <p
-                        className={
-                          item.discount_percent ? styles.discountPercent : ""
-                        }
-                      >
-                        <span className={styles.spanPercent}>
-                          <span style={{ marginTop: "2px" }}>
-                            {item.discount_percent ? item.discount_percent : ""}
-                          </span>
-                          {item.discount_percent ? (
-                            <span className={styles.percentIcon}>%</span>
-                          ) : (
-                            ""
-                          )}
-                        </span>
-                      </p>
-                    </section>
-                    <section>
-                      <p className={styles.mainPrice}>
-                        {item.price_after_discount ? item.price : ""}
-                      </p>
-                    </section>
-                  </section>
+                  <Link
+                    href={`/product/name=${item.slug}?id=${item.id}`}
+                    passHref
+                  >
+                    <a className="disableA">
+                      <section className={styles.card}>
+                        <section className={styles.cardImg}>
+                          <Image
+                            src={item.thumbnail}
+                            alt={item.name}
+                            width={172}
+                            height={172}
+                          />
+                        </section>
+                        <section className={styles.cardName}>
+                          <h1>{item.name}</h1>
+                        </section>
+                        <section className={styles.cardText}>
+                          <p className={styles.discountPrice}>
+                            {item.price_after_discount
+                              ? item.price_after_discount
+                              : item.price}
+                          </p>
+                          <p
+                            className={
+                              item.discount_percent
+                                ? styles.discountPercent
+                                : ""
+                            }
+                          >
+                            <span className={styles.spanPercent}>
+                              <span style={{ marginTop: "2px" }}>
+                                {item.discount_percent
+                                  ? item.discount_percent
+                                  : ""}
+                              </span>
+                              {item.discount_percent ? (
+                                <span className={styles.percentIcon}>%</span>
+                              ) : (
+                                ""
+                              )}
+                            </span>
+                          </p>
+                        </section>
+                        <section>
+                          <p className={styles.mainPrice}>
+                            {item.price_after_discount ? item.price : ""}
+                          </p>
+                        </section>
+                      </section>
+                    </a>
+                  </Link>
                 </SwiperSlide>
               ))}
             </Swiper>

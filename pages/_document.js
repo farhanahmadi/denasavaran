@@ -5,7 +5,6 @@ export default function Document() {
     <Html>
       <Head>
         <meta name="author" content="Farhan Ahmadi" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="shortcut icon" href="/favicon.ico" />
         <link
           rel="stylesheet"

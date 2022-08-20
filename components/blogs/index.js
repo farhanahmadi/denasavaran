@@ -49,7 +49,7 @@ const index = ({ BlogsList, BlogsCategoris, filterHandler }) => {
       <div className={styles.cardContainer}>
         {load
           ? BlogsList.results.map((item, index) => (
-              <BlogsCart item={item} />
+              <BlogsCart key={item.id} item={item} />
             ))
           : BlogsList.results.map((item, index) => (
               <div key={item.id}>

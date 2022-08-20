@@ -43,7 +43,7 @@ export default function BlogsCart({item}) {
             href={`/blogs/${item.id}/${item.title.split(" ").join("-")}`}
             passHref
           >
-            <a>ادامه مطلب</a>
+            <a style={{textDecoration: 'none'}}>ادامه مطلب</a>
           </Link>
         </Card.Body>
       </Card>

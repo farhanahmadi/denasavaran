@@ -27,7 +27,7 @@ export default function Home({ categoriesList, lastProducts }) {
           <LastContents lastProducts={lastProducts} />
           <div className={styles.posters}>
             <section className={styles.denaTools}>
-              <Link href={`#`}>
+              <Link href={`/products`}>
                 <a>
                   <Image
                     src="/assets/images/denaTools.jpg"
@@ -39,7 +39,7 @@ export default function Home({ categoriesList, lastProducts }) {
               </Link>
             </section>
             <section className={styles.peugeotTools}>
-              <Link href={`#`}>
+              <Link href={`/products`}>
                 <a>
                   <Image
                     src="/assets/images/peugeotTools.jpg"
@@ -55,7 +55,7 @@ export default function Home({ categoriesList, lastProducts }) {
 
           <div className={styles.posters}>
             <section className={styles.denaTools}>
-              <Link href={`#`}>
+              <Link href={`/products`}>
                 <a>
                   <Image
                     src="/assets/images/carClutch.jpg"
@@ -67,7 +67,7 @@ export default function Home({ categoriesList, lastProducts }) {
               </Link>
             </section>
             <section className={styles.peugeotTools}>
-              <Link href={`#`}>
+              <Link href={`/products`}>
                 <a>
                   <Image
                     src="/assets/images/carOil.jpg"

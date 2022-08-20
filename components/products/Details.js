@@ -55,7 +55,6 @@ const Details = ({ productDetails }) => {
   };
   return (
     <Row dir="rtl" style={{ margin: "5% auto", width: "98%" }}>
-      {console.log(state)}
       <Col xl={3} lg={3} md={12}>
         <div className={styles.imageContainer}>
           <img

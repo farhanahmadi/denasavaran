@@ -2,9 +2,10 @@ import axios from "axios";
 import React, { useState } from "react";
 import { BaseLink } from "../../components/BaseLink/BaseLink";
 import Head from "next/head";
+import queryString from "query-string";
+import cookie from "cookie";
 
-
-//import components
+//*import components
 import Layout from "../../components/Layout/Layout";
 import Products from "../../components/products/index";
 
@@ -21,7 +22,10 @@ export default function index({ products, tags, categoriesList }) {
       <Head>
         <title>فروشگاه دناسواران ارومیه</title>
         <meta charset="UTF-8" />
-        <meta name="description" content="فروشگاه آنلاین دناسواران ارومیه ، فروش انواع قطعات ماشین های ایرانی و خارجی و ماشین هارو توربوشارژ" />
+        <meta
+          name="description"
+          content="فروشگاه آنلاین دناسواران ارومیه ، فروش انواع قطعات ماشین های ایرانی و خارجی و ماشین هارو توربوشارژ"
+        />
       </Head>
       <Layout
         filterStatus={filterStatus}
@@ -40,13 +44,16 @@ export default function index({ products, tags, categoriesList }) {
 }
 
 export async function getServerSideProps(context) {
-  const { page } = context.query;
-  const { tags__in } = context.query;
-  const { categories } = context.query;
+  const { req, query } = context;
+
+  const { token } = cookie.parse(req.headers.cookie || "");
   const products = await axios.get(
-    `${BaseLink}/products/?${page ? `page= ${page}` : ""}${
-      tags__in ? `&tag__in=${tags__in}` : ""
-    }${categories ? `&categories__in= ${categories}` : ""}`
+    `${BaseLink}/products/?${queryString.stringify(query)}`,
+    {
+      headers: {
+        Authorization: "Token " + token,
+      },
+    }
   );
   const tags = await axios.get(`${BaseLink}/tags_w_p/`);
   const categoriesList = await axios.get(`${BaseLink}/categories-m2-wp/`);

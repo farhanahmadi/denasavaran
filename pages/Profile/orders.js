@@ -27,7 +27,7 @@ export async function getServerSideProps({ req, res }) {
   var isValid = false;
   if (token) {
     await axios
-      .get(`${BaseLink}/profile/orders/`, {
+      .get(`${BaseLink}/set_user`, {
         headers: {
           Authorization: "Token " + token,
         },

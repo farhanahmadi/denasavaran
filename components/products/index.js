@@ -1,10 +1,13 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-//import styles
+import toast from "react-hot-toast";
+import axios from "axios";
+
+//*import styles
 import styles from "./products.module.css";
 
-//import components
+//*import components
 import ProductsSkeleton from "../SkeletonLoading/ProductsSkeleton";
 import ReactPaginate from "react-paginate";
 import { Pagination } from "@mui/material";
@@ -12,10 +15,14 @@ import { cartContext } from "../context/CartContextProvider";
 import { persianNumber } from "../function/PersianNumber";
 import SideBarFilter from "../Filter/SideBarFilter";
 import { useFilter } from "../context/FilterContextProvider";
+import { BaseLink } from "../BaseLink/BaseLink";
 
-//import icons
+//* import context
+import { useAuth } from "../context/AuthContextProvider";
+
+//*import icons
 import { HiOutlineBookmark, HiChevronDown } from "react-icons/hi/index";
-import { BsShop, BsPatchCheck } from "react-icons/bs/index";
+import { BsShop, BsPatchCheck, BsBookmarkFill } from "react-icons/bs/index";
 
 const index = ({
   products,
@@ -24,7 +31,7 @@ const index = ({
   filterHandler,
 }) => {
   const router = useRouter();
-
+  const { user, token } = useAuth();
   const currentPage = Number(router.query.page);
   const pageCount = Math.round(products.count / 20);
 
@@ -43,6 +50,26 @@ const index = ({
     });
   };
 
+  const bookMarkHandler = async (id) => {
+    if (user) {
+      await axios
+        .get(`${BaseLink}/marks/ra/${id}`, {
+          headers: {
+            Authorization: "Token " + token || "",
+          },
+        })
+        .then(() => {
+          router.push(
+            { pathname: router.pathname, query: router.query },
+            undefined,
+            { scroll: false }
+          );
+        });
+    } else {
+      toast.error("لطفا ابتدا وارد حساب خود شوید");
+    }
+  };
+
   return (
     <div className={styles.container}>
       <SideBarFilter
@@ -57,10 +84,19 @@ const index = ({
             ? products.results.map((item) => (
                 <section key={item.id} className={styles.card}>
                   <section className={styles.save}>
-                    <HiOutlineBookmark
-                      style={{ stroke: "var(--red)" }}
-                      className="saveIcon"
-                    />
+                    {item.is_fav ? (
+                      <BsBookmarkFill
+                        color="var(--red)"
+                        className="saveIcon"
+                        onClick={() => bookMarkHandler(item.id)}
+                      />
+                    ) : (
+                      <HiOutlineBookmark
+                        style={{ stroke: "var(--red)" }}
+                        className="saveIcon"
+                        onClick={() => bookMarkHandler(item.id)}
+                      />
+                    )}
                   </section>
                   <Link
                     href={`/product/name=${item.slug}?id=${item.id}`}
