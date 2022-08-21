@@ -81,6 +81,12 @@ const Register = () => {
               </button>
             </div>
           </section>
+        <div style={{ textAlign: "center" , marginTop: '20px' }}>
+            اکانت دارید ؟{" "}
+            <Link href={`/auth/register`}>
+              <a>ورود</a>
+            </Link>
+          </div>
         </div>
       </div>
     </form>

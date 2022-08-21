@@ -72,6 +72,12 @@ const Login = () => {
               </button>
             </div>
           </section>
+          <div style={{ textAlign: "center" , marginTop: '20px' }}>
+            اکانت ندارید ؟{" "}
+            <Link href={`/auth/register`}>
+              <a>ثبت نام</a>
+            </Link>
+          </div>
         </div>
       </div>
     </form>

@@ -57,8 +57,10 @@ const asyncActionHandlers = {
           Router.back();
         })
         .catch((error) => {
-          dispatch({ type: "SIGNIN_FAIL", error: "an error has occurred" });
-          toast.error("نام کاربری یا رمز وارد شده صحیح نمیباشد");
+          if (error.response) {
+            dispatch({ type: "SIGNIN_FAIL", error: "an error has occurred" });
+            toast.error(error.response.data);
+          }
         });
     },
 
