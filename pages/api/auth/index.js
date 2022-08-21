@@ -6,7 +6,7 @@ export default function handler (req, res) {
     httpOnly: true,
     sameSite: "lax",
     secure: process.env.NODE_ENV === "development" ? false : true,
-    domain: process.env.NODE_ENV === "development" ? "localhost" : "domain.ir",
+    domain: process.env.NODE_ENV === "development" ? "localhost" : "45.159.113.83",
     path: "/",
   };
   res.setHeader(

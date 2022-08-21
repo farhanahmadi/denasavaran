@@ -54,7 +54,7 @@ const JoinUs = () => {
   });
 
   const onSubmit = (values) => {
-    console.log(values);
+    
   };
 
   const formik = useFormik({
