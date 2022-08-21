@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import axios from "axios";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
 //import components
 import { BaseLink } from "../BaseLink/BaseLink";
-import TextInputs from "../auth/TextInputs";
+import TextInputs from "./TextInputs";
 
 import styles from "./JoinUs.module.css";
 // import 'bootstrap/dist/css/bootstrap.css';
@@ -13,6 +13,8 @@ import styles from "./JoinUs.module.css";
 import { Form, Button, Col, Row } from "react-bootstrap";
 
 const JoinUs = () => {
+  const carImgRef = useRef(null);
+  const certificateImageRef = useRef(null);
   const initialValues = {
     name: "",
     lastName: "",
@@ -24,16 +26,10 @@ const JoinUs = () => {
     carImage: "",
   };
 
-  // const [data, setData] = useState({
-  //   name: "",
-  //   lastName: "",
-  //   age: "",
-  //   phone: "",
-  //   address: "",
-  //   carType: "",
-  //   certificateImage: "",
-  //   carImage: "",
-  // });
+  const [images, setImages] = useState({
+    certificateImage: "",
+    carImage: "",
+  });
 
   const validationSchema = Yup.object({
     name: Yup.string()
@@ -47,15 +43,14 @@ const JoinUs = () => {
       .min(18, "حداقل باید ۱۸ سال سن داشته باشید"),
     phone: Yup.string()
       .required("شماره خود را وارد کنید")
-      .min(10 , "شماره وارد شده صحیح نمیباشد").max(11 , "شماره وارد شده صحیح نمیباشد"),
+      .min(10, "شماره وارد شده صحیح نمیباشد")
+      .max(11, "شماره وارد شده صحیح نمیباشد"),
     address: Yup.string().required("آدرس خود را وارد کنید"),
     carType: Yup.string().required("مدل ماشین را انتخاب کنید"),
     certificateImage: Yup.string().required("عکس ماشین خود را بارگذاری کنید"),
   });
 
-  const onSubmit = (values) => {
-    
-  };
+  const onSubmit = (values) => {};
 
   const formik = useFormik({
     initialValues,
@@ -64,43 +59,19 @@ const JoinUs = () => {
     validateOnMount: true,
   });
 
-  console.log(formik.errors);
-
-  const dataHandler = (event) => {
-    if (event.target.name !== "carType") {
-      setData({ ...data, [event.target.name]: event.target.value });
-    } else {
-      setData({ ...data, carType: event.target.value });
-    }
-  };
-
   const imageHandler = (event) => {
     if (event.target.name === "certificateImage") {
-      setData({ ...data, certificateImage: event.target.files[0] });
+      setImages({
+        ...images,
+        certificateImage: URL.createObjectURL(event.target.files[0]),
+      });
     } else {
-      setData({ ...data, carImage: event.target.files[0] });
+      setImages({
+        ...images,
+        carImage: URL.createObjectURL(event.target.files[0]),
+      });
     }
-  };
-
-  const sendData = (event) => {
-    event.preventDefault();
-    const formdata = new FormData();
-    formdata.append("first_name", data.name);
-    formdata.append("last_name", data.lastName);
-    formdata.append("age", data.age);
-    formdata.append("address", data.address);
-    formdata.append("phone_number", data.phone);
-    formdata.append("car", data.carType);
-    formdata.append("license_cart", data.certificateImage);
-    formdata.append("car_image", data.carImage);
-
-    fetch(`${BaseLink}/members/`, {
-      method: "POST",
-      body: formdata,
-    })
-      .then((response) => response.json())
-      .then((json) => console.log(json))
-      .catch((error) => console.log(error.message));
+    console.log(formik.values);
   };
 
   return (
@@ -114,12 +85,109 @@ const JoinUs = () => {
             <hr />
             <form onSubmit={formik.handleSubmit}>
               <section className={styles.row}>
-                <TextInputs label={"نام"}  name={"name"}  placeHolder={"نام ..."} formik={formik}  />
-                <TextInputs label={"نام خانوادگی"}  name={"lastName"}  placeHolder={"نام خانوادگی ..."} formik={formik}  />
+                <TextInputs
+                  label={"نام"}
+                  name={"name"}
+                  placeHolder={"نام ..."}
+                  formik={formik}
+                />
+                <TextInputs
+                  label={"نام خانوادگی"}
+                  name={"lastName"}
+                  placeHolder={"نام خانوادگی ..."}
+                  formik={formik}
+                />
               </section>
               <section className={styles.row}>
-                <TextInputs label={"سن"}  name={"age"} type="number" placeHolder={"سن ..."} formik={formik}  />
-                <TextInputs label={"شماره همراه"}  name={"phone"} type="number"  placeHolder={"نام شماره همراه ..."} formik={formik}  />
+                <TextInputs
+                  label={"سن"}
+                  name={"age"}
+                  type="number"
+                  placeHolder={"سن ..."}
+                  formik={formik}
+                />
+                <TextInputs
+                  label={"شماره همراه"}
+                  name={"phone"}
+                  type="number"
+                  placeHolder={"نام شماره همراه ..."}
+                  formik={formik}
+                />
+              </section>
+              <section className={styles.row}>
+                <TextInputs
+                  label={"آدرس"}
+                  name={"address"}
+                  placeHolder={"آدرس ..."}
+                  formik={formik}
+                />
+                <section className={styles.selectSection}>
+                  <label>انتخاب نوع ماشین</label>
+                  <select {...formik.getFieldProps("carType")}>
+                    <option>انتخاب نوع ماشین</option>
+                    <option value="dena" key="dena">
+                      دنا
+                    </option>
+                    <option value="dena+" key="dena+">
+                      دنا پلاس
+                    </option>
+                    <option value="dena+turbo" key="dena+turbo">
+                      دنا پلاس توربو
+                    </option>
+                  </select>
+                  <div className={styles.error}>
+                    {formik.errors.carType &&
+                      formik.touched.carType &&
+                      formik.errors.carType}
+                  </div>
+                </section>
+              </section>
+              <section className={styles.imageRow}>
+                <section className={styles.imageBox}>
+                  <img
+                    onClick={() => carImgRef.current.click()}
+                    src={images.carImage || "/assets/images/logo.jpg"}
+                    alt=""
+                  />
+                  <button
+                    onClick={() => setImages({ ...images, carImage: "" })}
+                    className={styles.removeImg}
+                  >
+                    حذف عکس
+                  </button>
+                  <input
+                    className={styles.fileInput}
+                    name="carImage"
+                    ref={carImgRef}
+                    type="file"
+                    onChange={imageHandler}
+                  />
+                </section>
+                <section className={styles.imageBox}>
+                  <img
+                    src={images.certificateImage || "/assets/images/logo.jpg"}
+                    alt=""
+                    onClick={() => certificateImageRef.current.click()}
+                  />
+                  <button
+                    onClick={() =>
+                      setImages({ ...images, certificateImage: "" })
+                    }
+                    className={styles.removeImg}
+                  >
+                    حذف عکس
+                  </button>
+                  <input
+                    className={styles.fileInput}
+                    name="certificateImage"
+                    ref={certificateImageRef}
+                    type="file"
+                    onChange={imageHandler}
+                  />
+                </section>
+              </section>
+              <section className={styles.submit}>
+                <button type="submit">عضویت در باشگاه</button>
               </section>
             </form>
           </section>

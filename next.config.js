@@ -3,10 +3,8 @@
 //   reactStrictMode: true,
 // }
 
-// module.exports = nextConfig
-
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
-module.exports = {
+module.exports =  {
   images: {
     domains: ["45.159.113.83"],
   },

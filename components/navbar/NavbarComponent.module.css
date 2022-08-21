@@ -43,7 +43,7 @@
     text-align: left;
     display: flex;
     align-items: center;
-    justify-content: end;
+    justify-content: flex-end;
     position: relative;
 }
 
@@ -324,7 +324,7 @@
     border-radius: 50%;
     padding: 10px 12px;
     position: absolute;
-    left: 52%;
+    left: 50%;
     top: -30px;
     transform: translate(-50%, 0);
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -483,7 +483,7 @@
 .mobileUserBtn {
     width: calc(100% / 2);
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     align-items: center;
 }
 

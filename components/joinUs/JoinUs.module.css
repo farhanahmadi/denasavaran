@@ -1,37 +1,38 @@
-
-.container{
-    margin: 50px;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: center;
+.container {
+  margin: 50px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
 
 }
-.formContainer{
-    width: 50%;
-    background-color: #ffffff;
-    padding: 20px;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    border-radius: 15px;
+
+.formContainer {
+  width: 100%;
+  background-color: #ffffff;
+  padding: 20px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 15px;
 }
 
-.formLogo{
-    text-align: center;
+.formLogo {
+  text-align: center;
 }
 
-.row{
+.row {
   display: flex;
   align-items: center;
   justify-content: flex-start;
 }
 
-.formControl{
+.formControl {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   flex: 1;
 }
-.input{
+
+.input {
   width: 90%;
   padding: 5px 10px;
   border-radius: 5px;
@@ -43,16 +44,125 @@
   border: 1px solid var(--red);
 }
 
-.successBorder{
+.successBorder {
   outline: none;
   border: 1px solid var(--green);
 }
 
 
-.error{
+.error {
   color: var(--red);
   margin-right: 5px;
   font-size: .8em;
   margin-top: 5px;
   margin-bottom: 5px;
+}
+
+.selectSection {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.selectSection select {
+  width: 90%;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid var(--borderGray);
+}
+
+.selectSection select:focus {
+  outline: none;
+}
+
+.submit {
+  width: 100%;
+  margin-top: 30px;
+  text-align: center;
+}
+
+.submit button {
+  background-image: linear-gradient(to right, var(--red), #FF0000);
+  border-radius: 10px;
+  border: none;
+  padding: 5px 10px;
+  color: white;
+  width: 50%;
+}
+
+.imageRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 30px;
+}
+
+.imageBox {
+  width: 200px;
+  height: 200px;
+  position: relative;
+}
+
+.imageBox img {
+  width: 200px;
+  height: 200px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.fileInput {
+  display: none;
+}
+
+.removeImg {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  background: #ffffff;
+  color: red;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 8px 0px;
+  border: none;
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+@media only screen and (min-width: 1800px) {
+  .formContainer {
+    width: 70%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .row {
+    flex-direction: column;
+  }
+
+  .formControl {
+    width: 100%;
+  }
+
+  .selectSection {
+    width: 100%;
+  }
+
+  .imageRow {
+    flex-direction: column;
+    gap: 20px 0px;
+  }
+
+  .formLogo img {
+    width: 100%;
+    height: auto;
+  }
+
+}
+
+@media only screen and (max-width: 576px) {
+  .container {
+    margin: 30px 10px;
+
+  }
 }
