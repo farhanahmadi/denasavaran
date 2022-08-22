@@ -45,10 +45,10 @@ const asyncActionHandlers = {
     await axios
       .post(`${BaseLink}/login/user/`, action.payload)
       .then(({ data }) => {
-        toast.success("data");
+        toast.success("data success");
       })
       .catch((error) => {
-        toast.error("error");
+        toast.error("error data");
       });
   },
 
