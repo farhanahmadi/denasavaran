@@ -9,12 +9,9 @@ import styles from "./products.module.css";
 
 //*import components
 import ProductsSkeleton from "../SkeletonLoading/ProductsSkeleton";
-import ReactPaginate from "react-paginate";
 import { Pagination } from "@mui/material";
-import { cartContext } from "../context/CartContextProvider";
 import { persianNumber } from "../function/PersianNumber";
 import SideBarFilter from "../Filter/SideBarFilter";
-import { useFilter } from "../context/FilterContextProvider";
 import { BaseLink } from "../BaseLink/BaseLink";
 
 //* import context
