@@ -8,9 +8,6 @@ import { BaseLink } from "../BaseLink/BaseLink";
 import TextInputs from "./TextInputs";
 
 import styles from "./JoinUs.module.css";
-// import 'bootstrap/dist/css/bootstrap.css';
-// import 'bootstrap/dist/js/bootstrap.js';
-import { Form, Button, Col, Row } from "react-bootstrap";
 
 const JoinUs = () => {
   const carImgRef = useRef(null);

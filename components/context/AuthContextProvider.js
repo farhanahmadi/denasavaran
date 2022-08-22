@@ -44,15 +44,15 @@ const asyncActionHandlers = {
     ({ dispatch }) =>
     async (action) => {
       dispatch({ type: "SIGNIN_PENDING" });
-      axios
+      await axios
         .post(`${BaseLink}/login/user/`, action.payload, {
-          headers: { "Access-Control-Allow-Origin": "*" },
+          withCredentials: true
         })
         .then(({ data }) => {
           axios.post(
             "/api/auth",
             { token: data.token },
-            { headers: { "Access-Control-Allow-Origin": "*" } }
+            { withCredentials: true }
           );
           dispatch({
             type: "SIGNIN_SUCCESS",

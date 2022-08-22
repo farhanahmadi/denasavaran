@@ -1,17 +1,11 @@
 import React, { useState, useEffect } from "react";
-import * as shamsi from "shamsi-date-converter";
-import Link from "next/link";
-import Image from "next/image";
 import { useRouter } from "next/router";
 
 //import components
-import { descreption } from "../function/TextLength";
 import BlogSkeleton from "../SkeletonLoading/BlogSkeleton";
 import SideBarFilter from "../Filter/SideBarFilter";
 import BlogsCart from "./BlogsCart";
 
-//bootstarp
-import { Card } from "react-bootstrap";
 
 //import styles
 import styles from "./blog.module.css";

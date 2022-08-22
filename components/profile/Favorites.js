@@ -1,5 +1,4 @@
 import React from "react";
-import { Table } from "react-bootstrap";
 import Layout from "./Layout";
 import Link from "next/link";
 import Image from "next/image";
