@@ -45,9 +45,15 @@ const asyncActionHandlers = {
     async (action) => {
       dispatch({ type: "SIGNIN_PENDING" });
       axios
-        .post(`${BaseLink}/login/user/`, action.payload)
+        .post(`${BaseLink}/login/user/`, action.payload, {
+          headers: { "Access-Control-Allow-Origin": "*" },
+        })
         .then(({ data }) => {
-          axios.post("/api/auth", { token: data.token });
+          axios.post(
+            "/api/auth",
+            { token: data.token },
+            { headers: { "Access-Control-Allow-Origin": "*" } }
+          );
           dispatch({
             type: "SIGNIN_SUCCESS",
             payload: data.user_data,
