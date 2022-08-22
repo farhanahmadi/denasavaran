@@ -19,7 +19,6 @@ export default function index({ BlogsList, BlogsCategoris }) {
     <React.Fragment>
       <Head>
         <title>وبلاگ دناسواران ارومیه</title>
-        <meta charset="UTF-8" />
         <meta
           name="description"
           content="وبلاگ دناسواران ارومیه"

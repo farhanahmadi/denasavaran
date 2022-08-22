@@ -6,6 +6,7 @@ export default function Document() {
       <Head>
         <meta name="author" content="Farhan Ahmadi" />
         <link rel="shortcut icon" href="/favicon.ico" />
+        <meta charSet="UTF-8" />
         {/* <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"></meta> */}
         <link
           rel="stylesheet"

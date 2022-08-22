@@ -12,7 +12,6 @@ const blogs = ({ Blog }) => {
     <Layout>
        <Head>
         <title>{Blog.title}</title>
-        <meta charset="UTF-8" />
         <meta name="description" content="فروشگاه آنلاین دناسواران ارومیه ، فروش انواع قطعات ماشین های ایرانی و خارجی و ماشین هارو توربوشارژ" />
       </Head>
       <Blogs Blog={Blog} />

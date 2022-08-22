@@ -40,92 +40,68 @@ const reducer = (state, action) => {
 };
 
 const asyncActionHandlers = {
-  SIGNIN:
-    ({ dispatch }) =>
-    async (action) => {
-      dispatch({ type: "SIGNIN_PENDING" });
-      await axios
-        .post(`${BaseLink}/login/user/`, action.payload, {
-          withCredentials: true
-        })
-        .then(({ data }) => {
-          axios.post(
-            "/api/auth",
-            { token: data.token },
-            { withCredentials: true }
-          );
-          dispatch({
-            type: "SIGNIN_SUCCESS",
-            payload: data.user_data,
-            token: data.token,
-          });
-          toast.success("با موفقیت وارد شدید");
-          Router.back();
-        })
-        .catch((error) => {
-          if (error.response) {
-            dispatch({ type: "SIGNIN_FAIL", error: "an error has occurred" });
-            toast.error(error?.response?.data);
+  SIGNIN: ({ dispatch }) => async (action) => {
+    dispatch({ type: "SIGNIN_PENDING" });
+    await axios
+      .post(`${BaseLink}/login/user/`, action.payload)
+      .then(({ data }) => {
+        toast.success("data");
+      })
+      .catch((error) => {
+        toast.error("error");
+      });
+  },
+
+  SIGNUP: ({ dispatch }) => async (action) => {
+    dispatch({ type: "SIGNIN_PENDING" });
+    axios
+      .post(`${BaseLink}/register/user/`, action.payload)
+      .then(({ data }) => {
+        dispatch({ type: "SIGNIN_SUCCESS", payload: "" });
+        Router.push("/auth/login");
+      })
+      .catch((error) =>
+        dispatch({ type: "SIGNIN_FAIL", error: "an error has occurred" })
+      );
+  },
+
+  SIGNOUT: ({ dispatch }) => async (action) => {
+    dispatch({ type: "SIGNIN_PENDING" });
+    axios
+      .post("/api/auth/Logout")
+      .then(() => {
+        dispatch({ type: "SIGNIN_SUCCESS", payload: "" });
+        toast.success("با موفقیت خارج شدید");
+        Router.push(
+          "/",
+          { pathname: Router.pathname, query: Router.query },
+          undefined,
+          {
+            scroll: false,
           }
-        });
-    },
-
-  SIGNUP:
-    ({ dispatch }) =>
-    async (action) => {
-      dispatch({ type: "SIGNIN_PENDING" });
-      axios
-        .post(`${BaseLink}/register/user/`, action.payload)
-        .then(({ data }) => {
-          dispatch({ type: "SIGNIN_SUCCESS", payload: "" });
-          Router.push("/auth/login");
-        })
-        .catch((error) =>
-          dispatch({ type: "SIGNIN_FAIL", error: "an error has occurred" })
         );
-    },
+      })
+      .catch((error) => {
+        dispatch({ type: "SIGNIN_FAIL", error: "an error has occurred" });
+        toast.error("مشکلی رخ داده است لطفا دوباره تلاش کنید");
+      });
+  },
 
-  SIGNOUT:
-    ({ dispatch }) =>
-    async (action) => {
-      dispatch({ type: "SIGNIN_PENDING" });
-      axios
-        .post("/api/auth/Logout")
-        .then(() => {
-          dispatch({ type: "SIGNIN_SUCCESS", payload: "" });
-          toast.success("با موفقیت خارج شدید");
-          Router.push(
-            "/",
-            { pathname: Router.pathname, query: Router.query },
-            undefined,
-            {
-              scroll: false,
-            }
-          );
-        })
-        .catch((error) => {
-          dispatch({ type: "SIGNIN_FAIL", error: "an error has occurred" });
-          toast.error("مشکلی رخ داده است لطفا دوباره تلاش کنید");
+  LOAD_USER: ({ dispatch }) => async (action) => {
+    dispatch({ type: "SIGNIN_PENDING" });
+    axios
+      .post("/api/auth/LoadUser")
+      .then(({ data }) => {
+        dispatch({
+          type: "SIGNIN_SUCCESS",
+          payload: data.userData,
+          token: data.token,
         });
-    },
-
-  LOAD_USER:
-    ({ dispatch }) =>
-    async (action) => {
-      dispatch({ type: "SIGNIN_PENDING" });
-      axios
-        .post("/api/auth/LoadUser")
-        .then(({ data }) => {
-          dispatch({
-            type: "SIGNIN_SUCCESS",
-            payload: data.userData,
-            token: data.token,
-          });
-        })
-        .catch((error) =>
-          dispatch({ type: "SIGNIN_FAIL", error: "an error has occurred" })
-        );
-    },
+      })
+      .catch((error) =>
+        dispatch({ type: "SIGNIN_FAIL", error: "an error has occurred" })
+      );
+  },
 };
 
 export default function AuthContextProvider({ children }) {

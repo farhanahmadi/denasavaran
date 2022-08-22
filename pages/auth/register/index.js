@@ -12,7 +12,6 @@ export default function index () {
     <Layout>
        <Head>
         <title>صفحه قبت نام</title>
-        <meta charset="UTF-8" />
         <meta name="description" content="صفحه قبت نام وب سایت دناسواران ارومیه" />
       </Head>
         <Register />

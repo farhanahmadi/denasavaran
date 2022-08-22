@@ -12,7 +12,6 @@ export default function index () {
     <Layout>
        <Head>
         <title>صفحه ورود</title>
-        <meta charset="UTF-8" />
         <meta name="description" content="صفحه ورود وب سایت دناسواران ارومیه" />
       </Head>
         <Login />

@@ -12,7 +12,6 @@ export default function index({ productDetails }) {
     <Layout>
       <Head>
         <title>{productDetails.name}</title>
-        <meta charset="UTF-8" />
         <meta name="description" content={productDetails.description} />
       </Head>
       <Details productDetails={productDetails} />

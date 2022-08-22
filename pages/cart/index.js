@@ -11,7 +11,6 @@ export default function index () {
     <Layout>
        <Head>
         <title>سبد خرید</title>
-        <meta charset="UTF-8" />
       </Head>
         <Cart />
     </Layout>

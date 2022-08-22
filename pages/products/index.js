@@ -21,7 +21,6 @@ export default function index({ products, tags, categoriesList }) {
     <React.Fragment>
       <Head>
         <title>فروشگاه دناسواران ارومیه</title>
-        <meta charset="UTF-8" />
         <meta
           name="description"
           content="فروشگاه آنلاین دناسواران ارومیه ، فروش انواع قطعات ماشین های ایرانی و خارجی و ماشین هارو توربوشارژ"

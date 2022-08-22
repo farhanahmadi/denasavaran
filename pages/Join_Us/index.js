@@ -12,7 +12,6 @@ export default function index () {
     <Layout>
        <Head>
         <title>عضویت در باشگاه دناسواران</title>
-        <meta charset="UTF-8" />
         <meta name="description" content="صفحه عضویت در باشگاه دناسواران ارومیه" />
       </Head>
         <JoinUs />
