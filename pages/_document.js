@@ -7,7 +7,7 @@ export default function Document() {
         <meta name="author" content="Farhan Ahmadi" />
         <link rel="shortcut icon" href="/favicon.ico" />
         <meta charSet="UTF-8" />
-        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"></meta>
+        <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests"></meta>
         <link
           rel="stylesheet"
           href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
