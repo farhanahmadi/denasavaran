@@ -42,13 +42,23 @@ const reducer = (state, action) => {
 const asyncActionHandlers = {
   SIGNIN: ({ dispatch }) => async (action) => {
     dispatch({ type: "SIGNIN_PENDING" });
-    await axios
+    axios
       .post(`${BaseLink}/login/user/`, action.payload)
       .then(({ data }) => {
-        toast.success("data success");
+        axios.post("/api/auth", { token: data.token });
+        dispatch({
+          type: "SIGNIN_SUCCESS",
+          payload: data.user_data,
+          token: data.token,
+        });
+        toast.success("با موفقیت وارد شدید");
+        Router.back();
       })
       .catch((error) => {
-        toast.error("error data");
+        if (error.response) {
+          dispatch({ type: "SIGNIN_FAIL", error: "an error has occurred" });
+          toast.error(error?.response?.data);
+        }
       });
   },
 

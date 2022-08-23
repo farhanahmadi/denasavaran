@@ -5,12 +5,18 @@ import Link from "next/link";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
+
+import axios from "axios";
+import { BaseLink } from "../../BaseLink/BaseLink";
+import toast from "react-hot-toast";
+
 //* import components
 import TextInputs from "../TextInputs";
 
-//import styles
+//*import styles
 import styles from "./login.module.css";
 import { useAuth, useAuthActions } from "../../context/AuthContextProvider";
+
 
 const Login = () => {
   const userDispatch = useAuthActions();
@@ -21,7 +27,25 @@ const Login = () => {
   };
 
   const onSubmit = (values) => {
-    userDispatch({ type: "SIGNIN", payload: values });
+    // userDispatch({ type: "SIGNIN", payload: values });
+    axios
+    .post(`${BaseLink}/login/user/`, values)
+    .then(({ data }) => {
+      axios.post("/api/auth", { token: data.token });
+      // dispatch({
+      //   type: "SIGNIN_SUCCESS",
+      //   payload: data.user_data,
+      //   token: data.token,
+      // });
+      toast.success("با موفقیت وارد شدید");
+      // Router.back();
+    })
+    .catch((error) => {
+      if (error.response) {
+        // dispatch({ type: "SIGNIN_FAIL", error: "an error has occurred" });
+        toast.error(error?.response?.data);
+      }
+    });
   };
 
   const validationSchema = Yup.object({
