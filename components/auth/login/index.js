@@ -31,19 +31,19 @@ const Login = () => {
     axios
     .post(`${BaseLink}/login/user/`, values)
     .then(({ data }) => {
+      toast.success("با موفقیت وارد شدید");
       axios.post("/api/auth", { token: data.token });
       // dispatch({
       //   type: "SIGNIN_SUCCESS",
       //   payload: data.user_data,
       //   token: data.token,
       // });
-      toast.success("با موفقیت وارد شدید");
       // Router.back();
     })
     .catch((error) => {
       if (error.response) {
         // dispatch({ type: "SIGNIN_FAIL", error: "an error has occurred" });
-        toast.error(error?.response?.data);
+        toast.error("error");
       }
     });
   };
