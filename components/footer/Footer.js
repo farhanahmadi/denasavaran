@@ -3,6 +3,9 @@ import styles from "./Footer.module.css";
 import "bootstrap/dist/css/bootstrap.css";
 import Image from "next/image";
 
+//* import icons
+import {FaSearch} from "react-icons/fa/index"
+
 const Footer = () => {
   return (
     <div className={styles.container}>
@@ -87,7 +90,7 @@ const Footer = () => {
             placeholder=" جــســتــجــو در ســایــت"
           />
           <a variant="danger" className={styles.searchBarBtn}>
-            <i className="fas fa-search" style={{ color: "#fff" }}></i>
+           <FaSearch color="white" />
           </a>
           <p className={styles.searchInputP}>
             شبکه های اجتماعی دنا سواران ارومیه

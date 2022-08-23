@@ -20,6 +20,8 @@ import { BiUser } from "react-icons/bi/index";
 import { CgProfile } from "react-icons/cg/index";
 import { BsHandbag } from "react-icons/bs/index";
 import { IoIosLogIn } from "react-icons/io/index";
+import { FaSearch } from "react-icons/fa/index";
+
 import axios from "axios";
 
 //?import styles
@@ -184,7 +186,7 @@ const NavbarComponent = () => {
               <section className={styles.searchBar}>
                 <input type="text" placeholder="جستجو" />
                 <a href={"#"} className={styles.searchBtn} variant="danger">
-                  <i className="fas fa-search" style={{ color: "#fff" }}></i>
+                  <FaSearch color="white" />
                 </a>
               </section>
             </section>

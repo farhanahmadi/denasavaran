@@ -42,6 +42,7 @@ const reducer = (state, action) => {
 const asyncActionHandlers = {
   SIGNIN: ({ dispatch }) => async (action) => {
     dispatch({ type: "SIGNIN_PENDING" });
+    console.log( action.payload);
     axios
       .post(`${BaseLink}/login/user/`, action.payload)
       .then(({ data }) => {
@@ -57,7 +58,7 @@ const asyncActionHandlers = {
       .catch((error) => {
         if (error.response) {
           dispatch({ type: "SIGNIN_FAIL", error: "an error has occurred" });
-          toast.error(error?.response?.data);
+          toast.error("error");
         }
       });
   },

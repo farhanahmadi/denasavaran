@@ -26,20 +26,20 @@ function MyApp({ Component, pageProps }) {
   //   }, 1000);
   // }, []);
   return (
-    // <SSRProvider>
-    <AuthContextProvider>
-      <CartContextProvider>
-        <FilterContextProvider>
-          {/* {!loader ? ( */}
-          <Component {...pageProps} />
-          {/* ) : ( */}
-          {/* <Loader animation={startAnimation} /> */}
-          {/* )} */}
-        </FilterContextProvider>
-      </CartContextProvider>
-      <Toaster />
-    </AuthContextProvider>
-    // </SSRProvider>
+      <SSRProvider>
+        <AuthContextProvider>
+          <CartContextProvider>
+            <FilterContextProvider>
+              {/* {!loader ? ( */}
+              <Component {...pageProps} />
+              {/* ) : ( */}
+              {/* <Loader animation={startAnimation} /> */}
+              {/* )} */}
+            </FilterContextProvider>
+          </CartContextProvider>
+        </AuthContextProvider>
+        <Toaster />
+      </SSRProvider>
   );
 }
 

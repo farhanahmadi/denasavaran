@@ -5,9 +5,13 @@ import Link from "next/link";
 //?import icons
 import { HiMinus, HiPlus, HiOutlineTrash } from "react-icons/hi/index";
 
-//import context
+//*import context
 import { cartContext } from "../context/CartContextProvider";
 import { quantityCheck } from "../context/quantityHandler";
+
+//* import icons
+import {HiArrowNarrowLeft} from "react-icons/hi/index"
+import { BsShop } from "react-icons/bs/index";
 
 import styles from "./navbarCartHover.module.css";
 import { persianNumber } from "../function/PersianNumber";
@@ -31,7 +35,7 @@ const NavbarCartHover = () => {
         </span>
         <Link href={`/cart`}>
           <a>
-            مشاهده سبد خرید <i className="fas fa-angle-left"></i>
+            مشاهده سبد خرید <HiArrowNarrowLeft />
           </a>
         </Link>
       </section>
@@ -110,10 +114,7 @@ const NavbarCartHover = () => {
                     <span className={styles.colorText}>{item.color}</span>
                   </section>
                   <span className={styles.seller}>
-                    <i
-                      style={{ color: "#10bfd3" }}
-                      className="fas fa-store-alt"
-                    ></i>{" "}
+                   <BsShop color="var(--red)" />{" "}
                     {item.manufacturer_company}
                   </span>
                   <span className={styles.price}>
