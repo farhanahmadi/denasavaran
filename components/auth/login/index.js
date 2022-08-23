@@ -47,6 +47,7 @@ const Login = () => {
   };
 
   const sendData = () => {
+    toast.success("hi")
     axios
       .post(
         `${BaseLink}/login/user/`,
