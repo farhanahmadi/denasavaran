@@ -48,6 +48,30 @@ const Login = () => {
     });
   };
 
+  const sendData = () =>{
+    axios
+    .post(`${BaseLink}/login/user/`, {
+      email: formik.values.email,
+      password: formik.values.password
+    })
+    .then(({ data }) => {
+      toast.success("با موفقیت وارد شدید");
+      axios.post("/api/auth", { token: data.token });
+      // dispatch({
+      //   type: "SIGNIN_SUCCESS",
+      //   payload: data.user_data,
+      //   token: data.token,
+      // });
+      // Router.back();
+    })
+    .catch((error) => {
+      if (error.response) {
+        // dispatch({ type: "SIGNIN_FAIL", error: "an error has occurred" });
+        toast.error("error");
+      }
+    });
+  }
+
   const validationSchema = Yup.object({
     email: Yup.string()
       .required("ایمیل خود را وارد کنید")
@@ -65,6 +89,7 @@ const Login = () => {
   });
 
   return (
+    <React.Fragment>
     <form onSubmit={formik.handleSubmit}>
       <div className={styles.container} dir="rtl">
         <div className={styles.formContainer} dir="rtl">
@@ -105,6 +130,8 @@ const Login = () => {
         </div>
       </div>
     </form>
+    <button onClick={sendData}>send Data</button>
+    </React.Fragment>
   );
 };
 
