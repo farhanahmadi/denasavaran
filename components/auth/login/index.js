@@ -5,7 +5,6 @@ import Link from "next/link";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-
 import axios from "axios";
 import { BaseLink } from "../../BaseLink/BaseLink";
 import toast from "react-hot-toast";
@@ -16,7 +15,6 @@ import TextInputs from "../TextInputs";
 //*import styles
 import styles from "./login.module.css";
 import { useAuth, useAuthActions } from "../../context/AuthContextProvider";
-
 
 const Login = () => {
   const userDispatch = useAuthActions();
@@ -29,48 +27,58 @@ const Login = () => {
   const onSubmit = (values) => {
     // userDispatch({ type: "SIGNIN", payload: values });
     axios
-    .post(`${BaseLink}/login/user/`, values)
-    .then(({ data }) => {
-      toast.success("با موفقیت وارد شدید");
-      axios.post("/api/auth", { token: data.token });
-      // dispatch({
-      //   type: "SIGNIN_SUCCESS",
-      //   payload: data.user_data,
-      //   token: data.token,
-      // });
-      // Router.back();
-    })
-    .catch((error) => {
-      if (error.response) {
-        // dispatch({ type: "SIGNIN_FAIL", error: "an error has occurred" });
-        toast.error("error");
-      }
-    });
+      .post(`${BaseLink}/login/user/`, values)
+      .then(({ data }) => {
+        toast.success("با موفقیت وارد شدید");
+        axios.post("/api/auth", { token: data.token });
+        // dispatch({
+        //   type: "SIGNIN_SUCCESS",
+        //   payload: data.user_data,
+        //   token: data.token,
+        // });
+        // Router.back();
+      })
+      .catch((error) => {
+        if (error.response) {
+          // dispatch({ type: "SIGNIN_FAIL", error: "an error has occurred" });
+          toast.error("error");
+        }
+      });
   };
 
-  const sendData = () =>{
+  const sendData = () => {
     axios
-    .post(`${BaseLink}/login/user/`, {
-      email: formik.values.email,
-      password: formik.values.password
-    })
-    .then(({ data }) => {
-      toast.success("با موفقیت وارد شدید");
-      axios.post("/api/auth", { token: data.token });
-      // dispatch({
-      //   type: "SIGNIN_SUCCESS",
-      //   payload: data.user_data,
-      //   token: data.token,
-      // });
-      // Router.back();
-    })
-    .catch((error) => {
-      if (error.response) {
-        // dispatch({ type: "SIGNIN_FAIL", error: "an error has occurred" });
-        toast.error("error");
-      }
-    });
-  }
+      .post(
+        `${BaseLink}/login/user/`,
+        {
+          email: formik.values.email,
+          password: formik.values.password,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json; charset=UTF-8",
+            "Accept": "Token",
+            "Access-Control-Allow-Origin": "*",
+          },
+        }
+      )
+      .then(({ data }) => {
+        toast.success("با موفقیت وارد شدید");
+        axios.post("/api/auth", { token: data.token });
+        // dispatch({
+        //   type: "SIGNIN_SUCCESS",
+        //   payload: data.user_data,
+        //   token: data.token,
+        // });
+        // Router.back();
+      })
+      .catch((error) => {
+        if (error.response) {
+          // dispatch({ type: "SIGNIN_FAIL", error: "an error has occurred" });
+          toast.error("error");
+        }
+      });
+  };
 
   const validationSchema = Yup.object({
     email: Yup.string()
@@ -90,47 +98,47 @@ const Login = () => {
 
   return (
     <React.Fragment>
-    <form onSubmit={formik.handleSubmit}>
-      <div className={styles.container} dir="rtl">
-        <div className={styles.formContainer} dir="rtl">
-          <section className={styles.fromData}>
-            <div className={styles.formLogo}>
-              <img
-                className={styles.logo}
-                src={"/assets/images/navbarlogo.png"}
-                alt="logo"
+      <form onSubmit={formik.handleSubmit}>
+        <div className={styles.container} dir="rtl">
+          <div className={styles.formContainer} dir="rtl">
+            <section className={styles.fromData}>
+              <div className={styles.formLogo}>
+                <img
+                  className={styles.logo}
+                  src={"/assets/images/navbarlogo.png"}
+                  alt="logo"
+                />
+              </div>
+              <hr />
+              <TextInputs
+                label={"ایمیل"}
+                name={"email"}
+                placeHolder={"ایمیل را وارد کنید ..."}
+                formik={formik}
               />
+              <TextInputs
+                label={"رمز عبور"}
+                name={"password"}
+                type={"password"}
+                placeHolder={" رمز عبور را وارد کنید ..."}
+                formik={formik}
+              />
+              <div className={styles.submitContainer}>
+                <button type="submit" className={styles.submit}>
+                  ورود
+                </button>
+              </div>
+            </section>
+            <div style={{ textAlign: "center", marginTop: "20px" }}>
+              اکانت ندارید ؟{" "}
+              <Link href={`/auth/register`}>
+                <a>ثبت نام</a>
+              </Link>
             </div>
-            <hr />
-            <TextInputs
-              label={"ایمیل"}
-              name={"email"}
-              placeHolder={"ایمیل را وارد کنید ..."}
-              formik={formik}
-            />
-            <TextInputs
-              label={"رمز عبور"}
-              name={"password"}
-              type={"password"}
-              placeHolder={" رمز عبور را وارد کنید ..."}
-              formik={formik}
-            />
-            <div className={styles.submitContainer}>
-              <button type="submit" className={styles.submit}>
-                ورود
-              </button>
-            </div>
-          </section>
-          <div style={{ textAlign: "center" , marginTop: '20px' }}>
-            اکانت ندارید ؟{" "}
-            <Link href={`/auth/register`}>
-              <a>ثبت نام</a>
-            </Link>
           </div>
         </div>
-      </div>
-    </form>
-    <button onClick={sendData}>send Data</button>
+      </form>
+      <button onClick={sendData}>send Data</button>
     </React.Fragment>
   );
 };
