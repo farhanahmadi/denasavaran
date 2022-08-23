@@ -84,14 +84,6 @@ const Footer = () => {
           </section>
         </section>
         <section className={styles.searchBar}>
-          <input
-            type="text"
-            className={styles.searchInput}
-            placeholder=" جــســتــجــو در ســایــت"
-          />
-          <a variant="danger" className={styles.searchBarBtn}>
-           <FaSearch color="white" />
-          </a>
           <p className={styles.searchInputP}>
             شبکه های اجتماعی دنا سواران ارومیه
           </p>
