@@ -58,6 +58,7 @@ const asyncActionHandlers = {
       .catch((error) => {
         if (error.response) {
           dispatch({ type: "SIGNIN_FAIL", error: "an error has occurred" });
+          toast.error(error.response.data);
           toast.error("error");
         }
       });

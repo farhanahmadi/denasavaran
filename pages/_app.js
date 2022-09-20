@@ -15,31 +15,34 @@ import toast, { Toaster } from "react-hot-toast";
 import Loader from "../components/Layout/Loader";
 
 function MyApp({ Component, pageProps }) {
+  console.log(pageProps);
   const [startAnimation, setStartAnimation] = useState(false);
-  // const [loader, setLoader] = useState(true);
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setStartAnimation(true);
-  //   }, 500);
-  //   setTimeout(() => {
-  //     setLoader(false);
-  //   }, 1000);
-  // }, []);
+  const [loader, setLoader] = useState(true);
+  useEffect(() => {
+    setTimeout(() => {
+      setStartAnimation(true);
+    }, 500);
+    setTimeout(() => {
+      setLoader(false);
+    }, 1000);
+  }, []);
   return (
-      <SSRProvider>
-        <AuthContextProvider>
-          <CartContextProvider>
-            <FilterContextProvider>
-              {/* {!loader ? ( */}
+    <SSRProvider>
+      <AuthContextProvider>
+        <CartContextProvider>
+          <FilterContextProvider>
+            {pageProps.ssr ? (
               <Component {...pageProps} />
-              {/* ) : ( */}
-              {/* <Loader animation={startAnimation} /> */}
-              {/* )} */}
-            </FilterContextProvider>
-          </CartContextProvider>
-        </AuthContextProvider>
-        <Toaster />
-      </SSRProvider>
+            ) : !loader ? (
+              <Component {...pageProps} />
+            ) : (
+              <Loader animation={startAnimation} />
+            )}
+          </FilterContextProvider>
+        </CartContextProvider>
+      </AuthContextProvider>
+      <Toaster />
+    </SSRProvider>
   );
 }
 
