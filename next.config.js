@@ -6,7 +6,7 @@
 // process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 module.exports =  {
   images: {
-    domains: ["45.159.113.83"],
+    domains: ["denasavaranapi.denasavaran-urmia.ir"],
   },
   eslint: {
     // Warning: This allows production builds to successfully complete even if
