@@ -6,7 +6,7 @@ export default function handler (req, res) {
     httpOnly: true,
     sameSite: "lax",
     secure: process.env.NODE_ENV === "development" ? false : false,
-    domain: process.env.NODE_ENV === "development" ? "localhost" : "dcf9-91-98-183-224.ngrok.io",
+    domain: process.env.NODE_ENV === "development" ? "localhost" : "denasavaran-urmia.ir",
     path: "/",
   };
   res.setHeader(
